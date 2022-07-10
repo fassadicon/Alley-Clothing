@@ -60,7 +60,7 @@
                     Margin="1" HorizontalAlignment="Stretch" 
                     VerticalAlignment="Stretch">
 
-            <DataGrid x:Name="TShirtDetailsDataGrid" Width="582" Height="175"></DataGrid>
+            <DataGrid x:Name="TShirtDetailsDataGrid" Width="620" Height="175"></DataGrid>
         </StackPanel>
         
 
