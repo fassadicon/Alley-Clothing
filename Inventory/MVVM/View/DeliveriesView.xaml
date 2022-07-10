@@ -35,8 +35,8 @@
             <TextBox x:Name="DeliveryType" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Delivery Type"/>
             <TextBox x:Name="TShirtID" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter TShirt ID"/>
             <TextBox x:Name="Quantity" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Quantity"/>
-            <TextBox x:Name="DateReceived" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Date Received"/>
-		    <TextBox x:Name="DateDelivered" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Delivered"/>
+            <DatePicker x:Name="DateReceived"  Width="120" materialDesign:HintAssist.Hint="Enter Received Date"></DatePicker>
+            <DatePicker x:Name="DateDelivered" Width="120" materialDesign:HintAssist.Hint="Enter Delivered Date"></DatePicker>
         </StackPanel>
         <!--DROPDOWN-->
         <StackPanel Grid.Column="2">
