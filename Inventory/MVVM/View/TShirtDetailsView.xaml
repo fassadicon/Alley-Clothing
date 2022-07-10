@@ -22,7 +22,7 @@
            
         <!--INPUT-->
         <StackPanel Grid.Column="0">
-            <Label Content="ID"/>
+            <Label Content="ID" FontSize="20"/>
             <Label Content="Brand"/>
             <Label Content="Name"/>
             <Label Content="Color"/>
