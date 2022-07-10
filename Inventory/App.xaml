@@ -1,0 +1,37 @@
+﻿<Application x:Class="Inventory.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Inventory"
+             xmlns:viewModel="clr-namespace:Inventory.MVVM.ViewModel"
+             xmlns:view="clr-namespace:Inventory.MVVM.View"
+             StartupUri="LogIn.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            
+            <DataTemplate DataType="{x:Type viewModel:TShirtDetailsViewModel}">
+                <view:TShirtDetailsView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:StocksViewModel}">
+                <view:StocksView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:DeliveriesViewModel}">
+                <view:DeliveriesView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:LogViewModel}">
+                <view:LogView/>
+            </DataTemplate>
+
+        </ResourceDictionary>
+       
+
+    </Application.Resources>
+</Application>
