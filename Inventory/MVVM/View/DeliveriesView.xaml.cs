@@ -42,6 +42,58 @@ namespace Inventory.MVVM.View
             ClearData();
         }
 
+        // UPDATE ON STOCKS IF DELIVERY TYPE IS "OUT"
+        private void UpdateOnStocks()
+        {
+            int stocks, newStocks;
+           
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT TShirtQty FROM Stocks WHERE TShirtID = '" + TShirtID.Text + "'", conn);
+                    SqlCommand cmd2 = new SqlCommand("UPDATE Stocks SET TShirtQty = @newStocks WHERE TShirtID = '" + TShirtID.Text + "'", conn);
+                    conn.Open();
+
+                    // GETTING THE QTY AND DEFECTS ON THE DATABASE
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // DIRETSO NA INT FOR COMPUTATION
+                            stocks = Int32.Parse(reader["TShirtQty"].ToString());
+                           
+
+                            // COMPUTATION
+                            newStocks = stocks - Int32.Parse(Quantity.Text);
+                          
+                            //ADDING NEW VALUES TO DATABASE
+                            cmd2.Parameters.AddWithValue("@newStocks", newStocks);
+ 
+
+                        }
+
+                    }
+
+                    cmd2.ExecuteNonQuery();
+                    conn.Close();
+                    MessageBox.Show("Stocks Details Updated Successfully", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    conn.Close();
+   
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Update Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         // INVENTORY DATABASE T SHIRT DETAILS TABLE
         public void LoadGrid()
         {
@@ -81,6 +133,12 @@ namespace Inventory.MVVM.View
                     cmd.Parameters.AddWithValue("@DateDelivered", DateDelivered.Text);
                     conn.Open();
                     cmd.ExecuteNonQuery();
+
+                    if(DeliveryType.Text == "Out" || DeliveryType.Text == "OUT" || DeliveryType.Text == "out")
+                    {
+                        UpdateOnStocks();
+                    }
+
                     conn.Close();
                     LoadGrid();
                     ClearData();
