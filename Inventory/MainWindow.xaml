@@ -27,7 +27,8 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="85*"></RowDefinition>
+                <RowDefinition Height="15*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <!--SIDE BAR-->
@@ -76,8 +77,19 @@
                         materialDesign:ButtonAssist.CornerRadius="10"
                         Command="{Binding LogViewCommand}"/>
             </StackPanel>
+            <StackPanel Grid.Row ="1">
+                <Button x:Name="LogOut" Content="LogOut"
+                        Height="50"
+                        Foreground="White"
+                        FontSize="14"
+                        Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                        materialDesign:ButtonAssist.CornerRadius="10"
+                        Click="LogOut_Click"/>
+            </StackPanel>
             <ContentControl Grid.Row ="0"
                             Grid.Column="1"
+                            Grid.RowSpan="2"
                             Margin="10"
                             Content ="{Binding CurrentView}"/>
 

@@ -21,5 +21,12 @@ namespace Inventory
         {
             InitializeComponent();
         }
+
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            new LogIn().Show();
+            this.Close();
+            
+        }
     }
 }
