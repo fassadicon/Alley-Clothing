@@ -23,13 +23,12 @@ namespace Inventory.MVVM.View
         {
             InitializeComponent();
             LoadGrid();
-            TShirtDetailsDropDisplay();
             AutoComplete();
         }
 
         private void AutoComplete()
         {
-            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
+            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
             {
                 List<int> TShirtIDs = new List<int>();
                 string q = "SELECT * from TShirtDetails";
@@ -38,7 +37,7 @@ namespace Inventory.MVVM.View
                 SqlDataReader sdr = cmd.ExecuteReader();
                 while (sdr.Read())
                 {
-                    TShirtIDs.Add((int)sdr["IdTShirt"]);                   
+                    TShirtIDs.Add((int)sdr["TShirtID"]);
                 }
                 TShirtDetailsID.ItemsSource = TShirtIDs;
                 conn.Close();
@@ -63,7 +62,7 @@ namespace Inventory.MVVM.View
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
                     SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails;", conn);
                     DataTable dt = new DataTable();
@@ -85,9 +84,9 @@ namespace Inventory.MVVM.View
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO TShirtDetails (IdTShirt, Brand, Name, Color, Size) VALUES (@IdTShirt, @Brand, @Name, @Color, @Size);", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO TShirtDetails (TShirtID, TShirtBrand, TShirtName, TShirtColor, TShirtSize) VALUES (@IdTShirt, @Brand, @Name, @Color, @Size);", conn);
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@IdTShirt", TShirtDetailsID.Text);
                     cmd.Parameters.AddWithValue("@Brand", Brand.Text);
@@ -100,7 +99,7 @@ namespace Inventory.MVVM.View
                     LoadGrid();
                     AutoComplete();
                     ClearData();
-                    TShirtDetailsDropDisplay();
+                    
                     MessageBox.Show("T Shirt Details Input Successful", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
@@ -119,16 +118,16 @@ namespace Inventory.MVVM.View
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
-                    SqlCommand cmd = new SqlCommand("UPDATE TShirtDetails set Brand = '" + Brand.Text + "', Name = '" + Name.Text + "', Color = '" + Color.Text + "', Size = '" + Size.Text + "' WHERE IdTShirt = '" + TShirtDetailsID.Text + "'", conn);
+                    SqlCommand cmd = new SqlCommand("UPDATE TShirtDetails set TShirtBrand = '" + Brand.Text + "', TShirtName = '" + Name.Text + "', TShirtColor = '" + Color.Text + "', TShirtSize = '" + Size.Text + "' WHERE TShirtID = '" + TShirtDetailsID.Text + "'", conn);
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     conn.Close();
                     LoadGrid();
                     AutoComplete();
                     ClearData();
-                    TShirtDetailsDropDisplay();
+                   
                     MessageBox.Show("T Shirt Details Update Successful", "Updated", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
@@ -146,16 +145,16 @@ namespace Inventory.MVVM.View
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
-                    SqlCommand cmd = new SqlCommand("DELETE FROM TShirtDetails WHERE IdTShirt = " + TShirtDetailsID.Text + " ", conn);
+                    SqlCommand cmd = new SqlCommand("DELETE FROM TShirtDetails WHERE TShirtID = " + TShirtDetailsID.Text + " ", conn);
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     conn.Close();
                     LoadGrid();
                     AutoComplete();
                     ClearData();
-                    TShirtDetailsDropDisplay();
+                    
                     MessageBox.Show("T Shirt Details Deletion Successful", "Deleted", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
@@ -164,91 +163,6 @@ namespace Inventory.MVVM.View
                 MessageBox.Show("Deletion Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        // DROP DOWN
-        private void TShirtIDDrop_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                if (TShirtIDDrop.SelectedValue == "ADD NEW")
-                {
-                    ClearData();
-                }
-                else
-                {
-                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
-                    {
-                        SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails WHERE IdTShirt = '" + TShirtIDDrop.SelectedValue + "'", conn);
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-                        SqlDataReader sdr = cmd.ExecuteReader();
-                        while (sdr.Read())
-                        {
-                            string sIdTShirt = sdr["IdTShirt"].ToString();
-                            TShirtDetailsID.Text = sIdTShirt;
-                            string sBrand = sdr["Brand"].ToString();
-                            Brand.Text = sBrand;
-                            string sName = sdr["Name"].ToString();
-                            Name.Text = sName;
-                            string sColor = sdr["Color"].ToString();
-                            Color.Text = sColor;
-                            string sSize = sdr["Size"].ToString();
-                            Size.Text = sSize;
-                        }
-                        conn.Close();
-                        LoadGrid();
-                    }
-                }
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("TShirtID Dropdown Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void TShirtDetailsDropDisplay()
-        {
-            TShirtIDDrop.Items.Clear();
-            BrandDrop.Items.Clear();
-            NameDrop.Items.Clear();
-            ColorDrop.Items.Clear();
-            SizeDrop.Items.Clear();
-
-            TShirtIDDrop.Items.Add("ADD NEW");
-            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
-            {
-                string q = "SELECT * from TShirtDetails";
-                SqlCommand cmd = new SqlCommand(q, conn);
-                conn.Open();
-                SqlDataReader sdr = cmd.ExecuteReader();
-                while (sdr.Read())
-                {
-                    TShirtIDDrop.Items.Add(sdr["IdTShirt"].ToString());
-                    BrandDrop.Items.Add(sdr["Brand"].ToString());
-                    NameDrop.Items.Add(sdr["Name"].ToString());
-                    ColorDrop.Items.Add(sdr["Color"].ToString());
-                    SizeDrop.Items.Add(sdr["Size"].ToString());
-                }
-                conn.Close();
-            }
-        }
-
-        private void BrandDrop_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
-            {
-                SqlCommand cmd = new SqlCommand("SELECT Brand FROM TShirtDetails", conn);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                SqlDataReader sdr = cmd.ExecuteReader();
-                while (sdr.Read())
-                {
-                    string sBrand = sdr["Brand"].ToString();
-                    Brand.Text = sBrand;
-                }
-                conn.Close();
-                LoadGrid();
-            }
-        }
     }
-}
+   }
+

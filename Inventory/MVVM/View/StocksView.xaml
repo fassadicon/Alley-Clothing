@@ -36,11 +36,14 @@
  
         </StackPanel>
         
-        <!--DROPDOWN-->
+        <!--PREVIEW-->
         <StackPanel Grid.Column="2">
-            <ComboBox x:Name="DeliveryIDDrop" Width="120" />
-            <ComboBox x:Name="DeliveryTypeDrop" Width="120"/>
-            <ComboBox x:Name="TShirtIDDrop" Width="120"/>
+            <Label x:Name="TShirtBrandPreview" Content="TShirt Brand"/>
+            <Label x:Name="TShirtNamePreview" Content="TShirt Name"/>
+            <Label x:Name="TShirtColorPreview" Content="TShirt Color"/>
+            <Label x:Name="TShirtSizePreview" Content="TShirt Size"/>
+            <Label x:Name="TShirtQtyPreview" Content="TShirt Quantity"/>
+            <Button x:Name="SeePrevButton" Content="See preview" Click="SeePrevButton_Click"/>
         </StackPanel>
         
         <!--BUTTON-->
