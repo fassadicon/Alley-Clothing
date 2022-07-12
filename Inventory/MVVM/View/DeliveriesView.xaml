@@ -12,6 +12,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
@@ -36,22 +37,28 @@
                 <RadioButton x:Name="In" Content="In" GroupName="DeliveryTypeGroup" Checked="RadioButton_Checked"></RadioButton>
                 <RadioButton x:Name="Out" Content="Out" GroupName="DeliveryTypeGroup"></RadioButton>
             </StackPanel>
-            <TextBox x:Name="TShirtID" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter TShirt ID"/>
+            <TextBox x:Name="TShirtID" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter TShirt ID" TextChanged="TShirtID_TextChanged"/>
             <TextBox x:Name="Quantity" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Quantity"/>
             <DatePicker x:Name="DateReceived"  Width="150" materialDesign:HintAssist.Hint="Enter Received Date"></DatePicker>
             <DatePicker x:Name="DateDelivered" Width="150" materialDesign:HintAssist.Hint="Enter Delivered Date"></DatePicker>
         </StackPanel>
-        <!--DROPDOWN-->
         <StackPanel Grid.Column="2">
-            <ComboBox x:Name="DeliveryIDDrop" Width="120" />
-            <ComboBox x:Name="DeliveryTypeDrop" Width="120"/>
-            <ComboBox x:Name="TShirtIDDrop" Width="120"/>
-            <ComboBox x:Name="QuantityDrop" Width="120"/>
-            <ComboBox x:Name="DateReceivedDrop" Width="120"/>
-		    <ComboBox x:Name="DateDeliveredDrop" Width="120"/>
+            <Label Content="Brand: "/>
+            <Label Content="Name: "/>
+            <Label Content="Color: "/>
+            <Label Content="Size: "/>
+            <Label Content="Quantity: "/>
+        </StackPanel>
+        <!--DROPDOWN-->
+        <StackPanel Grid.Column="3">
+            <Label x:Name="TShirtBrandPreview" Content="-"/>
+            <Label x:Name="TShirtNamePreview" Content="-"/>
+            <Label x:Name="TShirtColorPreview" Content="-"/>
+            <Label x:Name="TShirtSizePreview" Content="-"/>
+            <Label x:Name="TShirtQtyPreview" Content="-"/>
         </StackPanel>
         <!--BUTTON-->
-        <StackPanel Grid.Column="3">
+        <StackPanel Grid.Column="4">
             <Button x:Name="Insert" Content="Insert" Click="InsertTShirtDetails_Click"/>
             <Button x:Name="Update" Content="Update" Click="UpdateTShirtDetails_Click"/>
             <Button x:Name="Delete" Content="Delete" Click="DeleteBtn_Click"/>
