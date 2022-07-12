@@ -173,29 +173,40 @@ namespace Inventory.MVVM.View
         }
 
         //TSHIRT DETALS PREVIEW
-        private void SeePrevButton_Click(object sender, RoutedEventArgs e)
+        private void TShirtID_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
                     // GETTING THE TSHIRT DETAILS
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails INNER JOIN Stocks ON TShirtDetails.TShirtID = Stocks.TShirtID", conn);
-                    conn.Open();
-
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    if (TShirtID.Text == "")
                     {
-                        while (reader.Read())
-                        {
-                            TShirtBrandPreview.Content = reader["TShirtBrand"].ToString();
-                            TShirtNamePreview.Content = reader["TShirtName"].ToString();
-                            TShirtColorPreview.Content = reader["TShirtColor"].ToString();
-                            TShirtSizePreview.Content = reader["TShirtSize"].ToString();
-                            TShirtQtyPreview.Content = reader["TShirtQty"].ToString();
-                        }
-                        
+                        TShirtBrandPreview.Content = "";
+                        TShirtNamePreview.Content = "";
+                        TShirtColorPreview.Content = "";
+                        TShirtSizePreview.Content = "";
+                        TShirtQtyPreview.Content = "";
                     }
-                    
+                    else
+                    {
+                        String TShirtIDTextBoxContent = TShirtID.Text;
+                        SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails INNER JOIN Stocks ON TShirtDetails.TShirtID = " + TShirtIDTextBoxContent, conn);
+                        conn.Open();
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                TShirtBrandPreview.Content = reader["TShirtBrand"].ToString();
+                                TShirtNamePreview.Content = reader["TShirtName"].ToString();
+                                TShirtColorPreview.Content = reader["TShirtColor"].ToString();
+                                TShirtSizePreview.Content = reader["TShirtSize"].ToString();
+                                TShirtQtyPreview.Content = reader["TShirtQty"].ToString();
+                            }
+
+                        }
+                    }
                     conn.Close();
                 }
             }

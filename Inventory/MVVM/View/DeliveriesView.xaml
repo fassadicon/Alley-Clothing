@@ -42,6 +42,7 @@
             <DatePicker x:Name="DateReceived"  Width="150" materialDesign:HintAssist.Hint="Enter Received Date"></DatePicker>
             <DatePicker x:Name="DateDelivered" Width="150" materialDesign:HintAssist.Hint="Enter Delivered Date"></DatePicker>
         </StackPanel>
+        <!--PREVIEW LABEL-->
         <StackPanel Grid.Column="2">
             <Label Content="Brand: "/>
             <Label Content="Name: "/>
@@ -49,7 +50,7 @@
             <Label Content="Size: "/>
             <Label Content="Quantity: "/>
         </StackPanel>
-        <!--DROPDOWN-->
+        <!--PREVIEW CONTENT-->
         <StackPanel Grid.Column="3">
             <Label x:Name="TShirtBrandPreview" Content="-"/>
             <Label x:Name="TShirtNamePreview" Content="-"/>
