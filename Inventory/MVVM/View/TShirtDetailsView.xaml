@@ -42,16 +42,9 @@
             <TextBox x:Name="Color" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Color"/>
             <TextBox x:Name="Size" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Size"/>-->
         </StackPanel>
-        <!--DROPDOWN-->
-        <StackPanel Grid.Column="2">
-            <ComboBox x:Name="TShirtIDDrop" Width="120" SelectionChanged="TShirtIDDrop_SelectionChanged"/>
-            <ComboBox x:Name="BrandDrop" Width="120" SelectionChanged="BrandDrop_SelectionChanged"/>
-            <ComboBox x:Name="NameDrop" Width="120"/>
-            <ComboBox x:Name="ColorDrop" Width="120"/>
-            <ComboBox x:Name="SizeDrop" Width="120"/>
-        </StackPanel>
+       
         <!--BUTTON-->
-        <StackPanel Grid.Column="3">
+        <StackPanel Grid.Column="2" >
             <Button x:Name="Insert" Content="Insert" Click="InsertTShirtDetails_Click"/>
             <Button x:Name="Update" Content="Update" Click="UpdateTShirtDetails_Click"/>
             <Button x:Name="Delete" Content="Delete" Click="DeleteBtn_Click"/>
