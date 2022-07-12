@@ -44,7 +44,7 @@ namespace Inventory.MVVM.View
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
                     SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails;", conn);
                     DataTable dt = new DataTable();
@@ -66,7 +66,7 @@ namespace Inventory.MVVM.View
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
                     SqlCommand cmd = new SqlCommand("INSERT INTO TShirtDetails (IdTShirt, Brand, Name, Color, Size) VALUES (@IdTShirt, @Brand, @Name, @Color, @Size);", conn);
                     cmd.CommandType = CommandType.Text;
@@ -99,7 +99,7 @@ namespace Inventory.MVVM.View
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
                     SqlCommand cmd = new SqlCommand("UPDATE TShirtDetails set Brand = '" + Brand.Text + "', Name = '" + Name.Text + "', Color = '" + Color.Text + "', Size = '" + Size.Text + "' WHERE IdTShirt = '" + TShirtDetailsID.Text + "'", conn);
                     conn.Open();
@@ -125,7 +125,7 @@ namespace Inventory.MVVM.View
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
                     SqlCommand cmd = new SqlCommand("DELETE FROM TShirtDetails WHERE IdTShirt = " + TShirtDetailsID.Text + " ", conn);
                     conn.Open();
@@ -154,7 +154,7 @@ namespace Inventory.MVVM.View
                 }
                 else
                 {
-                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
+                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                     {
                         SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails WHERE IdTShirt = '" + TShirtIDDrop.SelectedValue + "'", conn);
                         conn.Open();
@@ -193,7 +193,7 @@ namespace Inventory.MVVM.View
             SizeDrop.Items.Clear();
 
             TShirtIDDrop.Items.Add("ADD NEW");
-            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
+            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
             {
                 string q = "SELECT * from TShirtDetails";
                 SqlCommand cmd = new SqlCommand(q, conn);
@@ -213,7 +213,7 @@ namespace Inventory.MVVM.View
 
         private void BrandDrop_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
+            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
             {
                 SqlCommand cmd = new SqlCommand("SELECT Brand FROM TShirtDetails", conn);
                 conn.Open();
