@@ -32,7 +32,10 @@
         <!--TEXTBOX-->
         <StackPanel Grid.Column="1">
             <TextBox x:Name="DeliveryID" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Delivery ID"/>
-            <TextBox x:Name="DeliveryType" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Delivery Type"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <RadioButton x:Name="In" Content="In" GroupName="DeliveryTypeGroup" Checked="RadioButton_Checked"></RadioButton>
+                <RadioButton x:Name="Out" Content="Out" GroupName="DeliveryTypeGroup"></RadioButton>
+            </StackPanel>
             <TextBox x:Name="TShirtID" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter TShirt ID"/>
             <TextBox x:Name="Quantity" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Quantity"/>
             <DatePicker x:Name="DateReceived"  Width="150" materialDesign:HintAssist.Hint="Enter Received Date"></DatePicker>

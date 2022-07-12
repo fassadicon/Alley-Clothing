@@ -31,7 +31,8 @@ namespace Inventory.MVVM.View
         private void ClearData()
         {
             DeliveryID.Text = string.Empty;
-            DeliveryType.Text = string.Empty;
+            In.IsChecked = false;
+            Out.IsChecked = false;
             TShirtID.Text = string.Empty;
             Quantity.Text = string.Empty;
             DateReceived.Text = string.Empty;
@@ -50,7 +51,7 @@ namespace Inventory.MVVM.View
 
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
                     SqlCommand cmd = new SqlCommand("SELECT TShirtQty FROM Stocks WHERE TShirtID = '" + TShirtID.Text + "'", conn);
                     SqlCommand cmd2 = new SqlCommand("UPDATE Stocks SET TShirtQty = @newStocks WHERE TShirtID = '" + TShirtID.Text + "'", conn);
@@ -99,9 +100,9 @@ namespace Inventory.MVVM.View
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM DeliveryDetails;", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Deliveries;", conn);
                     DataTable dt = new DataTable();
                     conn.Open();
                     SqlDataReader sdr = cmd.ExecuteReader();
@@ -121,12 +122,25 @@ namespace Inventory.MVVM.View
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Deliveries (DeliveryID, TransferType, TShirtID, Quantity, DateReceived, DateDelivered) VALUES (@DeliveryID, @DeliveryType, @TShirtID, @Quantity, @DateReceived, @DateDelivered);", conn);
+                    String DeliveryType;
+                    if (Out.IsChecked==true)
+                    {
+                        DeliveryType = "Out";
+                    }
+                    else if (In.IsChecked == true)
+                    {
+                        DeliveryType = "In";
+                    }
+                    else
+                    {
+                        DeliveryType = "";
+                    }
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Deliveries (DeliveryID, DeliveryType, TShirtID, Quantity, DateReceived, DateDelivered) VALUES (@DeliveryID, @DeliveryType, @TShirtID, @Quantity, @DateReceived, @DateDelivered);", conn);
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@DeliveryID", DeliveryID.Text);
-                    cmd.Parameters.AddWithValue("@DeliveryType", DeliveryType.Text);
+                    cmd.Parameters.AddWithValue("@DeliveryType", DeliveryType);
                     cmd.Parameters.AddWithValue("@TShirtID", TShirtID.Text);
                     cmd.Parameters.AddWithValue("@Quantity", Quantity.Text);
                     cmd.Parameters.AddWithValue("@DateReceived", DateReceived.Text);
@@ -134,7 +148,7 @@ namespace Inventory.MVVM.View
                     conn.Open();
                     cmd.ExecuteNonQuery();
 
-                    if(DeliveryType.Text == "Out" || DeliveryType.Text == "OUT" || DeliveryType.Text == "out")
+                    if(DeliveryType == "Out" || DeliveryType == "OUT" || DeliveryType == "out")
                     {
                         UpdateOnStocks();
                     }
@@ -161,9 +175,22 @@ namespace Inventory.MVVM.View
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
-                    SqlCommand cmd = new SqlCommand("UPDATE Deliveries set TransferType = '" + DeliveryType.Text + "', TShirtID = '" + TShirtID.Text + "', Quantity = '" + Quantity.Text + "', DateReceived = '" + DateReceived.Text + "' DataDelivered = '" + DateDelivered.Text + "' WHERE IdTShirt = '" + DeliveryID.Text + "'", conn);
+                    String DeliveryType;
+                    if (Out.IsChecked == true)
+                    {
+                        DeliveryType = "Out";
+                    }
+                    else if (In.IsChecked == true)
+                    {
+                        DeliveryType = "In";
+                    }
+                    else
+                    {
+                        DeliveryType = "";
+                    }
+                    SqlCommand cmd = new SqlCommand("UPDATE Deliveries set DeliveryType = '" + DeliveryType + "', TShirtID = '" + TShirtID.Text + "', Quantity = '" + Quantity.Text + "', DateReceived = '" + DateReceived.Text + "' DataDelivered = '" + DateDelivered.Text + "' WHERE IdTShirt = '" + DeliveryID.Text + "'", conn);
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     conn.Close();
@@ -187,7 +214,7 @@ namespace Inventory.MVVM.View
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
                     SqlCommand cmd = new SqlCommand("DELETE FROM Deliveries WHERE DeliveryID = " + DeliveryID.Text + " ", conn);
                     conn.Open();
@@ -205,8 +232,10 @@ namespace Inventory.MVVM.View
             }
         }
 
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
 
-
+        }
     }
     
 }
