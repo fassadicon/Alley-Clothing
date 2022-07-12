@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Inventory.MVVM.View"
+             xmlns:controls="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="#FFE6D2D2">
     <Grid>
@@ -30,11 +31,16 @@
         </StackPanel>
         <!--TEXTBOX-->
         <StackPanel Grid.Column="1">
-            <TextBox x:Name="TShirtDetailsID" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID"/>
+            <controls:AutoCompleteBox x:Name="TShirtDetailsID" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID"></controls:AutoCompleteBox>
+            <controls:AutoCompleteBox x:Name="Brand" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID"></controls:AutoCompleteBox>
+            <controls:AutoCompleteBox x:Name="Name" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID"></controls:AutoCompleteBox>
+            <controls:AutoCompleteBox x:Name="Color" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID"></controls:AutoCompleteBox>
+            <controls:AutoCompleteBox x:Name="Size" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID"></controls:AutoCompleteBox>
+            <!--<TextBox x:Name="TShirtDetailsID" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID"/>
             <TextBox x:Name="Brand" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Brand"/>
             <TextBox x:Name="Name" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Name"/>
             <TextBox x:Name="Color" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Color"/>
-            <TextBox x:Name="Size" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Size"/>
+            <TextBox x:Name="Size" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Size"/>-->
         </StackPanel>
         <!--DROPDOWN-->
         <StackPanel Grid.Column="2">

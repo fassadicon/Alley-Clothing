@@ -24,6 +24,25 @@ namespace Inventory.MVVM.View
             InitializeComponent();
             LoadGrid();
             TShirtDetailsDropDisplay();
+            AutoComplete();
+        }
+
+        private void AutoComplete()
+        {
+            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\Source\\Repos\\NewRepo\\Inventory\\InventoryDatabase.mdf;Integrated Security=True"))
+            {
+                List<int> TShirtIDs = new List<int>();
+                string q = "SELECT * from TShirtDetails";
+                SqlCommand cmd = new SqlCommand(q, conn);
+                conn.Open();
+                SqlDataReader sdr = cmd.ExecuteReader();
+                while (sdr.Read())
+                {
+                    TShirtIDs.Add((int)sdr["IdTShirt"]);                   
+                }
+                TShirtDetailsID.ItemsSource = TShirtIDs;
+                conn.Close();
+            }
         }
 
         private void ClearData()
@@ -79,6 +98,7 @@ namespace Inventory.MVVM.View
                     cmd.ExecuteNonQuery();
                     conn.Close();
                     LoadGrid();
+                    AutoComplete();
                     ClearData();
                     TShirtDetailsDropDisplay();
                     MessageBox.Show("T Shirt Details Input Successful", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -106,6 +126,7 @@ namespace Inventory.MVVM.View
                     cmd.ExecuteNonQuery();
                     conn.Close();
                     LoadGrid();
+                    AutoComplete();
                     ClearData();
                     TShirtDetailsDropDisplay();
                     MessageBox.Show("T Shirt Details Update Successful", "Updated", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -132,6 +153,7 @@ namespace Inventory.MVVM.View
                     cmd.ExecuteNonQuery();
                     conn.Close();
                     LoadGrid();
+                    AutoComplete();
                     ClearData();
                     TShirtDetailsDropDisplay();
                     MessageBox.Show("T Shirt Details Deletion Successful", "Deleted", MessageBoxButton.OK, MessageBoxImage.Information);
