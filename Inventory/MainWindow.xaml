@@ -27,12 +27,20 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="85*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="81*"></RowDefinition>
                 <RowDefinition Height="15*"></RowDefinition>
             </Grid.RowDefinitions>
-
+            <!--SIZE BUTTONS-->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
+                <Ellipse Fill="GreenYellow" Grid.Row="0" Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,2,0" MouseLeftButtonDown="MaximizeApp" ToolTip="Close"></Ellipse>
+                <Ellipse Fill="Orange" Grid.Row="0" Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,2,0" MouseLeftButtonDown="MinimizeApp" ToolTip="Close"></Ellipse>
+                <Ellipse Fill="Red" Grid.Row="0" Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" MouseLeftButtonDown="CloseApp" ToolTip="Close"></Ellipse>
+            </StackPanel>
             <!--SIDE BAR-->
-            <StackPanel>
+            <StackPanel Grid.Row ="0"
+                            Grid.Column="0"
+                        Grid.RowSpan="2">
                 <!--SIDE MENU-->
                 <TextBlock Text="Hehehe"
                        FontSize="22"
@@ -77,7 +85,7 @@
                         materialDesign:ButtonAssist.CornerRadius="10"
                         Command="{Binding LogViewCommand}"/>
             </StackPanel>
-            <StackPanel Grid.Row ="1">
+            <StackPanel Grid.Row ="2">
                 <Button x:Name="LogOut" Content="LogOut"
                         Height="50"
                         Foreground="White"
@@ -87,10 +95,10 @@
                         materialDesign:ButtonAssist.CornerRadius="10"
                         Click="LogOut_Click"/>
             </StackPanel>
-            <ContentControl Grid.Row ="0"
+            <ContentControl Grid.Row ="1"
                             Grid.Column="1"
                             Grid.RowSpan="2"
-                            Margin="10"
+                            Margin="10, 2, 10, 10"
                             Content ="{Binding CurrentView}"/>
 
         </Grid>
