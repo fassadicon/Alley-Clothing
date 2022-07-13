@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Inventory.MVVM.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="ForestGreen">
+             d:DesignHeight="450" d:DesignWidth="800" Background="Green">
     <Grid>
             
     </Grid>
