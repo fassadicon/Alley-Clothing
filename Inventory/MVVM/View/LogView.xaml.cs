@@ -36,7 +36,7 @@ namespace Inventory.MVVM.View
             {
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM DeliveryDetails WHERE DateReceived = '"+ StartDate.Text+ "' OR DateDelivered = '" + StartDate.Text + "' OR DateReceived = '" + EndDate.Text + "' OR DateDelivered = '" + EndDate.Text + "';", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM DeliveryDetails WHERE (DateReceived BETWEEN '"+ StartDate.Text+ "' AND '" + EndDate.Text + "') AND (DateDelivered BETWEEN '" + StartDate.Text + "' AND '" + EndDate.Text + "');", conn);
                     DataTable dt = new DataTable();
                     conn.Open();
                     SqlDataReader sdr = cmd.ExecuteReader();
