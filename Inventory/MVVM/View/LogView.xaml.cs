@@ -29,14 +29,75 @@ namespace Inventory.MVVM.View
             StartDate.SelectedDate = DateTime.Today;
             EndDate.SelectedDate = DateTime.Today;
         }
-        // INVENTORY DATABASE T SHIRT DETAILS TABLE
+        // LOG DETAILS TABLE
         public void LoadGrid()
         {
             try
             {
+                // Labels
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM DeliveryDetails WHERE (DateReceived BETWEEN '"+ StartDate.Text+ "' AND '" + EndDate.Text + "') AND (DateDelivered BETWEEN '" + StartDate.Text + "' AND '" + EndDate.Text + "');", conn);
+                    int count = 0;
+                    using (SqlCommand cmdCount = new SqlCommand("SELECT COUNT(*) FROM DeliveryDetails WHERE DeliveryType = 'In' AND DateReceived BETWEEN '" + StartDate.Text + "' AND '" + EndDate.Text + "';", conn))
+                    {
+                        conn.Open();
+                        count = (int)cmdCount.ExecuteScalar();
+                        DeliveryIn.Content = count.ToString();
+                        conn.Close();
+                    }
+
+                    count = 0;
+                    using (SqlCommand cmdCount = new SqlCommand("SELECT COUNT(*) FROM DeliveryDetails WHERE DeliveryType = 'Out' AND DateReceived BETWEEN '" + StartDate.Text + "' AND '" + EndDate.Text + "';", conn))
+                    {
+                        conn.Open();
+                        count = (int)cmdCount.ExecuteScalar();
+                        DeliveryOut.Content = count.ToString();
+                        conn.Close();
+                    }
+
+                    using (SqlCommand cmdCount = new SqlCommand("SELECT SUM (Quantity) FROM DeliveryDetails WHERE DeliveryType = 'In' AND DateReceived BETWEEN '" + StartDate.Text + "' AND '" + EndDate.Text + "';", conn))
+                    {
+                        conn.Open();
+                        TShirtIn.Content = Convert.ToString(cmdCount.ExecuteScalar());
+                        conn.Close();
+                    }
+
+                    using (SqlCommand cmdCount = new SqlCommand("SELECT SUM (Quantity) FROM DeliveryDetails WHERE DeliveryType = 'Out' AND DateReceived BETWEEN '" + StartDate.Text + "' AND '" + EndDate.Text + "';", conn))
+                    {
+                        conn.Open();
+                        TShirtOut.Content = Convert.ToString(cmdCount.ExecuteScalar());
+                        conn.Close();
+                    }
+
+                    
+
+                    //count = 0;
+                    //using (SqlCommand cmdCount = new SqlCommand("SELECT SUM(Quantity) FROM DeliveryDetails WHERE DeliveryType = 'Out' AND DateReceived BETWEEN '" + StartDate.Text + "' AND '" + EndDate.Text + "';", conn))
+                    //{
+                    //    conn.Open();
+                    //    count = (int)cmdCount.ExecuteScalar();
+                    //    TShirtOut.Content = count.ToString();
+                    //    //conn.Close();
+                    //}
+
+
+
+                }
+                // Test Table
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails;", conn);
+                    DataTable dt = new DataTable();
+                    conn.Open();
+                    SqlDataReader sdr = cmd.ExecuteReader();
+                    dt.Load(sdr);
+                    conn.Close();
+                    StockSummary.ItemsSource = dt.DefaultView;
+                }
+                // Deliveries Table
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM DeliveryDetails WHERE DateReceived BETWEEN '"+ StartDate.Text+ "' AND '" + EndDate.Text + "';", conn);
                     DataTable dt = new DataTable();
                     conn.Open();
                     SqlDataReader sdr = cmd.ExecuteReader();
@@ -44,6 +105,7 @@ namespace Inventory.MVVM.View
                     conn.Close();
                     Deliveries.ItemsSource = dt.DefaultView;
                 }
+
             }
             catch (SqlException ex)
             {
@@ -59,6 +121,23 @@ namespace Inventory.MVVM.View
         private void EndDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             LoadGrid();
+        }
+
+        private void printBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.IsEnabled = false;
+                PrintDialog printDialog = new PrintDialog();                         
+                if (printDialog.ShowDialog() == true)
+                {
+                    printDialog.PrintVisual(PrintArea, "Log");
+                }
+            }
+            finally
+            {
+                this.IsEnabled = true;    
+            }
         }
     }
 }
