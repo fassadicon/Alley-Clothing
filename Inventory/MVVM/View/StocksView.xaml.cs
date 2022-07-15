@@ -23,6 +23,7 @@ namespace Inventory.MVVM.View
         {
             InitializeComponent();
             LoadGrid();
+            AutoComplete();
         }
 
         private void ClearData()
@@ -38,6 +39,45 @@ namespace Inventory.MVVM.View
             ClearData();
         }
 
+        // AUTO SUGGEST
+        private void AutoComplete()
+        {
+            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+            {
+                SqlCommand cmd;
+                SqlDataReader sdr;
+                string q;
+
+                // List for AutoSuggest
+                List<int> StockIDs = new List<int>();
+                List<int> TShirtIDs = new List<int>();
+
+                // Reading Database Result per Column
+                conn.Open();
+                q = "SELECT StockID from Stocks";
+                cmd = new SqlCommand(q, conn);
+                sdr = cmd.ExecuteReader();
+                while (sdr.Read())
+                {
+                   StockIDs.Add((int)sdr["StockID"]);
+                }
+                conn.Close();
+
+                conn.Open();
+                q = "SELECT TShirtID from TShirtDetails";
+                cmd = new SqlCommand(q, conn);
+                sdr = cmd.ExecuteReader();
+                while (sdr.Read())
+                {
+                    TShirtIDs.Add((int)sdr["TShirtID"]);
+                }
+                conn.Close();
+
+                // Setting Textbox AutoSuggest Sources
+                StockID.ItemsSource = StockIDs;
+                TShirtID.ItemsSource = TShirtIDs;
+            }
+        }
         //INVENTORY DATABASE T SHIRT DETAILS TABLE
         public void LoadGrid()
         {
@@ -194,7 +234,7 @@ namespace Inventory.MVVM.View
         }
 
         //TSHIRT DETALS PREVIEW
-        private void TShirtID_TextChanged(object sender, TextChangedEventArgs e)
+        private void TShirtID_TextChanged_1(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -213,6 +253,7 @@ namespace Inventory.MVVM.View
                     {
                         String TShirtIDTextBoxContent = TShirtID.Text;
                         SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails INNER JOIN Stocks ON TShirtDetails.TShirtID = " + TShirtIDTextBoxContent, conn);
+                        //SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails WHERE TShirtID = '" + TShirtIDTextBoxContent + "';", conn);
                         conn.Open();
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
@@ -240,6 +281,7 @@ namespace Inventory.MVVM.View
                 MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
         private void FilterBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -257,7 +299,7 @@ namespace Inventory.MVVM.View
 
         }
 
-
+        
     }
 }
 

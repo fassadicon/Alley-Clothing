@@ -5,9 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Inventory.MVVM.View"
+             xmlns:controls="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="#FFE6D2D2">
-    <Grid>
+    <Grid Margin="1,0,-1,0">
         <!--GRID DEFINITION-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -33,8 +34,8 @@
         
         <!--TEXTBOX-->
         <StackPanel Grid.Column="1">
-            <TextBox x:Name="StockID" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Stock ID" TextChanged="TShirtID_TextChanged"/>
-            <TextBox x:Name="TShirtID" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter TShirt ID" TextChanged="TShirtID_TextChanged"/>
+            <controls:AutoCompleteBox x:Name="StockID" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID"></controls:AutoCompleteBox>
+            <controls:AutoCompleteBox x:Name="TShirtID" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID" TextChanged="TShirtID_TextChanged_1"></controls:AutoCompleteBox>
             <TextBox x:Name="TShirtQty" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter TShirt Quantity"/>
             <TextBox x:Name="TShirtDefect" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter TShirt Defective"/>
             <DatePicker x:Name="StockDate" Width="150" materialDesign:HintAssist.Hint="Enter Stock Transaction Date"></DatePicker>
