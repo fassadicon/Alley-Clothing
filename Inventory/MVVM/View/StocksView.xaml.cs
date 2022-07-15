@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace Inventory.MVVM.View
 {
-    /// <summary>
-    /// Interaction logic for StocksView.xaml
-    /// </summary>
     public partial class StocksView : UserControl
     {
         public StocksView()
@@ -33,6 +30,7 @@ namespace Inventory.MVVM.View
             TShirtID.Text = string.Empty;
             TShirtQty.Text = string.Empty;
             TShirtDefect.Text = string.Empty;
+            StockDate.Text = string.Empty;
         }
 
         private void ClearBtn_Click(object sender, RoutedEventArgs e)
@@ -40,7 +38,7 @@ namespace Inventory.MVVM.View
             ClearData();
         }
 
-        // INVENTORY DATABASE T SHIRT DETAILS TABLE
+        //INVENTORY DATABASE T SHIRT DETAILS TABLE
         public void LoadGrid()
         {
             if (FilterBoxItem.Text == "")
@@ -85,7 +83,11 @@ namespace Inventory.MVVM.View
                         {
                             queryString = "SELECT * FROM Stocks WHERE TShirtDefect = @FilterItem";
                         }
-                        
+                        else if (FilterBoxCateg.Text == "StockID")
+                        {
+                            queryString = "SELECT * FROM Stocks WHERE StockID = @FilterItem";
+                        }
+
 
 
                         SqlCommand cmd = new SqlCommand(queryString, conn);
@@ -107,23 +109,25 @@ namespace Inventory.MVVM.View
             }
         }
 
-            // INSERT T SHIRT DETAILS
-            private void InsertTShirtDetails_Click(object sender, RoutedEventArgs e)
+        // INSERT T SHIRT DETAILS
+        private void InsertTShirtDetails_Click(object sender, RoutedEventArgs e)
             {
                 try
                 {
                     using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                     {
-                        SqlCommand cmd = new SqlCommand("INSERT INTO Stocks (TShirtID, TShirtQty, TShirtDefect) VALUES (@TShirtID, @TShirtQty, @TShirtDefect);", conn);
+                        SqlCommand cmd = new SqlCommand("INSERT INTO Stocks (StockID, TShirtID, TShirtQty, TShirtDefect, Date) VALUES (@StockID, @TShirtID, @TShirtQty, @TShirtDefect, @Date);", conn);
                         cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@StockID", StockID.Text);
                         cmd.Parameters.AddWithValue("@TShirtID", TShirtID.Text);
                         cmd.Parameters.AddWithValue("@TShirtQty", TShirtQty.Text);
                         cmd.Parameters.AddWithValue("@TShirtDefect", TShirtDefect.Text);
-                        conn.Open();
+                        cmd.Parameters.AddWithValue("@Date", StockDate.Text);
+                    conn.Open();
                         cmd.ExecuteNonQuery();
                         conn.Close();
-                        LoadGrid();
-                        ClearData();
+                    LoadGrid();
+                    ClearData();
 
                         MessageBox.Show("Stocks Details Input Successful", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
@@ -138,150 +142,122 @@ namespace Inventory.MVVM.View
                 }
             }
 
-            // UPDATE T SHIRT DETAILS
-            private void Update_Click(object sender, RoutedEventArgs e)
+        // UPDATE T SHIRT DETAILS
+        private void UpdateStockDetails_Click(object sender, RoutedEventArgs e)
+        {
+            try
             {
-                int stocks, defect;
-                int newStocks, newDefect;
-
-                try
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
-                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                    SqlCommand cmd = new SqlCommand("UPDATE Stocks set TShirtID = '" + TShirtID.Text + "', TShirtQty = '" + TShirtQty.Text + "', TShirtDefect = '" + TShirtDefect.Text + "', Date = '" + StockDate.Text + "' WHERE StockID = '" + StockID.Text + "'", conn);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                    LoadGrid();
+                    //AutoComplete();
+                    ClearData();
+
+                    MessageBox.Show("Stock Transaction Details Update Successful", "Updated", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Update Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        // DELETE STOCKS
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                {
+                    SqlCommand cmd = new SqlCommand("DELETE FROM Stocks WHERE StockID = " + StockID.Text + " ", conn);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                    LoadGrid();
+                    ClearData();
+
+                    MessageBox.Show("T Shirt Details Deletion Successful", "Deleted", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Deletion Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        //TSHIRT DETALS PREVIEW
+        private void TShirtID_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                {
+                    // GETTING THE TSHIRT DETAILS
+                    if (TShirtID.Text == "")
                     {
-                        SqlCommand cmd = new SqlCommand("SELECT TShirtQty, TShirtDefect FROM Stocks WHERE TShirtID = '" + TShirtID.Text + "'", conn);
-                        SqlCommand cmd2 = new SqlCommand("UPDATE Stocks SET TShirtQty = @newStocks, TShirtDefect = @newDefect WHERE TShirtID = '" + TShirtID.Text + "'", conn);
+                        TShirtBrandPreview.Content = "";
+                        TShirtNamePreview.Content = "";
+                        TShirtColorPreview.Content = "";
+                        TShirtSizePreview.Content = "";
+                        TShirtQtyPreview.Content = "";
+                    }
+                    else
+                    {
+                        String TShirtIDTextBoxContent = TShirtID.Text;
+                        SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails INNER JOIN Stocks ON TShirtDetails.TShirtID = " + TShirtIDTextBoxContent, conn);
                         conn.Open();
 
-                        // GETTING THE QTY AND DEFECTS ON THE DATABASE
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                // DIRETSO NA INT FOR COMPUTATION
-                                stocks = Int32.Parse(reader["TShirtQty"].ToString());
-                                defect = Int32.Parse(reader["TShirtDefect"].ToString());
-
-                                // COMPUTATION
-                                newStocks = stocks + Int32.Parse(TShirtQty.Text);
-                                newDefect = defect + Int32.Parse(TShirtDefect.Text);
-
-                                //ADDING NEW VALUES TO DATABASE
-                                cmd2.Parameters.AddWithValue("@newStocks", newStocks);
-                                cmd2.Parameters.AddWithValue("@newDefect", newDefect);
-
+                                TShirtBrandPreview.Content = reader["TShirtBrand"].ToString();
+                                TShirtNamePreview.Content = reader["TShirtName"].ToString();
+                                TShirtColorPreview.Content = reader["TShirtColor"].ToString();
+                                TShirtSizePreview.Content = reader["TShirtSize"].ToString();
+                                TShirtQtyPreview.Content = reader["TShirtQty"].ToString();
                             }
 
                         }
-
-                        cmd2.ExecuteNonQuery();
-                        conn.Close();
-                        MessageBox.Show("Stocks Details Updated Successfully", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                        conn.Close();
-                        LoadGrid();
-                        ClearData();
-
-                        MessageBox.Show("T Shirt Details Update Successful", "Updated", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Update Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                catch (FormatException ex)
-                {
-                    MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    conn.Close();
                 }
             }
-
-            // DELETE STOCKS
-            private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+            catch (SqlException ex)
             {
-                try
-                {
-                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
-                    {
-                        SqlCommand cmd = new SqlCommand("DELETE FROM Stocks WHERE TShirtID = " + TShirtID.Text + " ", conn);
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-                        conn.Close();
-                        LoadGrid();
-                        ClearData();
-
-                        MessageBox.Show("T Shirt Details Deletion Successful", "Deleted", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Deletion Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                MessageBox.Show("Preview Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            //TSHIRT DETALS PREVIEW
-            private void TShirtID_TextChanged(object sender, TextChangedEventArgs e)
+            catch (FormatException ex)
             {
-                try
-                {
-                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
-                    {
-                        // GETTING THE TSHIRT DETAILS
-                        if (TShirtID.Text == "")
-                        {
-                            TShirtBrandPreview.Content = "";
-                            TShirtNamePreview.Content = "";
-                            TShirtColorPreview.Content = "";
-                            TShirtSizePreview.Content = "";
-                            TShirtQtyPreview.Content = "";
-                        }
-                        else
-                        {
-                            String TShirtIDTextBoxContent = TShirtID.Text;
-                            SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails INNER JOIN Stocks ON TShirtDetails.TShirtID = " + TShirtIDTextBoxContent, conn);
-                            conn.Open();
-
-                            using (SqlDataReader reader = cmd.ExecuteReader())
-                            {
-                                while (reader.Read())
-                                {
-                                    TShirtBrandPreview.Content = reader["TShirtBrand"].ToString();
-                                    TShirtNamePreview.Content = reader["TShirtName"].ToString();
-                                    TShirtColorPreview.Content = reader["TShirtColor"].ToString();
-                                    TShirtSizePreview.Content = reader["TShirtSize"].ToString();
-                                    TShirtQtyPreview.Content = reader["TShirtQty"].ToString();
-                                }
-
-                            }
-                        }
-                        conn.Close();
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Preview Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                catch (FormatException ex)
-                {
-                    MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            private void FilterBox_TextChanged(object sender, TextChangedEventArgs e)
+        }
+        private void FilterBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            // GETTING THE TSHIRT DETAILS
+            if (FilterBoxItem.Text == "")
             {
-
-                // GETTING THE TSHIRT DETAILS
-                if (FilterBoxItem.Text == "")
-                {
-                    LoadGrid();
-                }
-                else
-                {
-                    String FilterBoxCategContent = FilterBoxCateg.Text;
-                    String FilterBoxItemContent = FilterBoxItem.Text;
-                    LoadGrid();
-                }
-
+                LoadGrid();
             }
-
+            else
+            {
+                String FilterBoxCategContent = FilterBoxCateg.Text;
+                String FilterBoxItemContent = FilterBoxItem.Text;
+                LoadGrid();
+            }
 
         }
+
+
     }
+}
 

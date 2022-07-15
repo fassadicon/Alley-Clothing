@@ -24,18 +24,20 @@
 
         <!--INPUT-->
         <StackPanel Grid.Column="0">
+            <Label Content="Stock Transaction ID"/>
             <Label Content="TShirt ID"/>
             <Label Content="TShirt Quantity"/>
             <Label Content="TShirt Defective"/>
-
+            <Label Content="Transaction Date"/>
         </StackPanel>
         
         <!--TEXTBOX-->
         <StackPanel Grid.Column="1">
+            <TextBox x:Name="StockID" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Stock ID" TextChanged="TShirtID_TextChanged"/>
             <TextBox x:Name="TShirtID" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter TShirt ID" TextChanged="TShirtID_TextChanged"/>
             <TextBox x:Name="TShirtQty" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter TShirt Quantity"/>
             <TextBox x:Name="TShirtDefect" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter TShirt Defective"/>
- 
+            <DatePicker x:Name="StockDate" Width="150" materialDesign:HintAssist.Hint="Enter Stock Transaction Date"></DatePicker>
         </StackPanel>
 
         <!--PREVIEW LABEL-->
@@ -58,7 +60,7 @@
         <!--BUTTON-->
         <StackPanel Grid.Column="4">
             <Button x:Name="Insert" Content="Insert" Click="InsertTShirtDetails_Click"/>
-            <Button x:Name="Update" Content="Update" Click="Update_Click"/>
+            <Button x:Name="Update" Content="Update" Click="UpdateStockDetails_Click"/>
             <Button x:Name="Delete" Content="Delete" Click="DeleteBtn_Click" />
             <Button x:Name="Clear" Content="Clear" Click="ClearBtn_Click" />
 
