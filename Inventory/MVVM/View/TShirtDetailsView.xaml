@@ -32,7 +32,7 @@
         </StackPanel>
         <!--TEXTBOX-->
         <StackPanel Grid.Column="1">
-            <controls:AutoCompleteBox x:Name="TShirtDetailsID" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID"></controls:AutoCompleteBox>
+            <controls:AutoCompleteBox x:Name="TShirtDetailsID" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID" TextChanged="TShirtDetailsID_TextChanged"></controls:AutoCompleteBox>
             <controls:AutoCompleteBox x:Name="Brand" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID"></controls:AutoCompleteBox>
             <controls:AutoCompleteBox x:Name="Name" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID"></controls:AutoCompleteBox>
             <controls:AutoCompleteBox x:Name="Color" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID"></controls:AutoCompleteBox>

@@ -291,6 +291,49 @@ namespace Inventory.MVVM.View
             }
 
         }
+
+        private void TShirtDetailsID_TextChanged(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                {
+                    // GETTING THE TSHIRT DETAILS
+                    if (TShirtDetailsID.Text == "")
+                    {                     
+                        Brand.Text = "";
+                        Name.Text = "";
+                        Color.Text = "";
+                        Size.Text = "";
+
+                    }
+                    else
+                    {
+                        SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails WHERE TShirtID = '" + TShirtDetailsID.Text + "';", conn);
+                        conn.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            { 
+                                Brand.Text = reader["TShirtBrand"].ToString();
+                                Name.Text = reader["TShirtName"].ToString();
+                                Color.Text = reader["TShirtColor"].ToString();
+                                Size.Text = reader["TShirtSize"].ToString();
+                            }
+                        }                    
+                    }
+                    conn.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Preview Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
    }
 
