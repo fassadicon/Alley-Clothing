@@ -28,7 +28,7 @@ namespace Inventory.MVVM.View
 
         private void AutoComplete()
         {
-            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
             {
                 List<int> TShirtIDs = new List<int>();
                 string q = "SELECT TShirtID from TShirtDetails";
@@ -60,22 +60,75 @@ namespace Inventory.MVVM.View
         // INVENTORY DATABASE T SHIRT DETAILS TABLE
         public void LoadGrid()
         {
-            try
+            if (FilterBoxItem.Text == "")
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                try
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails;", conn);
-                    DataTable dt = new DataTable();
-                    conn.Open();
-                    SqlDataReader sdr = cmd.ExecuteReader();
-                    dt.Load(sdr);
-                    conn.Close();
-                    TShirtDetailsDataGrid.ItemsSource = dt.DefaultView;
+                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                    {
+                        SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails ;", conn);
+                        DataTable dt = new DataTable();
+                        conn.Open();
+                        SqlDataReader sdr = cmd.ExecuteReader();
+                        dt.Load(sdr);
+                        conn.Close();
+                        TShirtDetailsDataGrid.ItemsSource = dt.DefaultView;
+                    }
                 }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Reading Failed: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
             }
-            catch (SqlException ex)
+            else
             {
-                MessageBox.Show("Reading Failed: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                try
+                {
+                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                    {
+                        String queryString = "";
+
+                        if (FilterBoxCateg.Text == "TShirtID")
+                        {
+                            queryString = "SELECT * FROM TShirtDetails WHERE TShirtID = @FilterItem";
+                        }
+                        else if (FilterBoxCateg.Text == "TShirtBrand" || FilterBoxCateg.Text == "TShirtQty")
+                        {
+                            queryString = "SELECT * FROM TShirtDetails WHERE TShirtBrand = @FilterItem";
+                        }
+                        else if (FilterBoxCateg.Text == "TShirtName")
+                        {
+                            queryString = "SELECT * FROM TShirtDetails WHERE TShirtName = @FilterItem";
+                        }
+                        else if (FilterBoxCateg.Text == "TShirtColor")
+                        {
+                            queryString = "SELECT * FROM TShirtDetails WHERE TShirtColor = @FilterItem";
+                        }
+                        else if (FilterBoxCateg.Text == "TShirtSize")
+                        {
+                            queryString = "SELECT * FROM TShirtDetails WHERE TShirtSize = @FilterItem";
+                        }
+
+
+
+                        SqlCommand cmd = new SqlCommand(queryString, conn);
+                        cmd.Parameters.AddWithValue("@FilterCateg", FilterBoxCateg.Text);
+                        cmd.Parameters.AddWithValue("@FilterItem", FilterBoxItem.Text);
+
+                        DataTable dt = new DataTable();
+                        conn.Open();
+                        SqlDataReader sdr = cmd.ExecuteReader();
+                        dt.Load(sdr);
+                        conn.Close();
+                        TShirtDetailsDataGrid.ItemsSource = dt.DefaultView;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Reading Failed: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
@@ -84,7 +137,7 @@ namespace Inventory.MVVM.View
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
                     SqlCommand cmd = new SqlCommand("INSERT INTO TShirtDetails (TShirtID, TShirtBrand, TShirtName, TShirtColor, TShirtSize) VALUES (@TShirtID, @Brand, @Name, @Color, @Size);", conn);
                     cmd.CommandType = CommandType.Text;
@@ -118,7 +171,7 @@ namespace Inventory.MVVM.View
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
                     SqlCommand cmd = new SqlCommand("UPDATE TShirtDetails set TShirtBrand = '" + Brand.Text + "', TShirtName = '" + Name.Text + "', TShirtColor = '" + Color.Text + "', TShirtSize = '" + Size.Text + "' WHERE TShirtID = '" + TShirtDetailsID.Text + "'", conn);
                     conn.Open();
@@ -145,7 +198,7 @@ namespace Inventory.MVVM.View
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
                     SqlCommand cmd = new SqlCommand("DELETE FROM TShirtDetails WHERE TShirtID = " + TShirtDetailsID.Text + " ", conn);
                     conn.Open();
@@ -162,6 +215,23 @@ namespace Inventory.MVVM.View
             {
                 MessageBox.Show("Deletion Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void FilterBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            // GETTING THE TSHIRT DETAILS
+            if (FilterBoxItem.Text == "")
+            {
+                LoadGrid();
+            }
+            else
+            {
+                String FilterBoxCategContent = FilterBoxCateg.Text;
+                String FilterBoxItemContent = FilterBoxItem.Text;
+                LoadGrid();
+            }
+
         }
     }
    }

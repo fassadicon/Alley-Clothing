@@ -18,6 +18,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
+            <RowDefinition Height="8*"/>
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
 
@@ -62,10 +63,32 @@
             <Button x:Name="Clear" Content="Clear" Click="ClearBtn_Click" />
 
         </StackPanel>
+    <!--FILTER DATAGRID-->
+
+        <!--FILTER LABEL-->
+        <StackPanel Grid.Column="1"
+                    Grid.Row="1"
+                    HorizontalAlignment="Right">
+            <Label Content="Filter:  "/>
+        </StackPanel>
+
+        <!--FILTER CATEG TEXTBOX-->
+        <StackPanel Grid.Column="2"
+                    Grid.Row="1"
+                    HorizontalAlignment="Center">
+            <TextBox x:Name="FilterBoxCateg" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Category"/>
+        </StackPanel>
+
+        <!--FILTER ITEM TEXTBOX-->
+        <StackPanel Grid.Column="3"
+                    Grid.Row="1"
+                    HorizontalAlignment="Center">
+            <TextBox x:Name="FilterBoxItem" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Item" TextChanged="FilterBox_TextChanged"/>
+        </StackPanel>
 
         <!--DATAGRID-->
         <StackPanel Grid.Column="0" 
-                    Grid.Row="1" 
+                    Grid.Row="2" 
                     Grid.ColumnSpan="4" 
                     Margin="1" HorizontalAlignment="Stretch" 
                     VerticalAlignment="Stretch">
