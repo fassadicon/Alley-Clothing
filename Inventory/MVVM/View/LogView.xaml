@@ -53,14 +53,13 @@
             </StackPanel>
             <!--LOG PROPER-->
             <StackPanel Grid.Row="1" Grid.ColumnSpan="4">
-                <Label Content="Stock Summary"/>
+                <Label Content="Stock Log"/>
                 <DataGrid x:Name="StockSummary"></DataGrid>
-                <Label Content="Stock History"/>
-                <DataGrid x:Name="StockHistory"></DataGrid>
                 <Label Content="Delivery Log"/>
                 <DataGrid x:Name="Deliveries"></DataGrid>
-                <DataGrid></DataGrid>
-                
+                <Label Content="Stock History"/>
+                <DataGrid x:Name="StockHistory"></DataGrid>
+
             </StackPanel>
         </Grid>
     </ScrollViewer>

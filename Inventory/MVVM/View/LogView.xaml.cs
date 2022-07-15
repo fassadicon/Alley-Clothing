@@ -68,25 +68,12 @@ namespace Inventory.MVVM.View
                         TShirtOut.Content = Convert.ToString(cmdCount.ExecuteScalar());
                         conn.Close();
                     }
-
-                    
-
-                    //count = 0;
-                    //using (SqlCommand cmdCount = new SqlCommand("SELECT SUM(Quantity) FROM DeliveryDetails WHERE DeliveryType = 'Out' AND DateReceived BETWEEN '" + StartDate.Text + "' AND '" + EndDate.Text + "';", conn))
-                    //{
-                    //    conn.Open();
-                    //    count = (int)cmdCount.ExecuteScalar();
-                    //    TShirtOut.Content = count.ToString();
-                    //    //conn.Close();
-                    //}
-
-
-
                 }
-                // Test Table
+
+                // Stock Log Table
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails;", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Stocks WHERE Date BETWEEN '" + StartDate.Text + "' AND '" + EndDate.Text + "';", conn);
                     DataTable dt = new DataTable();
                     conn.Open();
                     SqlDataReader sdr = cmd.ExecuteReader();
@@ -94,7 +81,7 @@ namespace Inventory.MVVM.View
                     conn.Close();
                     StockSummary.ItemsSource = dt.DefaultView;
                 }
-                // Deliveries Table
+                // Delivery Log Table
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
                     SqlCommand cmd = new SqlCommand("SELECT * FROM DeliveryDetails WHERE DateReceived BETWEEN '"+ StartDate.Text+ "' AND '" + EndDate.Text + "';", conn);
