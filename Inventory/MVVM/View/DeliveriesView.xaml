@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Inventory.MVVM.View"
+             xmlns:controls="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="#FFE6D2D2">
 <Grid>
@@ -33,12 +34,12 @@
         </StackPanel>
         <!--TEXTBOX-->
         <StackPanel Grid.Column="1">
-            <TextBox x:Name="DeliveryID" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Delivery ID"/>
+            <controls:AutoCompleteBox x:Name="DeliveryID" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID"></controls:AutoCompleteBox>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <RadioButton x:Name="In" Content="In" GroupName="DeliveryTypeGroup" Checked="RadioButton_Checked"></RadioButton>
                 <RadioButton x:Name="Out" Content="Out" GroupName="DeliveryTypeGroup"></RadioButton>
             </StackPanel>
-            <TextBox x:Name="TShirtID" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter TShirt ID" TextChanged="TShirtID_TextChanged"/>
+            <controls:AutoCompleteBox x:Name="TShirtID" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID" TextChanged="TShirtID_TextChanged"/>
             <TextBox x:Name="Quantity" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Quantity"/>
             <DatePicker x:Name="DateReceived"  Width="150" materialDesign:HintAssist.Hint="Enter Received Date"></DatePicker>
             <DatePicker x:Name="DateDelivered" Width="150" materialDesign:HintAssist.Hint="Enter Delivered Date"></DatePicker>

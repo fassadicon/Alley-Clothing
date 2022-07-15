@@ -26,6 +26,7 @@ namespace Inventory.MVVM.View
         {
             InitializeComponent();
             LoadGrid();
+            AutoComplete();
         }
 
         private void ClearData()
@@ -41,6 +42,46 @@ namespace Inventory.MVVM.View
         private void ClearBtn_Click(object sender, RoutedEventArgs e)
         {
             ClearData();
+        }
+
+        // AUTO SUGGEST
+        private void AutoComplete()
+        {
+            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+            {
+                SqlCommand cmd;
+                SqlDataReader sdr;
+                string q;
+
+                // List for AutoSuggest
+                List<int> DeliveryIDs = new List<int>();
+                List<int> TShirtIDs = new List<int>();
+
+                // Reading Database Result per Column
+                conn.Open();
+                q = "SELECT DeliveryID from DeliveryDetails";
+                cmd = new SqlCommand(q, conn);
+                sdr = cmd.ExecuteReader();
+                while (sdr.Read())
+                {
+                    DeliveryIDs.Add((int)sdr["DeliveryID"]);
+                }
+                conn.Close();
+
+                conn.Open();
+                q = "SELECT TShirtID from TShirtDetails";
+                cmd = new SqlCommand(q, conn);
+                sdr = cmd.ExecuteReader();
+                while (sdr.Read())
+                {
+                    TShirtIDs.Add((int)sdr["TShirtID"]);
+                }
+                conn.Close();
+
+                // Setting Textbox AutoSuggest Sources
+                DeliveryID.ItemsSource = DeliveryIDs;
+                TShirtID.ItemsSource = TShirtIDs;
+            }
         }
 
         // UPDATE ON STOCKS IF DELIVERY TYPE IS "OUT"
@@ -291,14 +332,32 @@ namespace Inventory.MVVM.View
 
         }
 
-        private void TShirtID_TextChanged(object sender, TextChangedEventArgs e)
+        private void FilterBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            // GETTING THE TSHIRT DETAILS
+            if (FilterBoxItem.Text == "")
+            {
+                LoadGrid();
+            }
+            else
+            {
+                String FilterBoxCategContent = FilterBoxCateg.Text;
+                String FilterBoxItemContent = FilterBoxItem.Text;
+                LoadGrid();
+            }
+
+        }
+
+        // PREVIEW
+        private void TShirtID_TextChanged(object sender, RoutedEventArgs e)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
                     // GETTING THE TSHIRT DETAILS
-                    if (TShirtID.Text=="")
+                    if (TShirtID.Text == "")
                     {
                         TShirtBrandPreview.Content = "";
                         TShirtNamePreview.Content = "";
@@ -337,25 +396,6 @@ namespace Inventory.MVVM.View
                 MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        private void FilterBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-            // GETTING THE TSHIRT DETAILS
-            if (FilterBoxItem.Text == "")
-            {
-                LoadGrid();
-            }
-            else
-            {
-                String FilterBoxCategContent = FilterBoxCateg.Text;
-                String FilterBoxItemContent = FilterBoxItem.Text;
-                LoadGrid();
-            }
-
-        }
-
-
     }
     
 }

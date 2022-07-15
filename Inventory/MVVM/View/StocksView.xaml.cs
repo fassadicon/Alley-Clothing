@@ -78,6 +78,7 @@ namespace Inventory.MVVM.View
                 TShirtID.ItemsSource = TShirtIDs;
             }
         }
+
         //INVENTORY DATABASE T SHIRT DETAILS TABLE
         public void LoadGrid()
         {
