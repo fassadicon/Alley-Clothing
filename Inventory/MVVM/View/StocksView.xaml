@@ -34,7 +34,7 @@
         
         <!--TEXTBOX-->
         <StackPanel Grid.Column="1">
-            <controls:AutoCompleteBox x:Name="StockID" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID"></controls:AutoCompleteBox>
+            <controls:AutoCompleteBox x:Name="StockID" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID" TextChanged="StockID_TextChanged"></controls:AutoCompleteBox>
             <controls:AutoCompleteBox x:Name="TShirtID" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID" TextChanged="TShirtID_TextChanged_1"></controls:AutoCompleteBox>
             <TextBox x:Name="TShirtQty" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter TShirt Quantity"/>
             <TextBox x:Name="TShirtDefect" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter TShirt Defective"/>
