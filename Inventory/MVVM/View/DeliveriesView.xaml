@@ -34,7 +34,7 @@
         </StackPanel>
         <!--TEXTBOX-->
         <StackPanel Grid.Column="1">
-            <controls:AutoCompleteBox x:Name="DeliveryID" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID"></controls:AutoCompleteBox>
+            <controls:AutoCompleteBox x:Name="DeliveryID" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID" TextChanged="DeliveryID_TextChanged"></controls:AutoCompleteBox>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <RadioButton x:Name="In" Content="In" GroupName="DeliveryTypeGroup" Checked="RadioButton_Checked"></RadioButton>
                 <RadioButton x:Name="Out" Content="Out" GroupName="DeliveryTypeGroup"></RadioButton>
