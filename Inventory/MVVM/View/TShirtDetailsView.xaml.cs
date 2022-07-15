@@ -30,16 +30,74 @@ namespace Inventory.MVVM.View
         {
             using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
             {
+                SqlCommand cmd;
+                SqlDataReader sdr;
+                string q;
+
+                // List for AutoSuggest
                 List<int> TShirtIDs = new List<int>();
-                string q = "SELECT TShirtID from TShirtDetails";
-                SqlCommand cmd = new SqlCommand(q, conn);
+                List<string> TShirtBrands = new List<string>();
+                List<string> TShirtNames = new List<string>();
+                List<string> TShirtColors = new List<string>();
+                List<string> TShirtSizes = new List<string>();
+
+                // Reading Database Result per Column
                 conn.Open();
-                SqlDataReader sdr = cmd.ExecuteReader();
+                q = "SELECT TShirtID from TShirtDetails";
+                cmd = new SqlCommand(q, conn);             
+                sdr = cmd.ExecuteReader();
                 while (sdr.Read())
                 {
                     TShirtIDs.Add((int)sdr["TShirtID"]);
                 }
+                conn.Close();
+
+                conn.Open();
+                q = "SELECT TShirtBrand from TShirtDetails";
+                cmd = new SqlCommand(q, conn);
+                sdr = cmd.ExecuteReader();
+                while (sdr.Read())
+                {
+                    TShirtBrands.Add(sdr["TShirtBrand"].ToString());
+                }
+                conn.Close();
+
+                conn.Open();
+                q = "SELECT TShirtName from TShirtDetails";
+                cmd = new SqlCommand(q, conn);
+                sdr = cmd.ExecuteReader();
+                while (sdr.Read())
+                {
+                    TShirtNames.Add(sdr["TShirtName"].ToString());
+                }
+                conn.Close();
+
+                conn.Open();
+                q = "SELECT TShirtColor from TShirtDetails";
+                cmd = new SqlCommand(q, conn);
+                sdr = cmd.ExecuteReader();
+                while (sdr.Read())
+                {
+                    TShirtColors.Add(sdr["TShirtColor"].ToString());
+                }
+                conn.Close();
+
+                conn.Open();
+                q = "SELECT TShirtSize from TShirtDetails";
+                cmd = new SqlCommand(q, conn);
+                sdr = cmd.ExecuteReader();
+                while (sdr.Read())
+                {
+                    TShirtSizes.Add(sdr["TShirtSize"].ToString());
+                }
+                conn.Close();
+
+                // Setting Textbox AutoSuggest Sources
                 TShirtDetailsID.ItemsSource = TShirtIDs;
+                Brand.ItemsSource = TShirtBrands;
+                Name.ItemsSource = TShirtNames;
+                Color.ItemsSource = TShirtColors;
+                Size.ItemsSource = TShirtSizes;
                 conn.Close();
             }
         }
