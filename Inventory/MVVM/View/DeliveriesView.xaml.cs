@@ -402,47 +402,37 @@ namespace Inventory.MVVM.View
             try
             {
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
-                {
-                    // GETTING THE TSHIRT DETAILS
-                    if (DeliveryID.Text == "")
+                {                 
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM DeliveryDetails WHERE DeliveryID = '" + DeliveryID.Text + "';", conn);
+                    conn.Open();
+                    String DeliveryType = "";
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        In.IsChecked = false;
-                        Out.IsChecked = false;
                         TShirtID.Text = "";
                         Quantity.Text = "";
                         DateReceived.Text = "";
                         DateDelivered.Text = "";
-  
+                        while (reader.Read())
+                        {
+                            DeliveryType = reader["DeliveryType"].ToString();
+                            TShirtID.Text = reader["TShirtID"].ToString();
+                            Quantity.Text = reader["Quantity"].ToString();
+                            DateReceived.Text = reader["DateReceived"].ToString();
+                            DateDelivered.Text = reader["DateDelivered"].ToString();
+                        }        
+                    }
+                    if (DeliveryType == "In")
+                    {
+                        In.IsChecked = true;
+                    }
+                    else if (DeliveryType == "Out")
+                    {
+                        Out.IsChecked = true;
                     }
                     else
                     {
-                        SqlCommand cmd = new SqlCommand("SELECT * FROM DeliveryDetails WHERE DeliveryID = '"+DeliveryID.Text+"';", conn);
-                        conn.Open();
-                        String DeliveryType = "";
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                DeliveryType = reader["DeliveryType"].ToString();
-                                TShirtID.Text = reader["TShirtID"].ToString();
-                                Quantity.Text = reader["Quantity"].ToString();
-                                DateReceived.Text = reader["DateReceived"].ToString();
-                                DateDelivered.Text = reader["DateDelivered"].ToString();
-                            }                         
-                        }
-                        if (DeliveryType == "In")
-                        {
-                            In.IsChecked = true;
-                        }
-                        else if (DeliveryType == "Out")
-                        {
-                            Out.IsChecked = true;
-                        }
-                        else
-                        {
-                            In.IsChecked = false;
-                            Out.IsChecked = false;
-                        }
+                        In.IsChecked = false;
+                        Out.IsChecked = false;
                     }
                     conn.Close();
                 }
