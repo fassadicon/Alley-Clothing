@@ -186,6 +186,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="cheddarstriped.png" />
     <Content Include="InventoryDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

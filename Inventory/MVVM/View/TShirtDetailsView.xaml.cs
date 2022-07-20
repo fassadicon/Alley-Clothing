@@ -298,31 +298,22 @@ namespace Inventory.MVVM.View
             {
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
-                    // GETTING THE TSHIRT DETAILS
-                    if (TShirtDetailsID.Text == "")
-                    {                     
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails WHERE TShirtID = '" + TShirtDetailsID.Text + "';", conn);
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
                         Brand.Text = "";
                         Name.Text = "";
                         Color.Text = "";
                         Size.Text = "";
-
-                    }
-                    else
-                    {
-                        SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails WHERE TShirtID = '" + TShirtDetailsID.Text + "';", conn);
-                        conn.Open();
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
-                            { 
-                                Brand.Text = reader["TShirtBrand"].ToString();
-                                Name.Text = reader["TShirtName"].ToString();
-                                Color.Text = reader["TShirtColor"].ToString();
-                                Size.Text = reader["TShirtSize"].ToString();
-                            }
-                        }                    
+                            Brand.Text = reader["TShirtBrand"].ToString();
+                            Name.Text = reader["TShirtName"].ToString();
+                            Color.Text = reader["TShirtColor"].ToString();
+                            Size.Text = reader["TShirtSize"].ToString();
+                        }
                     }
-                    conn.Close();
                 }
             }
             catch (SqlException ex)
@@ -333,6 +324,25 @@ namespace Inventory.MVVM.View
             {
                 MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void AddImage_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new Microsoft.Win32.OpenFileDialog();
+            string fileDirect = "";
+
+            dialog.Filter = "Image files (*.png)| *.png| (*.jpg)| *.jpg| (*.gif)| *.gif";
+            
+
+            bool? result = dialog.ShowDialog();
+
+            if(result == true)
+            {
+                fileDirect = dialog.FileName;
+                TShirtImage.Source = new BitmapImage(new Uri(@"C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\cheddarstriped.png"));
+            }
+
+            
         }
     }
    }

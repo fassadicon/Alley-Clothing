@@ -306,28 +306,21 @@ namespace Inventory.MVVM.View
             {
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
-                    // GETTING THE TSHIRT DETAILS
-                    if (StockID.Text == "")
+                    // GETTING THE TSHIRT DETAILS                  
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Stocks WHERE StockID = '" + StockID.Text + "';", conn);
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         TShirtID.Text = "";
                         TShirtQty.Text = "";
                         TShirtDefect.Text = "";
                         StockDate.Text = "";
-
-                    }
-                    else
-                    {
-                        SqlCommand cmd = new SqlCommand("SELECT * FROM Stocks WHERE StockID = '" + StockID.Text + "';", conn);
-                        conn.Open();
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
-                            {
-                                TShirtID.Text = reader["TShirtID"].ToString();
-                                TShirtQty.Text = reader["TShirtQty"].ToString();
-                                TShirtDefect.Text = reader["TShirtDefect"].ToString();
-                                StockDate.Text = reader["Date"].ToString();
-                            }
+                            TShirtID.Text = reader["TShirtID"].ToString();
+                            TShirtQty.Text = reader["TShirtQty"].ToString();
+                            TShirtDefect.Text = reader["TShirtDefect"].ToString();
+                            StockDate.Text = reader["Date"].ToString();
                         }
                     }
                     conn.Close();
