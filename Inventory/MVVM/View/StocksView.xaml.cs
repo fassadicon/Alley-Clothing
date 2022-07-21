@@ -237,6 +237,7 @@ namespace Inventory.MVVM.View
         //TSHIRT DETALS PREVIEW
         private void TShirtID_TextChanged_1(object sender, RoutedEventArgs e)
         {
+            String direct = "";
             try
             {
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
@@ -249,6 +250,7 @@ namespace Inventory.MVVM.View
                         TShirtColorPreview.Content = "";
                         TShirtSizePreview.Content = "";
                         TShirtQtyPreview.Content = "";
+                        TShirtImage.Source = null;
                     }
                     else
                     {
@@ -266,6 +268,8 @@ namespace Inventory.MVVM.View
                                 TShirtColorPreview.Content = reader["TShirtColor"].ToString();
                                 TShirtSizePreview.Content = reader["TShirtSize"].ToString();
                                 TShirtQtyPreview.Content = reader["TShirtQty"].ToString();
+                                direct = reader["TShirtDirect"].ToString();
+                                TShirtImage.Source = new BitmapImage(new Uri($@"{direct}"));
                             }
 
                         }

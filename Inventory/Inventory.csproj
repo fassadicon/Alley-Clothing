@@ -186,6 +186,34 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="MVVM\previewImages\Geolife\flowercrown.jpg" />
+    <Resource Include="MVVM\previewImages\Geolife\riseup.jpg" />
+    <Resource Include="MVVM\previewImages\Geolife\skate.jpg" />
+    <Resource Include="MVVM\previewImages\Gnarly\bluestriped.jpg" />
+    <Resource Include="MVVM\previewImages\Gnarly\cheddarstriped.png" />
+    <Resource Include="MVVM\previewImages\Gnarly\coastdye.jpg" />
+    <Resource Include="MVVM\previewImages\Gnarly\eyesnake.jpg" />
+    <Resource Include="MVVM\previewImages\Gnarly\jalapenostrip.jpg" />
+    <Resource Include="MVVM\previewImages\Hghmndz\cci.jpg" />
+    <Resource Include="MVVM\previewImages\Hghmndz\fists.jpg" />
+    <Resource Include="MVVM\previewImages\Hghmndz\handgrave.jpg" />
+    <Resource Include="MVVM\previewImages\Hghmndz\snakepyramind.jpg" />
+    <Resource Include="MVVM\previewImages\Hghmndz\speaker.jpg" />
+    <Resource Include="MVVM\previewImages\Roxx\bobmarley.jpg" />
+    <Resource Include="MVVM\previewImages\Roxx\eminem.jpg" />
+    <Resource Include="MVVM\previewImages\Roxx\marilynmanson.jpg" />
+    <Resource Include="MVVM\previewImages\Roxx\megadeth.jpg" />
+    <Resource Include="MVVM\previewImages\Roxx\nirvana.jpg" />
+    <Resource Include="MVVM\previewImages\Sef\borutochibi.png" />
+    <Resource Include="MVVM\previewImages\Sef\gon.png" />
+    <Resource Include="MVVM\previewImages\Sef\jirayachibi.jpg" />
+    <Resource Include="MVVM\previewImages\Sef\sanji.png" />
+    <Resource Include="MVVM\previewImages\Sef\zorro.jpg" />
+    <Resource Include="MVVM\previewImages\SixenArt\demon.jpg" />
+    <Resource Include="MVVM\previewImages\SixenArt\divehelm.jpg" />
+    <Resource Include="MVVM\previewImages\SixenArt\hanya gold.jpg" />
+    <Resource Include="MVVM\previewImages\SixenArt\maulvader.jpg" />
+    <Resource Include="MVVM\previewImages\SixenArt\zombie.jpg" />
     <Resource Include="cheddarstriped.png" />
     <Content Include="InventoryDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

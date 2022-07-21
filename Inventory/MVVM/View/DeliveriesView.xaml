@@ -12,8 +12,9 @@
 	<!--GRID DEFINITION-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
@@ -61,7 +62,7 @@
             <Label x:Name="TShirtQtyPreview" Content="-"/>
         </StackPanel>
         <!--BUTTON-->
-        <StackPanel Grid.Column="4">
+        <StackPanel Grid.Column="5">
             <Button x:Name="Insert" Content="Insert" Click="InsertTShirtDetails_Click"/>
             <Button x:Name="Update" Content="Update" Click="UpdateTShirtDetails_Click"/>
             <Button x:Name="Delete" Content="Delete" Click="DeleteBtn_Click"/>
@@ -69,7 +70,12 @@
 
         </StackPanel>
 
-   <!--FILTER DATAGRID-->
+        <StackPanel Grid.Column="4" Grid.Row="0">
+            <Image x:Name="TShirtImage"  Margin="10,0,11,39" Stretch="Fill"  />
+
+        </StackPanel>
+
+        <!--FILTER DATAGRID-->
     
         <!--FILTER LABEL-->
         <StackPanel Grid.Column="1"
@@ -96,7 +102,7 @@
         <!--DATAGRID-->
         <StackPanel Grid.Column="0" 
                     Grid.Row="2" 
-                    Grid.ColumnSpan="4" 
+                    Grid.ColumnSpan="5" 
                     Margin="1" HorizontalAlignment="Stretch" 
                     VerticalAlignment="Stretch">
 

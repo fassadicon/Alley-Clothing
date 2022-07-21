@@ -193,17 +193,19 @@ namespace Inventory.MVVM.View
         // INSERT T SHIRT DETAILS
         private void InsertTShirtDetails_Click(object sender, RoutedEventArgs e)
         {
+          
             try
             {
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO TShirtDetails (TShirtID, TShirtBrand, TShirtName, TShirtColor, TShirtSize) VALUES (@TShirtID, @Brand, @Name, @Color, @Size);", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO TShirtDetails (TShirtID, TShirtBrand, TShirtName, TShirtColor, TShirtSize, TShirtDirect) VALUES (@TShirtID, @Brand, @Name, @Color, @Size, @fileDirect);", conn);
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@TShirtID", TShirtDetailsID.Text);
                     cmd.Parameters.AddWithValue("@Brand", Brand.Text);
                     cmd.Parameters.AddWithValue("@Name", Name.Text);
                     cmd.Parameters.AddWithValue("@Color", Color.Text);
                     cmd.Parameters.AddWithValue("@Size", Size.Text);
+                    cmd.Parameters.AddWithValue("@fileDirect", fileDirect);
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     conn.Close();
@@ -326,10 +328,12 @@ namespace Inventory.MVVM.View
             }
         }
 
+        string fileDirect = "";
         private void AddImage_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new Microsoft.Win32.OpenFileDialog();
-            string fileDirect = "";
+            
+
 
             dialog.Filter = "Image files (*.png)| *.png| (*.jpg)| *.jpg| (*.gif)| *.gif";
             
@@ -339,7 +343,7 @@ namespace Inventory.MVVM.View
             if(result == true)
             {
                 fileDirect = dialog.FileName;
-                TShirtImage.Source = new BitmapImage(new Uri(@"C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\cheddarstriped.png"));
+                TShirtImage.Source = new BitmapImage(new Uri($@"{fileDirect}"));
             }
 
             
