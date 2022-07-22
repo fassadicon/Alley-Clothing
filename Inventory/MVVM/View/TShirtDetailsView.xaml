@@ -13,8 +13,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2.8*"/>
+            <ColumnDefinition Width="1.2*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1.1*"/>
@@ -24,11 +24,11 @@
 
         <!--SECTION NAME-->
         <StackPanel Grid.Column="0" Grid.Row="0">
-            <Label Content="T-SHIRT DETAILS" Foreground="#EEEEEE" FontSize="40" FontFamily="Poppins" FontWeight="Bold"/>
+            <Label Content="T-SHIRT DETAILS" Foreground="#EEEEEE" FontSize="40" FontWeight="ExtraBold"/>
         </StackPanel>
         <!--Logo-->
         <StackPanel Grid.Column="4" Grid.Row="0">
-            <Label Content="LOGO" Foreground="#EEEEEE" FontSize="40" FontFamily="/previewImages/#Poppins-Regular" FontWeight="Bold"/>
+            <Label Content="LOGO" Foreground="#EEEEEE" FontSize="40" FontWeight="Bold"/>
         </StackPanel>
         <!--Image-->
         <StackPanel Grid.Column="0" Grid.Row="1" Grid.RowSpan="2">
@@ -46,14 +46,14 @@
                 </Border.Clip>
                 <Grid>
                     <StackPanel>
-                        <Image x:Name="TShirtImage"  Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\cheddarstriped.png"
-                   Margin="20, 20, 20, 20"                  
-                    />
+                        <Image x:Name="TShirtImage"
+                                Margin="20, 20, 20, 20"
+                               Stretch="Fill"/>
                         
                     </StackPanel>
                 </Grid>
             </Border>
-            <Button x:Name="AddImage" Content="ADD IMAGE" Click="AddImage_Click" Margin="20, 20, 20, 20" Background="#D65A31" Width="250" FontFamily="/previewImages/#Lexend" FontWeight="Bold"/>
+            <Button x:Name="AddImage" Content="ADD IMAGE" Click="AddImage_Click" Margin="20, 20, 20, 20" Background="#D65A31" Width="250" BorderBrush="#D65A31"/>
 
         </StackPanel>
 
@@ -77,11 +77,11 @@
                         <ColumnDefinition Width="7*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
-                        <Label Content="ID:" FontSize="16" FontFamily="Lexend" FontWeight="Bold" Margin="5, 5, 5, 5"/>
-                        <Label Content="Brand:" FontSize="16" FontFamily="/previewImages/#Lexend-Regular" FontWeight="Bold" Margin="5, 5, 5, 5"/>
-                        <Label Content="Name:" FontSize="16" FontFamily="/previewImages/#Lexend-Regular" FontWeight="Bold" Margin="5, 5, 5, 5"/>
-                        <Label Content="Color:" FontSize="16" FontFamily="/previewImages/#Lexend-Regular" FontWeight="Bold" Margin="5, 5, 5, 5"/>
-                        <Label Content="Size:" FontSize="16" FontFamily="/previewImages/#Lexend-Regular" FontWeight="Bold" Margin="5, 5, 5, 5"/>
+                        <Label Content="ID:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
+                        <Label Content="Brand:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
+                        <Label Content="Name:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
+                        <Label Content="Color:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
+                        <Label Content="Size:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
                     </StackPanel>
                     <!--Input TextBox-->
                     <StackPanel Grid.Column="1" Margin="0,0,20,0">
@@ -129,73 +129,15 @@
                 </Grid>
             </Border>
         </StackPanel>
-        
+
 
         <StackPanel Grid.Column="4" Grid.Row="1" Grid.RowSpan="3">
-            <Button x:Name="Insert" Content="INSERT" Click="InsertTShirtDetails_Click" Margin="20, 70, 20, 20" Background="#D65A31"/>
-            <Button x:Name="Update" Content="UPDATE" Click="UpdateTShirtDetails_Click" Margin="20, 30, 20, 20" Background="#D65A31"/>
-            <Button x:Name="Delete" Content="DELETE" Click="DeleteBtn_Click" Margin="20, 30, 20, 20" Background="#D65A31"/>
-            <Button x:Name="Clear" Content="CLEAR" Click="ClearBtn_Click" Margin="20, 30, 20, 20" Background="#D65A31"/>
+            <Button x:Name="Insert" Content="INSERT" Click="InsertTShirtDetails_Click" Margin="20, 70, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
+            <Button x:Name="Update" Content="UPDATE" Click="UpdateTShirtDetails_Click" Margin="20, 30, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
+            <Button x:Name="Delete" Content="DELETE" Click="DeleteBtn_Click" Margin="20, 30, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
+            <Button x:Name="Clear" Content="CLEAR" Click="ClearBtn_Click" Margin="20, 30, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
 
         </StackPanel>
-
-
-        <!--BUTTON-->
-        <!--
-        <StackPanel Grid.Column="3" Grid.Row="1">
-            <Button x:Name="Insert" Content="Insert" Click="InsertTShirtDetails_Click"/>
-            <Button x:Name="Update" Content="Update" Click="UpdateTShirtDetails_Click"/>
-            <Button x:Name="Delete" Content="Delete" Click="DeleteBtn_Click"/>
-            <Button x:Name="Clear" Content="Clear" Click="ClearBtn_Click"/>
-            <Button x:Name="AddImage" Content="Add Image" Click="AddImage_Click" />
-
-        </StackPanel>
-
-        -->
-        <!--FILTER DATAGRID-->
-
-        <!--FILTER LABEL-->
-        <!--
-        <StackPanel Grid.Column="0"
-                    Grid.Row="2"
-                    HorizontalAlignment="Right">
-            <Label Content="Filter:  "/>
-        </StackPanel>
-
-        -->
-        <!--FILTER CATEG TEXTBOX-->
-        <!--
-        <StackPanel Grid.Column="1"
-                    Grid.Row="2"
-                    HorizontalAlignment="Center">
-            <TextBox x:Name="FilterBoxCateg" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Category"/>
-        </StackPanel>
-
-        -->
-        <!--FILTER ITEM TEXTBOX-->
-        <!--
-        <StackPanel Grid.Column="2"
-                    Grid.Row="2"
-                    HorizontalAlignment="Center">
-            <TextBox x:Name="FilterBoxItem" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Item" TextChanged="FilterBox_TextChanged"/>
-        </StackPanel>
-
-        -->
-        <!--DATAGRID-->
-        <!--
-        <StackPanel Grid.Column="0" 
-                    Grid.Row="3" 
-                    Grid.ColumnSpan="4" 
-                    Margin="1" HorizontalAlignment="Stretch" 
-                    VerticalAlignment="Stretch">
-            <DataGrid x:Name="TShirtDetailsDataGrid" Width="620" Height="175"/>
-        </StackPanel>
-        <StackPanel Grid.Column="2" Grid.Row="0">
-        <Image x:Name="TShirtImage"  Margin="10,0,11,39" Stretch="Fill"  />
-            
-        </StackPanel>-->
-
-
 
     </Grid>
 </UserControl>
