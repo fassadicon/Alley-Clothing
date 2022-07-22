@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Inventory.MVVM.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+             d:DesignHeight="679.2" d:DesignWidth="1160" Background="#1D1C1C">
     <ScrollViewer >
         <Grid x:Name="PrintArea">
             <Grid.ColumnDefinitions>
@@ -16,43 +16,74 @@
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
                 <RowDefinition Height="30*"/>
                 <RowDefinition Height="70*"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Column="0">
+            <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" Orientation="Horizontal">
                 <Label Content="INVENTORY LOGS"/>
-                <Label Content="Admin:"/>
-                <Label Content="Start Date: "/>
-                <Label Content="Good Conditions:"/>
-                <Label Content="Delivery Ins:"/>
-                <Label Content="Quantity of T Shirt Ins:"/>
+                
             </StackPanel>
-            <StackPanel Grid.Column="1">
-                <Label Content=""/>
-                <Label Content="-"/>
-                <DatePicker x:Name="StartDate" SelectedDateChanged="StartDate_SelectedDateChanged"></DatePicker>
-                <Label Content="-"/>
-                <Label x:Name="DeliveryIn" Content="-"/>
-                <Label x:Name="TShirtIn" Content="-"/>
+            <StackPanel Grid.Column="4">
+                <Button x:Name="printBtn" Content="Print" Click="printBtn_Click" ></Button>
             </StackPanel>
-            <StackPanel Grid.Column="2">
-                <Label Content=""/>
-                <Label Content="Warehouse: "/>
-                <Label Content="End Date: "/>
-                <Label Content="Defectives:"/>
-                <Label Content="Delivery Outs:"/>
-                <Label Content="Quantity of T Shirt Outs:"/>
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="4" >
+                <Border Width="1120"
+                    Height="192"
+                    Margin="10, 10, 10, 10">
+                    <Border.Background>
+                        <SolidColorBrush Color="#EEEEEE"></SolidColorBrush>
+                    </Border.Background>
+                    <Border.Clip>
+                        <RectangleGeometry RadiusX="10"
+                                       RadiusY="10"
+                                       Rect="0, 0, 1120, 192">
+                        </RectangleGeometry>
+                    </Border.Clip>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+
+                                <Label Content="Admin:"/>
+                                <Label Content="Start Date: "/>
+                                <Label Content="Good Conditions:"/>
+                                <Label Content="Delivery Ins:"/>
+                                <Label Content="Quantity of T Shirt Ins:"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <Label Content="-"/>
+                                <DatePicker x:Name="StartDate" SelectedDateChanged="StartDate_SelectedDateChanged"></DatePicker>
+                                <Label Content="-"/>
+                                <Label x:Name="DeliveryIn" Content="-"/>
+                                <Label x:Name="TShirtIn" Content="-"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <Label Content="Warehouse: "/>
+                                <Label Content="End Date: "/>
+                                <Label Content="Defectives:"/>
+                                <Label Content="Delivery Outs:"/>
+                                <Label Content="Quantity of T Shirt Outs:"/>
+                            </StackPanel>
+                        <StackPanel Grid.Column="3">
+
+                            <Label Content="-"/>
+                            <DatePicker x:Name="EndDate" SelectedDateChanged="EndDate_SelectedDateChanged"></DatePicker>
+                            <Label Content="-"/>
+                            <Label x:Name="DeliveryOut" Content="-"/>
+                            <Label x:Name="TShirtOut" Content="-"/>
+                        </StackPanel>
+
+                    </Grid>
+                </Border>
             </StackPanel>
-            <StackPanel Grid.Column="3">
-                <Button x:Name="printBtn" Content="Print" Click="printBtn_Click"></Button>
-                <Label Content="-"/>
-                <DatePicker x:Name="EndDate" SelectedDateChanged="EndDate_SelectedDateChanged"></DatePicker>
-                <Label Content="-"/>
-                <Label x:Name="DeliveryOut" Content="-"/>
-                <Label x:Name="TShirtOut" Content="-"/>
-            </StackPanel>
+            
             <!--LOG PROPER-->
-            <StackPanel Grid.Row="1" Grid.ColumnSpan="4">
+            <StackPanel Grid.Row="2" Grid.ColumnSpan="4">
                 <Label Content="Stock Log"/>
                 <DataGrid x:Name="StockSummary"></DataGrid>
                 <Label Content="Delivery Log"/>

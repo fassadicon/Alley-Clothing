@@ -17,8 +17,8 @@
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
-        
-    <Border Background="Yellow"
+
+    <Border Background="#1D1C1C"
             CornerRadius="10">
         <Grid>
             <!--GRID DEFINITION-->
@@ -40,7 +40,8 @@
             <!--SIDE BAR-->
             <StackPanel Grid.Row ="0"
                             Grid.Column="0"
-                        Grid.RowSpan="2">
+                        Grid.RowSpan="2"
+                        Background="#D65A31">
                 <!--SIDE MENU-->
 
 
@@ -79,7 +80,7 @@
                         materialDesign:ButtonAssist.CornerRadius="10"
                         Command="{Binding LogViewCommand}"/>
             </StackPanel>
-            <StackPanel Grid.Row ="2">
+            <StackPanel Grid.Row ="2" Background="#D65A31">
                 <Button x:Name="LogOut" Content="LogOut"
                         Height="50"
                         Foreground="White"
