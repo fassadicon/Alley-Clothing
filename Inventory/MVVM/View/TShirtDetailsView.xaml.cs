@@ -118,6 +118,7 @@ namespace Inventory.MVVM.View
         // INVENTORY DATABASE T SHIRT DETAILS TABLE
         public void LoadGrid()
         {
+            TShirtDetailsDataGrid.IsReadOnly = true;
             if (FilterBoxItem.Text == "")
             {
                 try

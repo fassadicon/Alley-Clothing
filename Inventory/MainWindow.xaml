@@ -23,7 +23,7 @@
         <Grid>
             <!--GRID DEFINITION-->
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -42,13 +42,7 @@
                             Grid.Column="0"
                         Grid.RowSpan="2">
                 <!--SIDE MENU-->
-                <TextBlock Text="Hehehe"
-                       FontSize="22"
-                       Margin="20, 0, 0, 0"
-                       >
-                <!--Logo
-                Company Name-->
-                </TextBlock>
+
 
                 <!--NAVIGATION BUTTONS-->
                 <Button Content="T-Shirts"
