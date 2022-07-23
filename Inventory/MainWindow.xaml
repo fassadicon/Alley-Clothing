@@ -33,8 +33,8 @@
             </Grid.RowDefinitions>
             <!--SIZE BUTTONS-->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
-                <Ellipse Fill="GreenYellow" Grid.Row="0" Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,2,0" MouseLeftButtonDown="MaximizeApp" ToolTip="Close"></Ellipse>
-                <Ellipse Fill="Orange" Grid.Row="0" Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,2,0" MouseLeftButtonDown="MinimizeApp" ToolTip="Close"></Ellipse>
+                <Ellipse Fill="GreenYellow" Grid.Row="0" Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,2,0" MouseLeftButtonDown="MaximizeApp" ToolTip="Full Screen"></Ellipse>
+                <Ellipse Fill="Orange" Grid.Row="0" Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,2,0" MouseLeftButtonDown="MinimizeApp" ToolTip="Minimize"></Ellipse>
                 <Ellipse Fill="Red" Grid.Row="0" Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" MouseLeftButtonDown="CloseApp" ToolTip="Close"></Ellipse>
             </StackPanel>
             <!--SIDE BAR-->
@@ -46,41 +46,62 @@
 
 
                 <!--NAVIGATION BUTTONS-->
-                
-                <Button Height="50"
+
+                <Button Height="71"
+                        Width="103"
+                        x:Name="TShirtButton"
+                        Foreground="White"
+                        FontSize="14"
+                        BorderThickness="0"
+                        ToolTip="TShirt Details Window"
+                        Background="Transparent"
+                        Command="{Binding TShirtDetailsViewCommand}"
+                        Margin="0 120 0 0">
+                  
+                   
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\t-shirt.png" Height="78" Width="70"/>
+
+                </Button>
+                <Button Height="71"
+                        Width="103"
                         Foreground="White"
                         FontSize="14"
                         BorderThickness="0"
                         Background="Transparent"
-                        Command="{Binding TShirtDetailsViewCommand}">
-                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\t-shirt.png"/>
+                        ToolTip="Stocks Details Window"
+                        Command="{Binding StocksViewCommand}"
+                        Margin="0 40 0 0">
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\box.png" Height="78" Width="62"/>
                 </Button>
-                <Button Height="50"
+                <Button Height="71"
+                        Width="103"
                         Foreground="White"
                         FontSize="14"
                         BorderThickness="0"
                         Background="Transparent"
-                        Command="{Binding StocksViewCommand}">
-                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\box.png"/>
+                        ToolTip="Delivery Details Window"
+                        Command="{Binding DeliveriesViewCommand}"
+                        Margin="0 40 0 0" RenderTransformOrigin="0.5,0.5">
+                    
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\truck.png" Height="78" Width="62" >
+                        
+                    </Image>
                 </Button>
-                <Button Height="50"
+                <Button Height="71"
+                        Width="103"
                         Foreground="White"
                         FontSize="14"
                         BorderThickness="0"
                         Background="Transparent"
-                        Command="{Binding DeliveriesViewCommand}">
-                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\truck.png"/>
+                        ToolTip="Logs Window"
+                        Command="{Binding LogViewCommand}"
+                        Margin="0 40 0 0" >
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\stats.png" Height="78" Width="62">
+
+                    </Image>
                 </Button>
-                <Button Height="50"
-                        Foreground="White"
-                        FontSize="14"
-                        BorderThickness="0"
-                        Background="Transparent"
-                        Command="{Binding LogViewCommand}">
-                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\stats.png"/>
-                </Button>
-                
-                
+
+
             </StackPanel>
             <StackPanel Grid.Row ="2" Background="#D65A31">
 
@@ -90,11 +111,13 @@
                         FontSize="14"
                         BorderThickness="0"
                         Click="LogOut_Click"
-                        Background="Transparent">
-                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\exit.png"/>
+                        Background="Transparent"
+                        ToolTip="Log Out">
+                        
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\exit.png" />
 
                 </Button>
-                         
+
             </StackPanel>
             <ContentControl Grid.Row ="1"
                             Grid.Column="1"
@@ -103,6 +126,6 @@
                             Content ="{Binding CurrentView}"/>
 
         </Grid>
-        
+
     </Border>
 </Window>

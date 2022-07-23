@@ -113,6 +113,7 @@ namespace Inventory.MVVM.View
             Name.Text = string.Empty;
             Color.Text = string.Empty;
             Size.Text = string.Empty;
+            TShirtImage.Source = null;
         }
         private void ClearBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -206,6 +207,7 @@ namespace Inventory.MVVM.View
         // INSERT T SHIRT DETAILS
         private void InsertTShirtDetails_Click(object sender, RoutedEventArgs e)
         {
+            int Qty = 0, Defect = 0;
           
             try
             {
@@ -216,6 +218,9 @@ namespace Inventory.MVVM.View
 
                 {
                     SqlCommand cmd = new SqlCommand("INSERT INTO TShirtDetails (TShirtID, TShirtBrand, TShirtName, TShirtColor, TShirtSize, TShirtDirect) VALUES (@TShirtID, @Brand, @Name, @Color, @Size, @fileDirect);", conn);
+
+                    SqlCommand cmd2 = new SqlCommand($"INSERT INTO TShirtDetails (TShirtID, TShirtQty, TShirtDefect) VALUES (@TShirtID, {Qty}, {Defect});", conn);
+
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@TShirtID", TShirtDetailsID.Text);
                     cmd.Parameters.AddWithValue("@Brand", Brand.Text);
@@ -364,7 +369,7 @@ namespace Inventory.MVVM.View
             
 
 
-            dialog.Filter = "Image files (*.png)| *.png| (*.jpg)| *.jpg| (*.gif)| *.gif";
+            dialog.Filter = "Image files (*.png)| *.png| (*.jpg)| *.jpg| (*.jpeg)| *.jpeg| (*.gif)| *.gif";
             
 
             bool? result = dialog.ShowDialog();
