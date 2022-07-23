@@ -215,6 +215,8 @@
     <Resource Include="MVVM\previewImages\SixenArt\maulvader.jpg" />
     <Resource Include="MVVM\previewImages\SixenArt\zombie.jpg" />
     <Resource Include="cheddarstriped.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="InventoryDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
