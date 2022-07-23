@@ -3,110 +3,190 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-			 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Inventory.MVVM.View"
              xmlns:controls="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="#FFE6D2D2">
-<Grid>
-	<!--GRID DEFINITION-->
+             d:DesignHeight="679.2" d:DesignWidth="1160" Background="#1D1C1C">
+    <Grid Margin="1,0,-1,0">
+        <!--GRID DEFINITION-->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2.8*"/>
+            <ColumnDefinition Width="1.2*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="50*"/>
+            <RowDefinition Height="1.1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="5.9*"/>
         </Grid.RowDefinitions>
-           
-        <!--INPUT-->
-        <StackPanel Grid.Column="0">
-            <Label Content="Delivery ID"/>
-            <Label Content="Delivery Type"/>
-            <Label Content="TShirt ID"/>
-            <Label Content="Quantity"/>
-            <Label Content="Date Received"/>
-		    <Label Content="Date Delivered"/>
-        </StackPanel>
-        <!--TEXTBOX-->
-        <StackPanel Grid.Column="1">
-            <controls:AutoCompleteBox x:Name="DeliveryID" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID" TextChanged="DeliveryID_TextChanged"></controls:AutoCompleteBox>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <RadioButton x:Name="In" Content="In" GroupName="DeliveryTypeGroup" Checked="RadioButton_Checked"></RadioButton>
-                <RadioButton x:Name="Out" Content="Out" GroupName="DeliveryTypeGroup"></RadioButton>
-            </StackPanel>
-            <controls:AutoCompleteBox x:Name="TShirtID" Width="120" materialDesign:HintAssist.Hint="Enter T Shirt ID" TextChanged="TShirtID_TextChanged"/>
-            <TextBox x:Name="Quantity" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Quantity"/>
-            <DatePicker x:Name="DateReceived"  Width="150" materialDesign:HintAssist.Hint="Enter Received Date"></DatePicker>
-            <DatePicker x:Name="DateDelivered" Width="150" materialDesign:HintAssist.Hint="Enter Delivered Date"></DatePicker>
-        </StackPanel>
-        <!--PREVIEW LABEL-->
-        <StackPanel Grid.Column="2" HorizontalAlignment="Center" >
-            <Label Content="Brand: "/>
-            <Label Content="Name: "/>
-            <Label Content="Color: "/>
-            <Label Content="Size: "/>
-            <Label Content="Quantity: "/>
-        </StackPanel>
-        <!--PREVIEW CONTENT-->
-        <StackPanel Grid.Column="3">
-            <Label x:Name="TShirtBrandPreview" Content="-"/>
-            <Label x:Name="TShirtNamePreview" Content="-"/>
-            <Label x:Name="TShirtColorPreview" Content="-"/>
-            <Label x:Name="TShirtSizePreview" Content="-"/>
-            <Label x:Name="TShirtQtyPreview" Content="-"/>
-        </StackPanel>
-        <!--BUTTON-->
-        <StackPanel Grid.Column="5">
-            <Button x:Name="Insert" Content="Insert" Click="InsertTShirtDetails_Click"/>
-            <Button x:Name="Update" Content="Update" Click="UpdateTShirtDetails_Click"/>
-            <Button x:Name="Delete" Content="Delete" Click="DeleteBtn_Click"/>
-            <Button x:Name="Clear" Content="Clear" Click="ClearBtn_Click"/>
 
+        <!--SECTION NAME-->
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <Label Content="Deliveries" Foreground="#EEEEEE" FontSize="40" FontWeight="ExtraBold" Margin="20, 0, 0, 0"/>
         </StackPanel>
 
+        <!--Logo-->
         <StackPanel Grid.Column="4" Grid.Row="0">
-            <Image x:Name="TShirtImage"  Margin="10,0,11,39" Stretch="Fill"  />
+            <Label Content="LOGO" Foreground="#EEEEEE" FontSize="40" FontWeight="Bold"/>
+        </StackPanel>
+
+        <!--Image-->
+        <StackPanel Grid.Column="0" Grid.Row="1" Grid.RowSpan="2">
+            <Border Width="400"
+                    Height="567"
+                    Margin="10, 10, 10, 10">
+                <Border.Background>
+                    <SolidColorBrush Color="#EEEEEE"></SolidColorBrush>
+                </Border.Background>
+                <Border.Clip>
+                    <RectangleGeometry RadiusX="10"
+                                       RadiusY="10"
+                                       Rect="0, 0, 400, 567">
+                    </RectangleGeometry>
+                </Border.Clip>
+                <Grid>
+                    <StackPanel>
+                        <Label Content="Brand"
+                               x:Name="TShirtBrandPreview"
+                               Margin="20, 5, 5, 0"
+                               FontSize="20"/>
+                        <Label Content="Name"
+                               x:Name="TShirtNamePreview"
+                               Margin="20, 0, 5, 0"
+                               FontSize="20"/>
+                        <Label Content="Size"
+                               x:Name="TShirtSizePreview"
+                               Margin="20, 0, 5, 0"
+                               FontSize="20"/>
+                        <Label Content="Color"
+                               x:Name="TShirtColorPreview"
+                               Margin="20, 0, 5, 0"
+                               FontSize="20"/>
+                        <Label Content="Quantity"
+                               x:Name="TShirtQtyPreview"
+                               Margin="20, 0, 5, 0"
+                               FontSize="20"/>
+                        
+                        <Image x:Name="TShirtImage"
+                               Source="C:\Users\user\source\repos\TShirtInventorySystem\Inventory\MVVM\previewImages\white-tshirt.jpg"
+                                Margin="20, 20, 20, 0"
+                               Stretch="Fill"
+                               Height="350"
+                               />
+                        
+
+                    </StackPanel>
+                </Grid>
+
+            </Border>
+
+
 
         </StackPanel>
 
-        <!--FILTER DATAGRID-->
-    
-        <!--FILTER LABEL-->
-        <StackPanel Grid.Column="1"
-                    Grid.Row="1"
-                    HorizontalAlignment="Right">
-            <Label Content="Filter:  "/>
-        </StackPanel>
-    
-        <!--FILTER CATEG TEXTBOX-->
-        <StackPanel Grid.Column="2"
-                    Grid.Row="1"
-                    HorizontalAlignment="Center">
-            <TextBox x:Name="FilterBoxCateg" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Category"/>
+        <!--Input Label-->
+        <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="551" Margin="0,2,0,344" Grid.RowSpan="2">
+            <Border Width="580"
+                    Height="249"
+                    Margin="0, 10, 0, 0">
+                <Border.Background>
+                    <SolidColorBrush Color="#EEEEEE"></SolidColorBrush>
+                </Border.Background>
+                <Border.Clip>
+                    <RectangleGeometry RadiusX="10"
+                                       RadiusY="10"
+                                       Rect="0, 0, 580, 225">
+                    </RectangleGeometry>
+                </Border.Clip>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="7*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <Label Content="Delivery ID:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
+                        <Label Content="Delivery Type:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
+                        <Label Content="TShirt ID:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
+                        <Label Content="TShirt Quantity:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
+                        <Label Content="Date Recieved:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
+                        <Label Content="Date Delivered:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
+                    </StackPanel>
+                    <!--Input TextBox-->
+                    <StackPanel Grid.Column="1">
+                        <controls:AutoCompleteBox x:Name="DeliveryID" Width="160" materialDesign:HintAssist.Hint="Enter Delivery ID" FontSize="16" Margin="5, 5, 5, 5" TextChanged="DeliveryID_TextChanged"></controls:AutoCompleteBox>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="48">
+                            <RadioButton x:Name="In" Content="In" GroupName="DeliveryTypeGroup" Width="80" FontSize="16" Margin="5, 5, 5, 5" Checked="RadioButton_Checked"></RadioButton>
+                            <RadioButton x:Name="Out" Content="Out" GroupName="DeliveryTypeGroup" Width="55" FontSize="16" Margin="5, 5, 5, 5"></RadioButton>
+                        </StackPanel>
+                        <controls:AutoCompleteBox x:Name="TShirtID" Width="160" materialDesign:HintAssist.Hint="Enter T Shirt ID" FontSize="16" TextChanged="TShirtID_TextChanged" Height="26"/>
+                        <TextBox x:Name="Quantity" TextWrapping="Wrap" Width="160" FontSize="16" Margin="5, 5, 5, 5" materialDesign:HintAssist.Hint="Enter Quantity"/>
+                        <DatePicker x:Name="DateReceived"  Width="160" FontSize="16" Margin="5, 5, 5, 5" materialDesign:HintAssist.Hint="Enter Received Date"></DatePicker>
+                        <DatePicker x:Name="DateDelivered" Width="160" FontSize="16" Margin="5, 5, 5, 5" materialDesign:HintAssist.Hint="Enter Delivered Date"></DatePicker>
+                    </StackPanel>
+                </Grid>
+            </Border>
         </StackPanel>
 
-        <!--FILTER ITEM TEXTBOX-->
-        <StackPanel Grid.Column="3"
-                    Grid.Row="1"
-                    HorizontalAlignment="Center">
-            <TextBox x:Name="FilterBoxItem" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Item" TextChanged="FilterBox_TextChanged"/>
-        </StackPanel>
-
-
-        <!--DATAGRID-->
-        <StackPanel Grid.Column="0" 
+        <!--Table-->
+        <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,203,0,0" Grid.RowSpan="2">
+            <Border Width="578"
+                    Height="320"
+                    Margin="0, 52, 0, 10">
+                <Border.Background>
+                    <SolidColorBrush Color="#EEEEEE"></SolidColorBrush>
+                </Border.Background>
+                <Border.Clip>
+                    <RectangleGeometry RadiusX="10"
+                                       RadiusY="10"
+                                       Rect="0, 0, 578, 320">
+                    </RectangleGeometry>
+                </Border.Clip>
+                <Grid>
+                    <StackPanel Grid.Column="1" 
                     Grid.Row="2" 
-                    Grid.ColumnSpan="5" 
+                    Grid.ColumnSpan="2"
+                    Grid.RowSpan="2" 
                     Margin="1" HorizontalAlignment="Stretch" 
                     VerticalAlignment="Stretch">
-
-            <DataGrid x:Name="DeliveryDetailsGrid" Width="640" Height="200"></DataGrid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Label Content="Filter:  " FontSize="15"/>
+                            <TextBox x:Name="FilterBoxCateg" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Category" FontSize="15"/>
+                            <TextBox x:Name="FilterBoxItem" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Item" TextChanged="FilterBox_TextChanged" FontSize="15"/>
+                        </StackPanel>
+                        <DataGrid x:Name="DeliveriesDetailsGrid" Width="578" Height="287"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
         </StackPanel>
-</Grid>
+
+
+        <StackPanel Grid.Column="4" Grid.Row="1" Grid.RowSpan="3">
+            <Button x:Name="Insert" Content="INSERT" Click="InsertDeliveryDetails_Click" Margin="20, 70, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
+            <Button x:Name="Update" Content="UPDATE" Click="UpdateDeliveryDetails_Click" Margin="20, 30, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
+            <Button x:Name="Delete" Content="DELETE" Click="DeleteBtn_Click" Margin="20, 30, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
+            <Button x:Name="Clear" Content="CLEAR" Click="ClearBtn_Click" Margin="20, 30, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
+
+        </StackPanel>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </Grid>
 </UserControl>

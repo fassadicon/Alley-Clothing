@@ -42,7 +42,11 @@ namespace Inventory.MVVM.View
         // AUTO SUGGEST
         private void AutoComplete()
         {
+<<<<<<< HEAD
             using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\user\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+=======
+            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+>>>>>>> 49156f3c7ab4c0441c9af2f8a6bd041a8be70525
             {
                 SqlCommand cmd;
                 SqlDataReader sdr;
@@ -86,7 +90,11 @@ namespace Inventory.MVVM.View
             {
                 try
                 {
+<<<<<<< HEAD
                     using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\user\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+=======
+                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+>>>>>>> 49156f3c7ab4c0441c9af2f8a6bd041a8be70525
                     {
                         SqlCommand cmd = new SqlCommand("SELECT * FROM Stocks ;", conn);
                         DataTable dt = new DataTable();
@@ -108,7 +116,11 @@ namespace Inventory.MVVM.View
 
                 try
                 {
+<<<<<<< HEAD
                     using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\user\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+=======
+                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+>>>>>>> 49156f3c7ab4c0441c9af2f8a6bd041a8be70525
                     {
                         String queryString = "";
 
@@ -155,7 +167,11 @@ namespace Inventory.MVVM.View
             {
                 try
                 {
+<<<<<<< HEAD
                     using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\user\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+=======
+                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+>>>>>>> 49156f3c7ab4c0441c9af2f8a6bd041a8be70525
                     {
                         SqlCommand cmd = new SqlCommand("INSERT INTO Stocks (StockID, TShirtID, TShirtQty, TShirtDefect, Date) VALUES (@StockID, @TShirtID, @TShirtQty, @TShirtDefect, @Date);", conn);
                         cmd.CommandType = CommandType.Text;
@@ -188,7 +204,11 @@ namespace Inventory.MVVM.View
         {
             try
             {
+<<<<<<< HEAD
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\user\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+=======
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+>>>>>>> 49156f3c7ab4c0441c9af2f8a6bd041a8be70525
                 {
                     SqlCommand cmd = new SqlCommand("UPDATE Stocks set TShirtID = '" + TShirtID.Text + "', TShirtQty = '" + TShirtQty.Text + "', TShirtDefect = '" + TShirtDefect.Text + "', Date = '" + StockDate.Text + "' WHERE StockID = '" + StockID.Text + "'", conn);
                     conn.Open();
@@ -216,7 +236,11 @@ namespace Inventory.MVVM.View
         {
             try
             {
+<<<<<<< HEAD
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\user\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+=======
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+>>>>>>> 49156f3c7ab4c0441c9af2f8a6bd041a8be70525
                 {
                     SqlCommand cmd = new SqlCommand("DELETE FROM Stocks WHERE StockID = " + StockID.Text + " ", conn);
                     conn.Open();
@@ -240,17 +264,21 @@ namespace Inventory.MVVM.View
             String direct = "";
             try
             {
+<<<<<<< HEAD
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\user\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+=======
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+>>>>>>> 49156f3c7ab4c0441c9af2f8a6bd041a8be70525
                 {
                     // GETTING THE TSHIRT DETAILS
                     if (TShirtID.Text == "")
                     {
-                        TShirtBrandPreview.Content = "";
-                        TShirtNamePreview.Content = "";
-                        TShirtColorPreview.Content = "";
-                        TShirtSizePreview.Content = "";
-                        TShirtQtyPreview.Content = "";
-                        TShirtImage.Source = null;
+                        TShirtBrandPreview.Content = "Brand:";
+                        TShirtNamePreview.Content = "Name:";
+                        TShirtColorPreview.Content = "Color:";
+                        TShirtSizePreview.Content = "Size:";
+                        TShirtQtyPreview.Content = "Quantity:";
+                        TShirtImage.Source = new BitmapImage(new Uri(@"C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\previewImages\white-tshirt.jpg"));
                     }
                     else
                     {
@@ -269,10 +297,11 @@ namespace Inventory.MVVM.View
                         {
                             while (reader.Read())
                             {
-                                TShirtBrandPreview.Content = reader["TShirtBrand"].ToString();
-                                TShirtNamePreview.Content = reader["TShirtName"].ToString();
-                                TShirtColorPreview.Content = reader["TShirtColor"].ToString();
-                                TShirtSizePreview.Content = reader["TShirtSize"].ToString();
+                                TShirtBrandPreview.Content = "Brand: " + reader["TShirtBrand"].ToString();
+                                TShirtNamePreview.Content = "Name: " + reader["TShirtName"].ToString();
+                                TShirtColorPreview.Content = "Color: " + reader["TShirtColor"].ToString();
+                                TShirtSizePreview.Content = "Size: " + reader["TShirtSize"].ToString();
+                                TShirtQtyPreview.Content = "Quantity: " + reader["TShirtQty"].ToString();
                                 direct = reader["TShirtDirect"].ToString();
                                 TShirtImage.Source = new BitmapImage(new Uri($@"{direct}"));
                             }
@@ -313,7 +342,11 @@ namespace Inventory.MVVM.View
         {
             try
             {
+<<<<<<< HEAD
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\user\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+=======
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+>>>>>>> 49156f3c7ab4c0441c9af2f8a6bd041a8be70525
                 {
                     // GETTING THE TSHIRT DETAILS                  
                     SqlCommand cmd = new SqlCommand("SELECT * FROM Stocks WHERE StockID = '" + StockID.Text + "';", conn);
