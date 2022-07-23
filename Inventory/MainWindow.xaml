@@ -46,49 +46,55 @@
 
 
                 <!--NAVIGATION BUTTONS-->
-                <Button Content="T-Shirts"
-                        Height="50"
+                
+                <Button Height="50"
                         Foreground="White"
                         FontSize="14"
-                        Style="{StaticResource MaterialDesignFlatDarkBgButton}"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                        materialDesign:ButtonAssist.CornerRadius="10"
-                        Command="{Binding TShirtDetailsViewCommand}"
-                        IsDefault="True"/>
-                <Button Content="Stocks"
-                        Height="50"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        Command="{Binding TShirtDetailsViewCommand}">
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\t-shirt.png"/>
+                </Button>
+                <Button Height="50"
                         Foreground="White"
                         FontSize="14"
-                        Style="{StaticResource MaterialDesignFlatDarkBgButton}"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                        materialDesign:ButtonAssist.CornerRadius="10"
-                        Command="{Binding StocksViewCommand}"/>
-                <Button Content="Deliveries"
-                        Height="50"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        Command="{Binding StocksViewCommand}">
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\box.png"/>
+                </Button>
+                <Button Height="50"
                         Foreground="White"
                         FontSize="14"
-                        Style="{StaticResource MaterialDesignFlatDarkBgButton}"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                        materialDesign:ButtonAssist.CornerRadius="10"
-                        Command="{Binding DeliveriesViewCommand}"/>
-                <Button Content="Log"
-                        Height="50"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        Command="{Binding DeliveriesViewCommand}">
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\truck.png"/>
+                </Button>
+                <Button Height="50"
                         Foreground="White"
                         FontSize="14"
-                        Style="{StaticResource MaterialDesignFlatDarkBgButton}"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                        materialDesign:ButtonAssist.CornerRadius="10"
-                        Command="{Binding LogViewCommand}"/>
+                        BorderThickness="0"
+                        Background="Transparent"
+                        Command="{Binding LogViewCommand}">
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\stats.png"/>
+                </Button>
+                
+                
             </StackPanel>
             <StackPanel Grid.Row ="2" Background="#D65A31">
-                <Button x:Name="LogOut" Content="LogOut"
+
+                <Button x:Name="LogOut" 
                         Height="50"
                         Foreground="White"
                         FontSize="14"
-                        Style="{StaticResource MaterialDesignFlatDarkBgButton}"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                        materialDesign:ButtonAssist.CornerRadius="10"
-                        Click="LogOut_Click"/>
+                        BorderThickness="0"
+                        Click="LogOut_Click"
+                        Background="Transparent">
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\exit.png"/>
+
+                </Button>
+                         
             </StackPanel>
             <ContentControl Grid.Row ="1"
                             Grid.Column="1"

@@ -51,6 +51,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DotNetProjects.Input.Toolkit, Version=6.1.94.0, Culture=neutral, PublicKeyToken=79778c5f2eed289b, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetProjects.WpfToolkit.Input.6.1.94\lib\net40\DotNetProjects.Input.Toolkit.dll</HintPath>
@@ -186,6 +189,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="MVVM\icons\box.png" />
+    <Resource Include="MVVM\icons\truck.png" />
+    <Resource Include="MVVM\icons\stats.png" />
+    <Resource Include="MVVM\icons\exit.png" />
+    <Resource Include="MVVM\icons\t-shirt.png" />
+    <Resource Include="MVVM\previewImages\white-tshirt.jpg" />
+    <Resource Include="MVVM\previewImages\imageIcon.jpg" />
+    <Resource Include="MVVM\previewImages\blankShirt.jpg" />
     <Resource Include="MVVM\previewImages\Geolife\flowercrown.jpg" />
     <Resource Include="MVVM\previewImages\Geolife\riseup.jpg" />
     <Resource Include="MVVM\previewImages\Geolife\skate.jpg" />
