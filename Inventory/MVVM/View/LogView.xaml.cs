@@ -35,7 +35,7 @@ namespace Inventory.MVVM.View
             try
             {
                 // Labels
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\user\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
                     int count = 0;
                     using (SqlCommand cmdCount = new SqlCommand("SELECT COUNT(*) FROM DeliveryDetails WHERE DeliveryType = 'In' AND DateReceived BETWEEN '" + StartDate.Text + "' AND '" + EndDate.Text + "';", conn))
@@ -71,7 +71,7 @@ namespace Inventory.MVVM.View
                 }
 
                 // Stock Log Table
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\user\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
                     SqlCommand cmd = new SqlCommand("SELECT * FROM Stocks WHERE Date BETWEEN '" + StartDate.Text + "' AND '" + EndDate.Text + "';", conn);
                     DataTable dt = new DataTable();
@@ -82,7 +82,7 @@ namespace Inventory.MVVM.View
                     StockSummary.ItemsSource = dt.DefaultView;
                 }
                 // Delivery Log Table
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\user\\Source\\Repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
                     SqlCommand cmd = new SqlCommand("SELECT * FROM DeliveryDetails WHERE DateReceived BETWEEN '"+ StartDate.Text+ "' AND '" + EndDate.Text + "';", conn);
                     DataTable dt = new DataTable();
