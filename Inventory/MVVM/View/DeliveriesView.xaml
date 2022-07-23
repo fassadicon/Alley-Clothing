@@ -155,7 +155,7 @@
                             <TextBox x:Name="FilterBoxCateg" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Category" FontSize="15"/>
                             <TextBox x:Name="FilterBoxItem" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Item" TextChanged="FilterBox_TextChanged" FontSize="15"/>
                         </StackPanel>
-                        <DataGrid x:Name="DeliveriesDetailsGrid" Width="578" Height="287"/>
+                        <DataGrid x:Name="DeliveryDetailsGrid" Width="578" Height="287"/>
                     </StackPanel>
                 </Grid>
             </Border>
