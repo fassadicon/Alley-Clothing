@@ -86,6 +86,7 @@ namespace Inventory.MVVM.View
         //INVENTORY DATABASE T SHIRT DETAILS TABLE
         public void LoadGrid()
         {
+            StocksDetailsGrid.IsReadOnly = true;
             if (FilterBoxItem.Text == "")
             {
                 try

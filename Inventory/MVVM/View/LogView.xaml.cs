@@ -73,6 +73,7 @@ namespace Inventory.MVVM.View
                 // Stock Log Table
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
+                    StockSummary.IsReadOnly = true;
                     SqlCommand cmd = new SqlCommand("SELECT * FROM Stocks WHERE Date BETWEEN '" + StartDate.Text + "' AND '" + EndDate.Text + "';", conn);
                     DataTable dt = new DataTable();
                     conn.Open();
@@ -84,6 +85,7 @@ namespace Inventory.MVVM.View
                 // Delivery Log Table
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
+                    Deliveries.IsReadOnly = true;
                     SqlCommand cmd = new SqlCommand("SELECT * FROM DeliveryDetails WHERE DateReceived BETWEEN '"+ StartDate.Text+ "' AND '" + EndDate.Text + "';", conn);
                     DataTable dt = new DataTable();
                     conn.Open();
