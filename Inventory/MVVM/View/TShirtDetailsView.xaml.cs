@@ -29,7 +29,7 @@ namespace Inventory.MVVM.View
         private void AutoComplete()
         {
 
-            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
 
            
 
@@ -57,7 +57,7 @@ namespace Inventory.MVVM.View
                 conn.Close();
 
                 conn.Open();
-                q = "SELECT TShirtBrand from TShirtDetails";
+                q = "SELECT DISTINCT TShirtBrand from TShirtDetails";
                 cmd = new SqlCommand(q, conn);
                 sdr = cmd.ExecuteReader();
                 while (sdr.Read())
@@ -67,7 +67,7 @@ namespace Inventory.MVVM.View
                 conn.Close();
 
                 conn.Open();
-                q = "SELECT TShirtName from TShirtDetails";
+                q = "SELECT DISTINCT TShirtName from TShirtDetails";
                 cmd = new SqlCommand(q, conn);
                 sdr = cmd.ExecuteReader();
                 while (sdr.Read())
@@ -77,7 +77,7 @@ namespace Inventory.MVVM.View
                 conn.Close();
 
                 conn.Open();
-                q = "SELECT TShirtColor from TShirtDetails";
+                q = "SELECT DISTINCT TShirtColor from TShirtDetails";
                 cmd = new SqlCommand(q, conn);
                 sdr = cmd.ExecuteReader();
                 while (sdr.Read())
@@ -87,7 +87,7 @@ namespace Inventory.MVVM.View
                 conn.Close();
 
                 conn.Open();
-                q = "SELECT TShirtSize from TShirtDetails";
+                q = "SELECT DISTINCT TShirtSize from TShirtDetails";
                 cmd = new SqlCommand(q, conn);
                 sdr = cmd.ExecuteReader();
                 while (sdr.Read())
@@ -129,7 +129,7 @@ namespace Inventory.MVVM.View
                 try
                 {
 
-                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
  
                      
 
@@ -155,7 +155,7 @@ namespace Inventory.MVVM.View
                 try
                 {
 
-                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
  
                      
 
@@ -212,7 +212,7 @@ namespace Inventory.MVVM.View
             try
             {
 
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
  
                  
 
@@ -254,7 +254,7 @@ namespace Inventory.MVVM.View
             try
             {
 
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
  
                  
 
@@ -285,7 +285,7 @@ namespace Inventory.MVVM.View
             try
             {
 
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
  
                  
 
@@ -326,10 +326,11 @@ namespace Inventory.MVVM.View
 
         private void TShirtDetailsID_TextChanged(object sender, RoutedEventArgs e)
         {
+            String direct = "";
             try
             {
 
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
  
                  
 
@@ -348,6 +349,8 @@ namespace Inventory.MVVM.View
                             Name.Text = reader["TShirtName"].ToString();
                             Color.Text = reader["TShirtColor"].ToString();
                             Size.Text = reader["TShirtSize"].ToString();
+                            direct = reader["TShirtDirect"].ToString();
+                            TShirtImage.Source = new BitmapImage(new Uri($@"{direct}"));
                         }
                     }
                 }
