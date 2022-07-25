@@ -87,6 +87,7 @@ namespace Inventory.MVVM.View
         public void LoadGrid()
         {
             StocksDetailsGrid.IsReadOnly = true;
+            StocksDetailsGrid.CanUserResizeColumns = false;
             if (FilterBoxItem.Text == "")
             {
                 try

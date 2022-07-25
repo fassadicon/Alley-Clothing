@@ -139,6 +139,7 @@ namespace Inventory.MVVM.View
         public void LoadGrid()
         {
             DeliveryDetailsGrid.IsReadOnly = true;
+            DeliveryDetailsGrid.CanUserResizeColumns = false;
             if (FilterBoxItem.Text == "")
             {
                 try

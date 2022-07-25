@@ -124,6 +124,7 @@ namespace Inventory.MVVM.View
         public void LoadGrid()
         {
             TShirtDetailsDataGrid.IsReadOnly = true;
+            TShirtDetailsDataGrid.CanUserResizeColumns = false;
             if (FilterBoxItem.Text == "")
             {
                 try
