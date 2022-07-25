@@ -132,7 +132,7 @@
 
         <!--Table-->
         <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,203,0,0" Grid.RowSpan="2">
-            <Border Width="578"
+            <Border Width="550"
                     Height="320"
                     Margin="0, 52, 0, 10">
                 <Border.Background>
@@ -141,7 +141,7 @@
                 <Border.Clip>
                     <RectangleGeometry RadiusX="10"
                                        RadiusY="10"
-                                       Rect="0, 0, 578, 320">
+                                       Rect="0, 0, 550, 320">
                     </RectangleGeometry>
                 </Border.Clip>
                 <Grid>
@@ -156,7 +156,7 @@
                             <TextBox x:Name="FilterBoxCateg" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Category" FontSize="15"/>
                             <TextBox x:Name="FilterBoxItem" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Item" TextChanged="FilterBox_TextChanged" FontSize="15"/>
                         </StackPanel>
-                        <DataGrid x:Name="DeliveryDetailsGrid" Width="578" Height="287"/>
+                        <DataGrid x:Name="DeliveryDetailsGrid" Width="540" Height="287"/>
                     </StackPanel>
                 </Grid>
             </Border>
