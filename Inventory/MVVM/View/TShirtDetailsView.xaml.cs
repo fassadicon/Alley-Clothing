@@ -57,7 +57,7 @@ namespace Inventory.MVVM.View
                 conn.Close();
 
                 conn.Open();
-                q = "SELECT TShirtBrand from TShirtDetails";
+                q = "SELECT DISTINCT TShirtBrand from TShirtDetails";
                 cmd = new SqlCommand(q, conn);
                 sdr = cmd.ExecuteReader();
                 while (sdr.Read())
@@ -67,7 +67,7 @@ namespace Inventory.MVVM.View
                 conn.Close();
 
                 conn.Open();
-                q = "SELECT TShirtName from TShirtDetails";
+                q = "SELECT DISTINCT TShirtName from TShirtDetails";
                 cmd = new SqlCommand(q, conn);
                 sdr = cmd.ExecuteReader();
                 while (sdr.Read())
@@ -77,7 +77,7 @@ namespace Inventory.MVVM.View
                 conn.Close();
 
                 conn.Open();
-                q = "SELECT TShirtColor from TShirtDetails";
+                q = "SELECT DISTINCT TShirtColor from TShirtDetails";
                 cmd = new SqlCommand(q, conn);
                 sdr = cmd.ExecuteReader();
                 while (sdr.Read())
@@ -87,7 +87,7 @@ namespace Inventory.MVVM.View
                 conn.Close();
 
                 conn.Open();
-                q = "SELECT TShirtSize from TShirtDetails";
+                q = "SELECT DISTINCT TShirtSize from TShirtDetails";
                 cmd = new SqlCommand(q, conn);
                 sdr = cmd.ExecuteReader();
                 while (sdr.Read())
@@ -113,6 +113,7 @@ namespace Inventory.MVVM.View
             Name.Text = string.Empty;
             Color.Text = string.Empty;
             Size.Text = string.Empty;
+            TShirtImage.Source = null;
         }
         private void ClearBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -123,6 +124,7 @@ namespace Inventory.MVVM.View
         public void LoadGrid()
         {
             TShirtDetailsDataGrid.IsReadOnly = true;
+            TShirtDetailsDataGrid.CanUserResizeColumns = false;
             if (FilterBoxItem.Text == "")
             {
                 try
@@ -206,6 +208,7 @@ namespace Inventory.MVVM.View
         // INSERT T SHIRT DETAILS
         private void InsertTShirtDetails_Click(object sender, RoutedEventArgs e)
         {
+            int Qty = 0, Defect = 0;
           
             try
             {
@@ -216,6 +219,9 @@ namespace Inventory.MVVM.View
 
                 {
                     SqlCommand cmd = new SqlCommand("INSERT INTO TShirtDetails (TShirtID, TShirtBrand, TShirtName, TShirtColor, TShirtSize, TShirtDirect) VALUES (@TShirtID, @Brand, @Name, @Color, @Size, @fileDirect);", conn);
+
+                    SqlCommand cmd2 = new SqlCommand($"INSERT INTO TShirtDetails (TShirtID, TShirtQty, TShirtDefect) VALUES (@TShirtID, {Qty}, {Defect});", conn);
+
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@TShirtID", TShirtDetailsID.Text);
                     cmd.Parameters.AddWithValue("@Brand", Brand.Text);
@@ -321,6 +327,7 @@ namespace Inventory.MVVM.View
 
         private void TShirtDetailsID_TextChanged(object sender, RoutedEventArgs e)
         {
+            String direct = "";
             try
             {
 
@@ -343,6 +350,8 @@ namespace Inventory.MVVM.View
                             Name.Text = reader["TShirtName"].ToString();
                             Color.Text = reader["TShirtColor"].ToString();
                             Size.Text = reader["TShirtSize"].ToString();
+                            direct = reader["TShirtDirect"].ToString();
+                            TShirtImage.Source = new BitmapImage(new Uri(@"C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\previewImages\white-tshirt.jpg"));
                         }
                     }
                 }
@@ -364,7 +373,7 @@ namespace Inventory.MVVM.View
             
 
 
-            dialog.Filter = "Image files (*.png)| *.png| (*.jpg)| *.jpg| (*.gif)| *.gif";
+            dialog.Filter = "Image files (*.png)| *.png| (*.jpg)| *.jpg| (*.jpeg)| *.jpeg| (*.gif)| *.gif";
             
 
             bool? result = dialog.ShowDialog();

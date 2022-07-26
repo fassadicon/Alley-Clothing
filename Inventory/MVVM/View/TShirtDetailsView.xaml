@@ -28,7 +28,7 @@
         </StackPanel>
         <!--Logo-->
         <StackPanel Grid.Column="4" Grid.Row="0">
-            <Label Content="LOGO" Foreground="#EEEEEE" FontSize="40" FontWeight="Bold"/>
+            <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\Alley.png" Width="130" Margin="10, 15, 0, 0"></Image>
         </StackPanel>
         <!--Image-->
         <StackPanel Grid.Column="0" Grid.Row="1" Grid.RowSpan="2">
@@ -47,8 +47,7 @@
                 <Grid>
                     <StackPanel>
                         <Image x:Name="TShirtImage"
-                                Margin="20, 20, 20, 20"
-                               Stretch="Fill"/>
+                               Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\previewImages\white-tshirt.jpg" Height="407"></Image>
                         
                     </StackPanel>
                 </Grid>
@@ -99,16 +98,16 @@
 
         <!--Table-->
         <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2">
-            <Border Width="578"
+            <Border Width="555"
                     Height="362"
-                    Margin="0, 10, 0, 10">
+                    Margin="0, 10, 0, 0">
                 <Border.Background>
                     <SolidColorBrush Color="#EEEEEE"></SolidColorBrush>
                 </Border.Background>
                 <Border.Clip>
                     <RectangleGeometry RadiusX="10"
                                        RadiusY="10"
-                                       Rect="0, 0, 578, 362">
+                                       Rect="0, 0, 550, 362">
                     </RectangleGeometry>
                 </Border.Clip>
                 <Grid>
@@ -116,7 +115,7 @@
                     Grid.Row="2" 
                     Grid.ColumnSpan="2"
                     Grid.RowSpan="2" 
-                    Margin="1" HorizontalAlignment="Stretch" 
+                    HorizontalAlignment="Stretch" 
                     VerticalAlignment="Stretch">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Label Content="Filter:  " FontSize="15"/>
@@ -124,18 +123,18 @@
                             <TextBox x:Name="FilterBoxItem" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Item" TextChanged="FilterBox_TextChanged" FontSize="15"/>
                         </StackPanel>
 
-                        <DataGrid x:Name="TShirtDetailsDataGrid" Width="578" Height="341"/>
+                        <DataGrid x:Name="TShirtDetailsDataGrid" Width="535" Height="327" Margin="1, 0, 5, 10"/>
                     </StackPanel>
                 </Grid>
             </Border>
         </StackPanel>
 
 
-        <StackPanel Grid.Column="4" Grid.Row="1" Grid.RowSpan="3">
-            <Button x:Name="Insert" Content="INSERT" Click="InsertTShirtDetails_Click" Margin="20, 70, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
-            <Button x:Name="Update" Content="UPDATE" Click="UpdateTShirtDetails_Click" Margin="20, 30, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
-            <Button x:Name="Delete" Content="DELETE" Click="DeleteBtn_Click" Margin="20, 30, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
-            <Button x:Name="Clear" Content="CLEAR" Click="ClearBtn_Click" Margin="20, 30, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
+        <StackPanel Grid.Column="4" Grid.Row="1" Grid.RowSpan="3" Margin="20, 110, 7, 0">
+            <Button x:Name="Insert" Content="INSERT" Click="InsertTShirtDetails_Click" Background="#D65A31" BorderBrush="#D65A31" Height="50" Margin="0, 0, 0, 50"/>
+            <Button x:Name="Update" Content="UPDATE" Click="UpdateTShirtDetails_Click" Background="#D65A31" BorderBrush="#D65A31" Height="50" Margin="0, 0, 0, 50"/>
+            <Button x:Name="Delete" Content="DELETE" Click="DeleteBtn_Click" Background="#D65A31" BorderBrush="#D65A31" Height="50" Margin="0, 0, 0, 50"/>
+            <Button x:Name="Clear" Content="CLEAR" Click="ClearBtn_Click" Background="#D65A31" BorderBrush="#D65A31" Height="50" Margin="0, 0, 0, 50"/>
 
         </StackPanel>
 

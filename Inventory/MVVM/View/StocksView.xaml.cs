@@ -86,6 +86,8 @@ namespace Inventory.MVVM.View
         //INVENTORY DATABASE T SHIRT DETAILS TABLE
         public void LoadGrid()
         {
+            StocksDetailsGrid.IsReadOnly = true;
+            StocksDetailsGrid.CanUserResizeColumns = false;
             if (FilterBoxItem.Text == "")
             {
                 try
@@ -165,6 +167,7 @@ namespace Inventory.MVVM.View
         // INSERT T SHIRT DETAILS
         private void InsertTShirtDetails_Click(object sender, RoutedEventArgs e)
             {
+            
                 try
                 {
 
@@ -174,17 +177,69 @@ namespace Inventory.MVVM.View
 
                     {
                         SqlCommand cmd = new SqlCommand("INSERT INTO Stocks (StockID, TShirtID, TShirtQty, TShirtDefect, Date) VALUES (@StockID, @TShirtID, @TShirtQty, @TShirtDefect, @Date);", conn);
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@StockID", StockID.Text);
-                        cmd.Parameters.AddWithValue("@TShirtID", TShirtID.Text);
-                        cmd.Parameters.AddWithValue("@TShirtQty", TShirtQty.Text);
-                        cmd.Parameters.AddWithValue("@TShirtDefect", TShirtDefect.Text);
-                        cmd.Parameters.AddWithValue("@Date", StockDate.Text);
+
+                        SqlCommand cmd2 = new SqlCommand("SELECT * FROM Quantity WHERE TShirtID = @TShirtID", conn);
+                        
+
+
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@StockID", StockID.Text);
+                    cmd.Parameters.AddWithValue("@TShirtID", TShirtID.Text);
+                    cmd.Parameters.AddWithValue("@TShirtQty", TShirtQty.Text);
+                    cmd.Parameters.AddWithValue("@TShirtDefect", TShirtDefect.Text);
+                    cmd.Parameters.AddWithValue("@Date", StockDate.Text);
+
+                    cmd2.CommandType = CommandType.Text;
+                    cmd2.Parameters.AddWithValue("@TShirtID", TShirtID.Text);
+
                     conn.Open();
                         cmd.ExecuteNonQuery();
-                        conn.Close();
                     LoadGrid();
-                    ClearData();
+                    using (SqlDataReader reader = cmd2.ExecuteReader())
+                    {
+                        while(reader.Read())
+                        {
+                            
+                            if (reader == null)
+                            {
+                                
+                                conn.Close();
+                                SqlCommand cmd3 = new SqlCommand("INSERT INTO Quantity (TShirtID, TotalQty, TotalDefect) VALUES (@TShirtID, @TShirtQty, @TShirtDefect);", conn);
+                                cmd3.CommandType = CommandType.Text;
+                                cmd3.Parameters.AddWithValue("@TShirtID", TShirtID.Text);
+                                cmd3.Parameters.AddWithValue("@TShirtQty", TShirtQty.Text);
+                                cmd3.Parameters.AddWithValue("@TShirtDefect", TShirtDefect.Text);
+
+                                conn.Open();
+                                cmd3.ExecuteNonQuery();
+                                
+                                LoadGrid();
+                                ClearData();
+                                MessageBox.Show("Stocks Details Input Successful", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+                                break;
+                            }
+                            else
+                            {
+                                int TotalQty = Int32.Parse(reader["TotalQty"].ToString()) + Int32.Parse(TShirtQty.Text);
+                                int TotalDefect = Int32.Parse(reader["TotalDefect"].ToString()) + Int32.Parse(TShirtDefect.Text);
+                                conn.Close();
+                                SqlCommand cmd4 = new SqlCommand("UPDATE Quantity set TotalQty = '" + TotalQty + "', TotalDefect = '" + TotalDefect + "' WHERE TShirtID = '" + TShirtID.Text + "'", conn);
+
+                                conn.Open();
+                                cmd4.ExecuteNonQuery();
+                               
+                                LoadGrid();
+                                ClearData();
+
+                                MessageBox.Show("Stocks Details Input Successful", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+                                break;
+                            }
+                            
+                        }
+                    }
+                    conn.Close();
+                    LoadGrid();
+                    
 
                         MessageBox.Show("Stocks Details Input Successful", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
@@ -197,7 +252,9 @@ namespace Inventory.MVVM.View
                 {
                     MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-            }
+
+           
+        }
 
         // UPDATE T SHIRT DETAILS
         private void UpdateStockDetails_Click(object sender, RoutedEventArgs e)
@@ -287,7 +344,7 @@ namespace Inventory.MVVM.View
 
                         SqlCommand cmd1 = new SqlCommand("SELECT SUM(TShirtQty) FROM Stocks WHERE TShirtID = " + TShirtIDTextBoxContent, conn);
                         conn.Open();                      
-                        TShirtQtyPreview.Content = cmd1.ExecuteScalar();
+                        //int TotalQuantity = (int)cmd1.ExecuteScalar();
                         conn.Close();
 
                         SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails INNER JOIN Stocks ON TShirtDetails.TShirtID = " + TShirtIDTextBoxContent, conn);
@@ -301,7 +358,7 @@ namespace Inventory.MVVM.View
                                 TShirtNamePreview.Content = "Name: " + reader["TShirtName"].ToString();
                                 TShirtColorPreview.Content = "Color: " + reader["TShirtColor"].ToString();
                                 TShirtSizePreview.Content = "Size: " + reader["TShirtSize"].ToString();
-                                TShirtQtyPreview.Content = "Quantity: " + reader["TShirtQty"].ToString();
+                                //TShirtQtyPreview.Content = "Quantity: " + TotalQuantity;
                                 direct = reader["TShirtDirect"].ToString();
                                 TShirtImage.Source = new BitmapImage(new Uri($@"{direct}"));
                             }

@@ -138,6 +138,8 @@ namespace Inventory.MVVM.View
         // INVENTORY DATABASE T SHIRT DETAILS TABLE
         public void LoadGrid()
         {
+            DeliveryDetailsGrid.IsReadOnly = true;
+            DeliveryDetailsGrid.CanUserResizeColumns = false;
             if (FilterBoxItem.Text == "")
             {
                 try
@@ -372,7 +374,7 @@ namespace Inventory.MVVM.View
                         
                         SqlCommand cmd1 = new SqlCommand("SELECT SUM(TShirtQty) FROM Stocks WHERE TShirtID = " + TShirtIDTextBoxContent, conn);
                         conn.Open();
-                        TShirtQtyPreview.Content = cmd1.ExecuteScalar();
+                        int TotalQuantity = (int)cmd1.ExecuteScalar();
                         conn.Close();
 
                         SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails INNER JOIN Stocks ON TShirtDetails.TShirtID = " + TShirtIDTextBoxContent, conn);
@@ -386,7 +388,7 @@ namespace Inventory.MVVM.View
                                 TShirtNamePreview.Content = "Name: " + reader["TShirtName"].ToString();
                                 TShirtColorPreview.Content = "Color: " + reader["TShirtColor"].ToString();
                                 TShirtSizePreview.Content = "Size: " + reader["TShirtSize"].ToString();
-                                TShirtQtyPreview.Content = "Quantity: " + reader["TShirtQty"].ToString();
+                                TShirtQtyPreview.Content = "Quantity: " + TotalQuantity;
                                 direct = reader["TShirtDirect"].ToString();
                                 TShirtImage.Source = new BitmapImage(new Uri($@"{direct}"));
                             }

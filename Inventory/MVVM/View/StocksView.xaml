@@ -29,7 +29,7 @@
 
         <!--Logo-->
         <StackPanel Grid.Column="4" Grid.Row="0">
-            <Label Content="LOGO" Foreground="#EEEEEE" FontSize="40" FontWeight="Bold"/>
+            <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\Alley.png" Width="130" Margin="10, 15, 0, 0"></Image>
         </StackPanel>
 
         <!--Image-->
@@ -38,7 +38,7 @@
                     Height="567"
                     Margin="10, 10, 10, 10">
                 <Border.Background>
-                    <SolidColorBrush Color="#EEEEEE"></SolidColorBrush>
+                    <SolidColorBrush Color="#1D1C1C"></SolidColorBrush>
                 </Border.Background>
                 <Border.Clip>
                     <RectangleGeometry RadiusX="10"
@@ -90,7 +90,7 @@
                     Height="192"
                     Margin="0, 10, 0, 0">
                 <Border.Background>
-                    <SolidColorBrush Color="#EEEEEE"></SolidColorBrush>
+                    <SolidColorBrush Color="#1D1C1C"></SolidColorBrush>
                 </Border.Background>
                 <Border.Clip>
                     <RectangleGeometry RadiusX="10"
@@ -116,9 +116,9 @@
 
                         <controls:AutoCompleteBox x:Name="TShirtID" Width="160" materialDesign:HintAssist.Hint="Enter T Shirt ID" FontSize="16" Margin="5, 5, 5, 5" TextChanged="TShirtID_TextChanged_1"></controls:AutoCompleteBox>
 
-                        <TextBox x:Name="TShirtQty" TextWrapping="Wrap" Width="160" FontSize="16" Margin="5, 5, 5, 5" materialDesign:HintAssist.Hint="Enter TShirt Quantity"/>
-                        <TextBox x:Name="TShirtDefect" TextWrapping="Wrap" Width="160" FontSize="16" Margin="5, 5, 5, 5" materialDesign:HintAssist.Hint="Enter TShirt Defective"/>
-                        <DatePicker x:Name="StockDate" Width="160" FontSize="16" Margin="5, 5, 5, 5" materialDesign:HintAssist.Hint="Enter Date"></DatePicker>
+                        <TextBox x:Name="TShirtQty" TextWrapping="Wrap" Width="160" FontSize="16" Foreground="White" Margin="5, 5, 5, 5" materialDesign:HintAssist.Hint="Enter TShirt Quantity"/>
+                        <TextBox x:Name="TShirtDefect" TextWrapping="Wrap" Width="160" FontSize="16" Foreground="White" Margin="5, 5, 5, 5" materialDesign:HintAssist.Hint="Enter TShirt Defective"/>
+                        <DatePicker x:Name="StockDate" Width="160" FontSize="16" Foreground="White" Margin="5, 5, 5, 5" materialDesign:HintAssist.Hint="Enter Date"></DatePicker>
                     </StackPanel>
                 </Grid>
             </Border>
@@ -126,16 +126,16 @@
 
         <!--Table-->
         <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2">
-            <Border Width="578"
+            <Border Width="555"
                     Height="362"
                     Margin="0, 10, 0, 10">
                 <Border.Background>
-                    <SolidColorBrush Color="#EEEEEE"></SolidColorBrush>
+                    <SolidColorBrush Color="#1D1C1C"></SolidColorBrush>
                 </Border.Background>
                 <Border.Clip>
                     <RectangleGeometry RadiusX="10"
                                        RadiusY="10"
-                                       Rect="0, 0, 578, 362">
+                                       Rect="0, 0, 550, 362">
                     </RectangleGeometry>
                 </Border.Clip>
                 <Grid>
@@ -147,22 +147,22 @@
                     VerticalAlignment="Stretch">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Label Content="Filter:  " FontSize="15"/>
-                            <TextBox x:Name="FilterBoxCateg" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Category" FontSize="15"/>
-                            <TextBox x:Name="FilterBoxItem" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Item" TextChanged="FilterBox_TextChanged" FontSize="15"/>
+                            <TextBox x:Name="FilterBoxCateg" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Category" FontSize="15" Foreground="White"/>
+                            <TextBox x:Name="FilterBoxItem" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Item" TextChanged="FilterBox_TextChanged" FontSize="15" Foreground="White"/>
                         </StackPanel>
 
-                        <DataGrid x:Name="StocksDetailsGrid" Width="578" Height="341"/>
+                        <DataGrid x:Name="StocksDetailsGrid" Width="535" Height="327" Margin="1, 0, 5, 10"/>
                     </StackPanel>
                 </Grid>
             </Border>
         </StackPanel>
 
 
-        <StackPanel Grid.Column="4" Grid.Row="1" Grid.RowSpan="3">
-            <Button x:Name="Insert" Content="INSERT" Click="InsertTShirtDetails_Click" Margin="20, 70, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
-            <Button x:Name="Update" Content="UPDATE" Click="UpdateStockDetails_Click" Margin="20, 30, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
-            <Button x:Name="Delete" Content="DELETE" Click="DeleteBtn_Click" Margin="20, 30, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
-            <Button x:Name="Clear" Content="CLEAR" Click="ClearBtn_Click" Margin="20, 30, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
+        <StackPanel Grid.Column="4" Grid.Row="1" Grid.RowSpan="3" Margin="20, 110, 7, 0">
+            <Button x:Name="Insert" Content="INSERT" Click="InsertTShirtDetails_Click" Margin="0, 0, 0, 50" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
+            <Button x:Name="Update" Content="UPDATE" Click="UpdateStockDetails_Click" Margin="0, 0, 0, 50" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
+            <Button x:Name="Delete" Content="DELETE" Click="DeleteBtn_Click" Margin="0, 0, 0, 50" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
+            <Button x:Name="Clear" Content="CLEAR" Click="ClearBtn_Click" Margin="0, 0, 0, 50" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
 
         </StackPanel>
 
