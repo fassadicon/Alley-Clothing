@@ -35,7 +35,7 @@
                     Height="180"
                     Margin="10, 10, 10, 10">
                     <Border.Background>
-                        <SolidColorBrush Color="#EEEEEE"></SolidColorBrush>
+                        <SolidColorBrush Color="#1D1C1C"></SolidColorBrush>
                     </Border.Background>
                     <Border.Clip>
                         <RectangleGeometry RadiusX="10"

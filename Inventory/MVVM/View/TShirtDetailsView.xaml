@@ -47,7 +47,7 @@
                 <Grid>
                     <StackPanel>
                         <Image x:Name="TShirtImage"
-                               Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\previewImages\white-tshirt.jpg" Height="407"></Image>
+                               Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\previewImages\white-tshirt.jpg" Height="407"></Image>
                         
                     </StackPanel>
                 </Grid>

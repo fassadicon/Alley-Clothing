@@ -59,7 +59,7 @@
                         Margin="0 120 0 0">
 
 
-                    <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\icons\t-shirt.png" Height="78" Width="70"/>
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\t-shirt.png" Height="78" Width="70"/>
 
                 </Button>
                 <Button Height="71"
@@ -71,7 +71,7 @@
                         ToolTip="Stocks Details Window"
                         Command="{Binding StocksViewCommand}"
                         Margin="0 40 0 0">
-                    <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\icons\box.png" Height="78" Width="62"/>
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\box.png" Height="78" Width="62"/>
                 </Button>
                 <Button Height="71"
                         Width="103"
@@ -83,7 +83,7 @@
                         Command="{Binding DeliveriesViewCommand}"
                         Margin="0 40 0 0" RenderTransformOrigin="0.5,0.5">
 
-                    <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\icons\truck.png" Height="78" Width="62" >
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\truck.png" Height="78" Width="62" >
                         
                     </Image>
                 </Button>
@@ -96,7 +96,7 @@
                         ToolTip="Logs Window"
                         Command="{Binding LogViewCommand}"
                         Margin="0 40 0 0" >
-                    <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\icons\stats.png" Height="78" Width="62">
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\stats.png" Height="78" Width="62">
 
                     </Image>
                 </Button>
@@ -114,7 +114,7 @@
                         Background="Transparent"
                         ToolTip="Log Out">
 
-                    <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\icons\exit.png" />
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\exit.png" />
 
                 </Button>
 
