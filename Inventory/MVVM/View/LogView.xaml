@@ -25,7 +25,7 @@
                 <Label Content="LOG" Foreground="#EEEEEE" FontSize="40" FontWeight="ExtraBold"/>
             </StackPanel>
             <StackPanel Grid.Column="4" Grid.Row="0" >
-                <Label Content="LOGO" Foreground="#EEEEEE" FontSize="40" FontWeight="ExtraBold"/>
+                <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\Alley.png" Width="130" Margin="10, 15, 0, 0"></Image>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="4">
                 <Button x:Name="printBtn" Content="Print" Click="printBtn_Click" Background="#D65A31" BorderBrush="#D65A31" Width="100" ></Button>

@@ -29,7 +29,7 @@
 
         <!--Logo-->
         <StackPanel Grid.Column="4" Grid.Row="0">
-            <Label Content="LOGO" Foreground="#EEEEEE" FontSize="40" FontWeight="Bold"/>
+            <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\Alley.png" Width="130" Margin="10, 15, 0, 0"></Image>
         </StackPanel>
 
         <!--Image-->
