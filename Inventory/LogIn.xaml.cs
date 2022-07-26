@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
 
 namespace Inventory
 {
@@ -72,19 +73,29 @@ namespace Inventory
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
-            txtUsername.Text = "admin";
-            txtPassword.Password = "1234";
-            if (txtUsername.Text == "admin" && txtPassword.Password == "1234")
+            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
             {
-                new MainWindow().Show();
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Incorrect Username/Password");
-                txtUsername.Clear();
-                txtPassword.Clear();
-                txtUsername.Focus();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Accounts WHERE Username = '" + txtUsername.Text + "';", conn);
+                conn.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {                      
+                        if (reader["Password"].ToString() == txtPassword.Password.ToString())
+                        {
+                           
+                            new MainWindow().Show();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Incorrect Username/Password");
+                            txtUsername.Clear();
+                            txtPassword.Clear();
+                            txtUsername.Focus();
+                        }
+                    }
+                }
             }
         }
     }

@@ -228,6 +228,7 @@
     <Resource Include="cheddarstriped.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Alley.png" />
     <Content Include="InventoryDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

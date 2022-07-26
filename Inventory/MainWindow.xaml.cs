@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Inventory
 {
     public partial class MainWindow : Window
@@ -20,6 +21,12 @@ namespace Inventory
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
+            DragMove();
         }
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
@@ -70,5 +77,6 @@ namespace Inventory
                 MessageBox.Show(ex.Message);
             }
         }
+       
     }
 }
