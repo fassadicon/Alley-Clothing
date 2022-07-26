@@ -24,7 +24,7 @@
                     <Ellipse Fill="Red" Grid.Row="0" Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" MouseLeftButtonDown="CloseApp" ToolTip="Close"></Ellipse>
                 </StackPanel>
                 <Image Margin="0 60 0 5" Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\Alley.png" Height="100"></Image>
-                <TextBlock Margin="0 25 0 5" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" Text="Clothing Distributor" Foreground="#EEEEEE"></TextBlock>
+                <TextBlock Margin="0 25 0 5" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" Text="Inventory Management" Foreground="#EEEEEE"></TextBlock>
                 <TextBlock FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Center" Text="Log in" Foreground="#EEEEEE"></TextBlock>
                 <!--BorderBrush="#EEEEEE" BorderBrush="{DynamicResource MaterialDesignDivider}"-->
                 <TextBox Margin="0 50 0 0" x:Name="txtUsername" Width="300" FontSize="18" BorderBrush="#EEEEEE" materialDesign:HintAssist.Hint="Enter Username" BorderThickness="2" Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Foreground="#EEEEEE" Foreground="#EEEEEE"></TextBox>
