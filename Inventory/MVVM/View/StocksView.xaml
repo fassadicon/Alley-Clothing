@@ -158,11 +158,11 @@
         </StackPanel>
 
 
-        <StackPanel Grid.Column="4" Grid.Row="1" Grid.RowSpan="3">
-            <Button x:Name="Insert" Content="INSERT" Click="InsertTShirtDetails_Click" Margin="20, 70, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
-            <Button x:Name="Update" Content="UPDATE" Click="UpdateStockDetails_Click" Margin="20, 30, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
-            <Button x:Name="Delete" Content="DELETE" Click="DeleteBtn_Click" Margin="20, 30, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
-            <Button x:Name="Clear" Content="CLEAR" Click="ClearBtn_Click" Margin="20, 30, 20, 20" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
+        <StackPanel Grid.Column="4" Grid.Row="1" Grid.RowSpan="3" Margin="20, 110, 7, 0">
+            <Button x:Name="Insert" Content="INSERT" Click="InsertTShirtDetails_Click" Margin="0, 0, 0, 50" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
+            <Button x:Name="Update" Content="UPDATE" Click="UpdateStockDetails_Click" Margin="0, 0, 0, 50" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
+            <Button x:Name="Delete" Content="DELETE" Click="DeleteBtn_Click" Margin="0, 0, 0, 50" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
+            <Button x:Name="Clear" Content="CLEAR" Click="ClearBtn_Click" Margin="0, 0, 0, 50" Background="#D65A31" BorderBrush="#D65A31" Height="50"/>
 
         </StackPanel>
 
