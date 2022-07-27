@@ -60,7 +60,7 @@
                         <StackPanel Grid.Column="1" Margin="20,10,20,20">
                             <Label Content="-" FontSize="16" FontWeight="Bold"/>
                             <DatePicker x:Name="StartDate" SelectedDateChanged="StartDate_SelectedDateChanged" FontSize="16" FontWeight="Bold" Margin="0, 0, 50, 0"></DatePicker>
-                            <Label Content="-" FontSize="16" FontWeight="Bold"/>
+                            <Label x:Name="Passed" Content="-" FontSize="16" FontWeight="Bold"/>
                             <Label x:Name="DeliveryIn" Content="-" FontSize="16" FontWeight="Bold"/>
                             <Label x:Name="TShirtIn" Content="-" FontSize="16" FontWeight="Bold"/>
                         </StackPanel>
@@ -74,7 +74,7 @@
                         <StackPanel Grid.Column="3" Margin="20,10,20,20">
                             <Label Content="-" FontSize="16" FontWeight="Bold"/>
                             <DatePicker x:Name="EndDate" SelectedDateChanged="EndDate_SelectedDateChanged" FontSize="16" FontWeight="Bold" Margin="0, 0, 50, 0"></DatePicker>
-                            <Label Content="-" FontSize="16" FontWeight="Bold"/>
+                            <Label x:Name="Defectives" Content="-" FontSize="16" FontWeight="Bold"/>
                             <Label x:Name="DeliveryOut" Content="-" FontSize="16" FontWeight="Bold"/>
                             <Label x:Name="TShirtOut" Content="-" FontSize="16" FontWeight="Bold"/>
                         </StackPanel>
@@ -89,20 +89,29 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="10, 10, 10, 10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Margin="10, 10, 10, 10">
                         <Label Content="Stock Log" Foreground="#EEEEEE" FontSize="16" FontWeight="Bold"/>
                         <DataGrid x:Name="StockSummary"></DataGrid>
 
                     </StackPanel>
-                    <StackPanel Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3" Margin="10, 10, 10, 10">
+                    <StackPanel Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="3" Margin="10, 10, 10, 10">
                         <Label Content="Delivery Log" Foreground="#EEEEEE" FontSize="16" FontWeight="Bold"/>
                         <DataGrid x:Name="Deliveries"></DataGrid>
 
                     </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                        <Label Content="Inventory" Foreground="#EEEEEE" FontSize="16" FontWeight="Bold"/>
+                        <DataGrid x:Name="Inventory"></DataGrid>
+                    </StackPanel>
+                    
                 </Grid>
                 
             </StackPanel>

@@ -68,13 +68,27 @@ namespace Inventory.MVVM.View
                         TShirtOut.Content = Convert.ToString(cmdCount.ExecuteScalar());
                         conn.Close();
                     }
+
+                    using (SqlCommand cmdCount = new SqlCommand("SELECT SUM (TShirtQty) FROM Stocks WHERE Date BETWEEN '" + StartDate.Text + "' AND '" + EndDate.Text + "';", conn))
+                    {
+                        conn.Open();
+                        Passed.Content = Convert.ToString(cmdCount.ExecuteScalar());
+                        conn.Close();
+                    }
+
+                    using (SqlCommand cmdCount = new SqlCommand("SELECT SUM (TShirtDefect) FROM Stocks WHERE Date BETWEEN '" + StartDate.Text + "' AND '" + EndDate.Text + "';", conn))
+                    {
+                        conn.Open();
+                        Defectives.Content = Convert.ToString(cmdCount.ExecuteScalar());
+                        conn.Close();
+                    }
                 }
 
                 // Stock Log Table
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
                     StockSummary.IsReadOnly = true;
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM Stocks WHERE Date BETWEEN '" + StartDate.Text + "' AND '" + EndDate.Text + "';", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT StockID AS StockLog_ID, TShirtID, TShirtQty AS Passed, TShirtDefect AS Defective, Date AS StockLog_Date FROM Stocks WHERE Date BETWEEN '" + StartDate.Text + "' AND '" + EndDate.Text + "';", conn);
                     DataTable dt = new DataTable();
                     conn.Open();
                     SqlDataReader sdr = cmd.ExecuteReader();
@@ -86,13 +100,25 @@ namespace Inventory.MVVM.View
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
                     Deliveries.IsReadOnly = true;
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM DeliveryDetails WHERE DateReceived BETWEEN '"+ StartDate.Text+ "' AND '" + EndDate.Text + "';", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT DeliveryID, DeliveryType AS Delivery_Type, TShirtID, Quantity, DateReceived, DateDelivered AS Date_Released FROM DeliveryDetails WHERE DateReceived BETWEEN '"+ StartDate.Text+ "' AND '" + EndDate.Text + "';", conn);
                     DataTable dt = new DataTable();
                     conn.Open();
                     SqlDataReader sdr = cmd.ExecuteReader();
                     dt.Load(sdr);
                     conn.Close();
                     Deliveries.ItemsSource = dt.DefaultView;
+                }
+
+                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                {
+                    Inventory.IsReadOnly = true;
+                    SqlCommand cmd = new SqlCommand("SELECT TShirtDetails.TShirtID, TShirtDetails.TShirtBrand AS Brand, TShirtDetails.TShirtName AS Name, TShirtDetails.TShirtColor AS Color, TShirtDetails.TShirtSize AS Size, Quantity.TotalQty AS Passed, Quantity.TotalDefect AS Defective, Quantity.TotalQty + Quantity.TotalDefect AS Total FROM TShirtDetails INNER JOIN Quantity ON TShirtDetails.TShirtID = Quantity.TShirtID", conn);
+                    DataTable dt = new DataTable();
+                    conn.Open();
+                    SqlDataReader sdr = cmd.ExecuteReader();
+                    dt.Load(sdr);
+                    conn.Close();
+                    Inventory.ItemsSource = dt.DefaultView;
                 }
 
             }

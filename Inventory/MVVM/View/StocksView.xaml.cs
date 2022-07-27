@@ -329,9 +329,9 @@ namespace Inventory.MVVM.View
 
                         String TShirtIDTextBoxContent = TShirtID.Text;
 
-                        SqlCommand cmd1 = new SqlCommand("SELECT SUM(TShirtQty) FROM Stocks WHERE TShirtID = " + TShirtIDTextBoxContent, conn);
-                        conn.Open();                      
-                        //int TotalQuantity = (int)cmd1.ExecuteScalar();
+                        SqlCommand cmd1 = new SqlCommand("SELECT TotalQty FROM Quantity WHERE TShirtID = " + TShirtIDTextBoxContent, conn);
+                        conn.Open();
+                        int TotalQuantity = (int)cmd1.ExecuteScalar();
                         conn.Close();
 
                         SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails INNER JOIN Stocks ON TShirtDetails.TShirtID = " + TShirtIDTextBoxContent, conn);
@@ -345,7 +345,7 @@ namespace Inventory.MVVM.View
                                 TShirtNamePreview.Content = "Name: " + reader["TShirtName"].ToString();
                                 TShirtColorPreview.Content = "Color: " + reader["TShirtColor"].ToString();
                                 TShirtSizePreview.Content = "Size: " + reader["TShirtSize"].ToString();
-                                //TShirtQtyPreview.Content = "Quantity: " + TotalQuantity;
+                                TShirtQtyPreview.Content = "Quantity: " + TotalQuantity;
                                 direct = reader["TShirtDirect"].ToString();
                                 TShirtImage.Source = new BitmapImage(new Uri($@"{direct}"));
                             }
