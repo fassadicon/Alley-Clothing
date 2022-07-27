@@ -350,14 +350,15 @@ namespace Inventory.MVVM.View
                         Name.Text = "";
                         Color.Text = "";
                         Size.Text = "";
+                        TShirtImage.Source = new BitmapImage(new Uri(@"C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\previewImages\white-tshirt.jpg"));
                         while (reader.Read())
                         {
                             Brand.Text = reader["TShirtBrand"].ToString();
                             Name.Text = reader["TShirtName"].ToString();
                             Color.Text = reader["TShirtColor"].ToString();
                             Size.Text = reader["TShirtSize"].ToString();
-                            direct = reader["TShirtDirect"].ToString();
-                            TShirtImage.Source = new BitmapImage(new Uri(@"C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\previewImages\white-tshirt.jpg"));
+                            direct = reader["TShirtDirect"].ToString();                           
+                            TShirtImage.Source = new BitmapImage(new Uri($@"{reader["TShirtDirect"].ToString()}"));
                         }
                     }
                 }
