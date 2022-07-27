@@ -55,12 +55,8 @@
                         BorderThickness="0"
                         ToolTip="TShirt Details Window"
                         Background="Transparent"
-                        Command="{Binding TShirtDetailsViewCommand}"
-                        Margin="0 120 0 0">
-
-
-                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\t-shirt.png" Height="78" Width="70"/>
-
+                        Command="{Binding TShirtDetailsViewCommand}">
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\t-shirt.png"/>
                 </Button>
                 <Button Height="71"
                         Width="103"
@@ -68,10 +64,8 @@
                         FontSize="14"
                         BorderThickness="0"
                         Background="Transparent"
-                        ToolTip="Stocks Details Window"
-                        Command="{Binding StocksViewCommand}"
-                        Margin="0 40 0 0">
-                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\box.png" Height="78" Width="62"/>
+                        Command="{Binding StocksViewCommand}">
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\box.png"/>
                 </Button>
                 <Button Height="71"
                         Width="103"
@@ -79,13 +73,8 @@
                         FontSize="14"
                         BorderThickness="0"
                         Background="Transparent"
-                        ToolTip="Delivery Details Window"
-                        Command="{Binding DeliveriesViewCommand}"
-                        Margin="0 40 0 0" RenderTransformOrigin="0.5,0.5">
-
-                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\truck.png" Height="78" Width="62" >
-                        
-                    </Image>
+                        Command="{Binding DeliveriesViewCommand}">
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\truck.png"/>
                 </Button>
                 <Button Height="71"
                         Width="103"
@@ -93,12 +82,8 @@
                         FontSize="14"
                         BorderThickness="0"
                         Background="Transparent"
-                        ToolTip="Logs Window"
-                        Command="{Binding LogViewCommand}"
-                        Margin="0 40 0 0" >
-                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\stats.png" Height="78" Width="62">
-
-                    </Image>
+                        Command="{Binding LogViewCommand}">
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\stats.png"/>
                 </Button>
 
 
@@ -111,10 +96,8 @@
                         FontSize="14"
                         BorderThickness="0"
                         Click="LogOut_Click"
-                        Background="Transparent"
-                        ToolTip="Log Out">
-
-                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\exit.png" />
+                        Background="Transparent">
+                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\exit.png"/>
 
                 </Button>
 
