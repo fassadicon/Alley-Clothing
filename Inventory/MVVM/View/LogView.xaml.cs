@@ -88,7 +88,7 @@ namespace Inventory.MVVM.View
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
                     StockSummary.IsReadOnly = true;
-                    SqlCommand cmd = new SqlCommand("SELECT StockID AS StockLog_ID, TShirtID, TShirtQty AS Passed, TShirtDefect AS Defective, Date AS StockLog_Date FROM Stocks WHERE Date BETWEEN '" + StartDate.Text + "' AND '" + EndDate.Text + "';", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT StockID AS StockLog_ID, TShirtID, TShirtQty AS Passed, TShirtDefect AS Defective, Date FROM Stocks WHERE Date BETWEEN '" + StartDate.Text + "' AND '" + EndDate.Text + "';", conn);
                     DataTable dt = new DataTable();
                     conn.Open();
                     SqlDataReader sdr = cmd.ExecuteReader();
@@ -152,6 +152,23 @@ namespace Inventory.MVVM.View
             finally
             {
                 this.IsEnabled = true;    
+            }
+        }
+
+        private void InventoryPrintBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.IsEnabled = false;
+                PrintDialog printDialog = new PrintDialog();
+                if (printDialog.ShowDialog() == true)
+                {
+                    printDialog.PrintVisual(InventoryPrint, "Log");
+                }
+            }
+            finally
+            {
+                this.IsEnabled = true;
             }
         }
     }
