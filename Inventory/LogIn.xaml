@@ -25,7 +25,6 @@
                 </StackPanel>
                 <Image Margin="0 60 0 5" Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\Alley.png" Height="100"></Image>
                 <TextBlock Margin="0 25 0 5" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" Text="Inventory Management" Foreground="#EEEEEE"></TextBlock>
-                <TextBlock FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Center" Text="Log in" Foreground="#EEEEEE"></TextBlock>
                 <!--BorderBrush="#EEEEEE" BorderBrush="{DynamicResource MaterialDesignDivider}"-->
                 <TextBox Margin="0 50 0 0" x:Name="txtUsername" Width="300" FontSize="18" BorderBrush="#EEEEEE" materialDesign:HintAssist.Hint="Enter Username" BorderThickness="2" Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Foreground="#EEEEEE" Foreground="#EEEEEE"></TextBox>
                 <PasswordBox Margin="0 20 0 0" x:Name="txtPassword" Width="300" FontSize="18" materialDesign:HintAssist.Hint="Enter Password" materialDesign:HintAssist.Foreground="#EEEEEE" BorderThickness="2"  Style="{StaticResource MaterialDesignOutlinedPasswordBox}" Foreground="#EEEEEE" BorderBrush="#EEEEEE"></PasswordBox>

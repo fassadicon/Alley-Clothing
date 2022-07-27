@@ -146,7 +146,7 @@ namespace Inventory.MVVM.View
                 {
                     using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                     {
-                        SqlCommand cmd = new SqlCommand("SELECT * FROM DeliveryDetails ;", conn);
+                        SqlCommand cmd = new SqlCommand("SELECT DeliveryID, DeliveryType as Type, TShirtID, Quantity, DateReceived, DateDelivered AS DateReleased FROM DeliveryDetails ;", conn);
                         DataTable dt = new DataTable();
                         conn.Open();
                         SqlDataReader sdr = cmd.ExecuteReader();

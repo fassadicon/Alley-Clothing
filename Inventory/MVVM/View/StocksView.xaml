@@ -8,7 +8,7 @@
              xmlns:controls="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="679.2" d:DesignWidth="1160" Background="#1D1C1C">
-    <Grid Margin="1,0,-1,0">
+    <Grid>
         <!--GRID DEFINITION-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
@@ -24,7 +24,7 @@
 
         <!--SECTION NAME-->
         <StackPanel Grid.Column="0" Grid.Row="0">
-            <Label Content="Stocks" Foreground="#EEEEEE" FontSize="40" FontWeight="ExtraBold" Margin="20, 0, 0, 0"/>
+            <Label Content="Stocks" Foreground="#EEEEEE" FontSize="28" FontWeight="ExtraBold" Margin="15, 15, 10, 10"/>
         </StackPanel>
 
         <!--Logo-->
@@ -35,93 +35,96 @@
         <!--Image-->
         <StackPanel Grid.Column="0" Grid.Row="1" Grid.RowSpan="2">
             <Border Width="400"
-                    Height="567"
-                    Margin="10, 10, 10, 10">
+                    Height="375"
+                    >
                 <Border.Background>
                     <SolidColorBrush Color="#1D1C1C"></SolidColorBrush>
                 </Border.Background>
                 <Border.Clip>
                     <RectangleGeometry RadiusX="10"
                                        RadiusY="10"
-                                       Rect="0, 0, 400, 567">
+                                       Rect="0, 0, 400, 375">
                     </RectangleGeometry>
                 </Border.Clip>
                 <Grid>
                     <StackPanel>
                         <Image x:Name="TShirtImage"
-                               Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\previewImages\white-tshirt.jpg"
-                                Margin="20, 20, 20, 0"
+                               Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\previewImages\white-tshirt.jpg"                                   
                                Stretch="Fill"
-                               Height="350"
+                               Height="375"
                                />
-                        <Label Content="Brand"
-                               x:Name="TShirtBrandPreview"
-                               Margin="20, 5, 5, 0"
-                               FontSize="20"/>
-                        <Label Content="Name"
-                               x:Name="TShirtNamePreview"
-                               Margin="20, 0, 5, 0"
-                               FontSize="20"/>
-                        <Label Content="Size"
-                               x:Name="TShirtSizePreview"
-                               Margin="20, 0, 5, 0"
-                               FontSize="20"/>
-                        <Label Content="Color"
-                               x:Name="TShirtColorPreview"
-                               Margin="20, 0, 5, 0"
-                               FontSize="20"/>
-                        <Label Content="Quantity"
-                               x:Name="TShirtQtyPreview"
-                               Margin="20, 0, 5, 0"
-                               FontSize="20"/>
                         
                     </StackPanel>
                 </Grid>
                 
             </Border>
-            
+            <StackPanel>
+                <Label Content="Brand: "
+                               x:Name="TShirtBrandPreview"
+                               Margin="20, 5, 5, 0"
+                               FontSize="20" FontWeight="Bold"/>
+                <Label Content="Name: "
+                               x:Name="TShirtNamePreview"
+                               Margin="20, 0, 5, 0"
+                               FontSize="20" FontWeight="Bold"/>
+                <Label Content="Size: "
+                               x:Name="TShirtSizePreview"
+                               Margin="20, 0, 5, 0"
+                               FontSize="20" FontWeight="Bold"/>
+                <Label Content="Color: "
+                               x:Name="TShirtColorPreview"
+                               Margin="20, 0, 5, 0"
+                               FontSize="20" FontWeight="Bold"/>
+                <Label Content="Quantity: "
+                               x:Name="TShirtQtyPreview"
+                               Margin="20, 0, 5, 0"
+                               FontSize="20" FontWeight="Bold"/>
+
+            </StackPanel>
             
 
         </StackPanel>
 
         <!--Input Label-->
         <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
-            <Border Width="580"
-                    Height="192"
-                    Margin="0, 10, 0, 0">
-                <Border.Background>
-                    <SolidColorBrush Color="#1D1C1C"></SolidColorBrush>
-                </Border.Background>
-                <Border.Clip>
-                    <RectangleGeometry RadiusX="10"
-                                       RadiusY="10"
-                                       Rect="0, 0, 580, 192">
-                    </RectangleGeometry>
-                </Border.Clip>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="7*"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0">
-                        <Label Content="Stock Transaction ID:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
-                        <Label Content="TShirt ID:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
-                        <Label Content="TShirt Quantity:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
-                        <Label Content="TShirt Defect:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
-                        <Label Content="Date:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
-                    </StackPanel>
-                    <!--Input TextBox-->
-                    <StackPanel Grid.Column="1">
-                        <controls:AutoCompleteBox x:Name="StockID" Width="160" materialDesign:HintAssist.Hint="Enter T Shirt ID" FontSize="16" Margin="5, 5, 5, 5" TextChanged="StockID_TextChanged"></controls:AutoCompleteBox>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="7*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <Label Content="Stock Log ID:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
+                    <Label Content="TShirt ID:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
+                    <Label Content="Passed:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
+                    <Label Content="Defectives:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
+                    <Label Content="Date:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
+                </StackPanel>
+                <!--Input TextBox-->
+                <StackPanel Grid.Column="1" Margin="10, 3, 90, 10">
+                    <controls:AutoCompleteBox x:Name="StockID" Width="200" materialDesign:HintAssist.Hint="Enter T Shirt ID" FontSize="16" Margin="5, 5, 5, 5" TextChanged="StockID_TextChanged" FontWeight="Bold"></controls:AutoCompleteBox>
 
-                        <controls:AutoCompleteBox x:Name="TShirtID" Width="160" materialDesign:HintAssist.Hint="Enter T Shirt ID" FontSize="16" Margin="5, 5, 5, 5" TextChanged="TShirtID_TextChanged_1"></controls:AutoCompleteBox>
+                    <controls:AutoCompleteBox x:Name="TShirtID" Width="200" materialDesign:HintAssist.Hint="Enter T Shirt ID" FontSize="16" Margin="5, 10, 5, 5" TextChanged="TShirtID_TextChanged_1" FontWeight="Bold"></controls:AutoCompleteBox>
 
-                        <TextBox x:Name="TShirtQty" TextWrapping="Wrap" Width="160" FontSize="16" Foreground="White" Margin="5, 5, 5, 5" materialDesign:HintAssist.Hint="Enter TShirt Quantity"/>
-                        <TextBox x:Name="TShirtDefect" TextWrapping="Wrap" Width="160" FontSize="16" Foreground="White" Margin="5, 5, 5, 5" materialDesign:HintAssist.Hint="Enter TShirt Defective"/>
-                        <DatePicker x:Name="StockDate" Width="160" FontSize="16" Foreground="White" Margin="5, 5, 5, 5" materialDesign:HintAssist.Hint="Enter Date"></DatePicker>
-                    </StackPanel>
-                </Grid>
-            </Border>
+                    <TextBox x:Name="TShirtQty" TextWrapping="Wrap" Width="200" FontSize="16" Foreground="White" Margin="5, 5, 5, 5" materialDesign:HintAssist.Hint="Enter # of Passed" FontWeight="Bold" materialDesign:HintAssist.Foreground="#b2763f">
+                        <TextBox.Resources>
+                            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#b2763f"></SolidColorBrush>
+                            <SolidColorBrush x:Key="MaterialDesignBody" Color="#b2763f"></SolidColorBrush>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <TextBox x:Name="TShirtDefect" TextWrapping="Wrap" Width="200" FontSize="16" Foreground="White" Margin="5, 5, 5, 5" materialDesign:HintAssist.Hint="Enter # of Defectives" FontWeight="Bold" materialDesign:HintAssist.Foreground="#b2763f">
+                        <TextBox.Resources>
+                            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#b2763f"></SolidColorBrush>
+                            <SolidColorBrush x:Key="MaterialDesignBody" Color="#b2763f"></SolidColorBrush>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <DatePicker x:Name="StockDate" Width="200" FontSize="16" Foreground="White" Margin="5, 5, 5, 5" materialDesign:HintAssist.Hint="Enter Date" FontWeight="Bold"  materialDesign:HintAssist.Foreground="#b2763f">
+                        <DatePicker.Resources>
+                            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#b2763f"></SolidColorBrush>
+                            <SolidColorBrush x:Key="MaterialDesignBody" Color="#b2763f"></SolidColorBrush>
+                        </DatePicker.Resources>
+                    </DatePicker>
+                </StackPanel>
+            </Grid>
         </StackPanel>
 
         <!--Table-->
@@ -145,20 +148,30 @@
                     Grid.RowSpan="2" 
                     Margin="1" HorizontalAlignment="Stretch" 
                     VerticalAlignment="Stretch">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 0, 12, 10">
                             <Label Content="Filter:  " FontSize="15"/>
-                            <TextBox x:Name="FilterBoxCateg" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Category" FontSize="15" Foreground="White"/>
-                            <TextBox x:Name="FilterBoxItem" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Item" TextChanged="FilterBox_TextChanged" FontSize="15" Foreground="White"/>
+                            <TextBox x:Name="FilterBoxCateg" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Category" FontSize="15" Foreground="White" Margin="0, 0, 20, 0">
+                                <TextBox.Resources>
+                                    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#b2763f"></SolidColorBrush>
+                                    <SolidColorBrush x:Key="MaterialDesignBody" Color="#b2763f"></SolidColorBrush>
+                                </TextBox.Resources>
+                            </TextBox>
+                            <TextBox x:Name="FilterBoxItem" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Enter Item" TextChanged="FilterBox_TextChanged" FontSize="15" Foreground="White" Margin="0, 0, 2, 0">
+                                <TextBox.Resources>
+                                    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#b2763f"></SolidColorBrush>
+                                    <SolidColorBrush x:Key="MaterialDesignBody" Color="#b2763f"></SolidColorBrush>
+                                </TextBox.Resources>
+                            </TextBox>
                         </StackPanel>
 
-                        <DataGrid x:Name="StocksDetailsGrid" Width="535" Height="327" Margin="1, 0, 5, 10"/>
+                        <DataGrid x:Name="StocksDetailsGrid" Width="535" Height="313" Margin="1, 0, 5, 10"/>
                     </StackPanel>
                 </Grid>
             </Border>
         </StackPanel>
 
 
-        <StackPanel Grid.Column="4" Grid.Row="1" Grid.RowSpan="3" Margin="20, 110, 7, 0">
+        <StackPanel Grid.Column="4" Grid.Row="1" Grid.RowSpan="3" Margin="20, 110, 15, 0">
             <Button x:Name="Insert" Content="INSERT" Click="InsertTShirtDetails_Click" Margin="0, 0, 0, 50" Background="#b2763f" BorderBrush="#b2763f" Height="50"/>
             <Button x:Name="Update" Content="UPDATE" Click="UpdateStockDetails_Click" Margin="0, 0, 0, 50" Background="#b2763f" BorderBrush="#b2763f" Height="50"/>
             <Button x:Name="Delete" Content="DELETE" Click="DeleteBtn_Click" Margin="0, 0, 0, 50" Background="#b2763f" BorderBrush="#b2763f" Height="50"/>

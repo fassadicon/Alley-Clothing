@@ -135,7 +135,7 @@ namespace Inventory.MVVM.View
                      
 
                     {
-                        SqlCommand cmd = new SqlCommand("SELECT TShirtID, TShirtBrand, TShirtName, TShirtColor, TShirtSize FROM TShirtDetails ;", conn);
+                        SqlCommand cmd = new SqlCommand("SELECT TShirtID, TShirtBrand AS Brand, TShirtName AS Name, TShirtColor AS Color, TShirtSize AS Size FROM TShirtDetails ;", conn);
                         DataTable dt = new DataTable();
                         conn.Open();
                         SqlDataReader sdr = cmd.ExecuteReader();
@@ -162,32 +162,36 @@ namespace Inventory.MVVM.View
 
                     {
                         String queryString = "";
-
+                        String Category = "";
                         if (FilterBoxCateg.Text == "TShirtID")
                         {
                             queryString = "SELECT * FROM TShirtDetails WHERE TShirtID = @FilterItem";
                         }
-                        else if (FilterBoxCateg.Text == "TShirtBrand" || FilterBoxCateg.Text == "TShirtQty")
+                        else if (FilterBoxCateg.Text == "Brand" || FilterBoxCateg.Text == "TShirtQty")
                         {
+                            Category = "TShirtBrand";
                             queryString = "SELECT * FROM TShirtDetails WHERE TShirtBrand = @FilterItem";
                         }
-                        else if (FilterBoxCateg.Text == "TShirtName")
+                        else if (FilterBoxCateg.Text == "Name")
                         {
+                            Category = "TShirtName";
                             queryString = "SELECT * FROM TShirtDetails WHERE TShirtName = @FilterItem";
                         }
-                        else if (FilterBoxCateg.Text == "TShirtColor")
+                        else if (FilterBoxCateg.Text == "Color")
                         {
+                            Category = "TShirtColor";
                             queryString = "SELECT * FROM TShirtDetails WHERE TShirtColor = @FilterItem";
                         }
-                        else if (FilterBoxCateg.Text == "TShirtSize")
+                        else if (FilterBoxCateg.Text == "Size")
                         {
+                            Category = "TShirtSize";
                             queryString = "SELECT * FROM TShirtDetails WHERE TShirtSize = @FilterItem";
                         }
 
 
 
                         SqlCommand cmd = new SqlCommand(queryString, conn);
-                        cmd.Parameters.AddWithValue("@FilterCateg", FilterBoxCateg.Text);
+                        cmd.Parameters.AddWithValue("@FilterCateg", Category);
                         cmd.Parameters.AddWithValue("@FilterItem", FilterBoxItem.Text);
 
                         DataTable dt = new DataTable();
