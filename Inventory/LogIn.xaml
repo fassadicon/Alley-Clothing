@@ -29,7 +29,7 @@
                 <!--BorderBrush="#EEEEEE" BorderBrush="{DynamicResource MaterialDesignDivider}"-->
                 <TextBox Margin="0 50 0 0" x:Name="txtUsername" Width="300" FontSize="18" BorderBrush="#EEEEEE" materialDesign:HintAssist.Hint="Enter Username" BorderThickness="2" Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Foreground="#EEEEEE" Foreground="#EEEEEE"></TextBox>
                 <PasswordBox Margin="0 20 0 0" x:Name="txtPassword" Width="300" FontSize="18" materialDesign:HintAssist.Hint="Enter Password" materialDesign:HintAssist.Foreground="#EEEEEE" BorderThickness="2"  Style="{StaticResource MaterialDesignOutlinedPasswordBox}" Foreground="#EEEEEE" BorderBrush="#EEEEEE"></PasswordBox>
-                <Button Margin="0 20 0 0" x:Name="loginBtn" Style="{StaticResource MaterialDesignFlatMidBgButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="53" Width="300" materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="LOG IN" Click="loginBtn_Click" Background="#D65A31" BorderBrush="#D65A31"></Button>
+                <Button Margin="0 20 0 0" x:Name="loginBtn" Style="{StaticResource MaterialDesignFlatMidBgButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="53" Width="300" materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="LOG IN" Click="loginBtn_Click" Background="#b2763f" BorderBrush="#b2763f"></Button>
             </StackPanel>
         </materialDesign:DialogHost>
     </materialDesign:Card>

@@ -41,7 +41,7 @@
             <StackPanel Grid.Row ="0"
                             Grid.Column="0"
                         Grid.RowSpan="2"
-                        Background="#D65A31">
+                        Background="#b2763f">
                 <!--SIDE MENU-->
 
 
@@ -56,7 +56,7 @@
                         ToolTip="TShirt Details Window"
                         Background="Transparent"
                         Command="{Binding TShirtDetailsViewCommand}">
-                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\t-shirt.png"/>
+                    <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\icons\t-shirt.png"/>
                 </Button>
                 <Button Height="71"
                         Width="103"
@@ -65,7 +65,7 @@
                         BorderThickness="0"
                         Background="Transparent"
                         Command="{Binding StocksViewCommand}">
-                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\box.png"/>
+                    <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\icons\box.png"/>
                 </Button>
                 <Button Height="71"
                         Width="103"
@@ -74,7 +74,7 @@
                         BorderThickness="0"
                         Background="Transparent"
                         Command="{Binding DeliveriesViewCommand}">
-                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\truck.png"/>
+                    <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\icons\truck.png"/>
                 </Button>
                 <Button Height="71"
                         Width="103"
@@ -83,12 +83,12 @@
                         BorderThickness="0"
                         Background="Transparent"
                         Command="{Binding LogViewCommand}">
-                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\stats.png"/>
+                    <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\icons\stats.png"/>
                 </Button>
 
 
             </StackPanel>
-            <StackPanel Grid.Row ="2" Background="#D65A31">
+            <StackPanel Grid.Row ="2" Background="#b2763f">
 
                 <Button x:Name="LogOut" 
                         Height="50"
@@ -97,7 +97,7 @@
                         BorderThickness="0"
                         Click="LogOut_Click"
                         Background="Transparent">
-                    <Image Source="C:\Users\Acer\source\repos\TShirtInventorySystem\Inventory\MVVM\icons\exit.png"/>
+                    <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\icons\exit.png"/>
 
                 </Button>
 

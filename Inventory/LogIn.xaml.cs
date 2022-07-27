@@ -73,7 +73,7 @@ namespace Inventory
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+            using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
             {
                 SqlCommand cmd = new SqlCommand("SELECT * FROM Accounts WHERE Username = '" + txtUsername.Text + "';", conn);
                 conn.Open();
