@@ -87,14 +87,14 @@ namespace Inventory.MVVM.View
         // UPDATE ON STOCKS IF DELIVERY TYPE IS "OUT"
         private void UpdateOnStocks()
         {
-            int stocks, newStocks;
+            int stocks;
 
             try
             {
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Acer\\source\\repos\\TShirtInventorySystem\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT TShirtQty FROM Stocks WHERE TShirtID = '" + TShirtID.Text + "'", conn);
-                    SqlCommand cmd2 = new SqlCommand("UPDATE Stocks SET TShirtQty = @newStocks WHERE TShirtID = '" + TShirtID.Text + "'", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT TotalQty FROM Quantity WHERE TShirtID = '" + TShirtID.Text + "'", conn);
+                    SqlCommand cmd2 = new SqlCommand("UPDATE Quantity SET TotalQty = @stocks WHERE TShirtID = '" + TShirtID.Text + "'", conn);
                     conn.Open();
 
                     // GETTING THE QTY AND DEFECTS ON THE DATABASE
@@ -103,14 +103,14 @@ namespace Inventory.MVVM.View
                         while (reader.Read())
                         {
                             // DIRETSO NA INT FOR COMPUTATION
-                            stocks = Int32.Parse(reader["TShirtQty"].ToString());
-                           
+                            stocks = Int32.Parse(reader["TotalQty"].ToString()) - Int32.Parse(Quantity.Text);
 
-                            // COMPUTATION
-                            newStocks = stocks - Int32.Parse(Quantity.Text);
-                          
+
+
+
                             //ADDING NEW VALUES TO DATABASE
-                            cmd2.Parameters.AddWithValue("@newStocks", newStocks);
+                            cmd2.CommandType = CommandType.Text;
+                            cmd2.Parameters.AddWithValue("@stocks", stocks);
  
 
                         }
@@ -119,7 +119,7 @@ namespace Inventory.MVVM.View
 
                     cmd2.ExecuteNonQuery();
                     conn.Close();
-                    MessageBox.Show("Stocks Details Updated Successfully", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Quantity Details Updated Successfully", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     conn.Close();
    

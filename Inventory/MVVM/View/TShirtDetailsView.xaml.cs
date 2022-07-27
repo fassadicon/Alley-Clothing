@@ -220,7 +220,7 @@ namespace Inventory.MVVM.View
                 {
                     SqlCommand cmd = new SqlCommand("INSERT INTO TShirtDetails (TShirtID, TShirtBrand, TShirtName, TShirtColor, TShirtSize, TShirtDirect) VALUES (@TShirtID, @Brand, @Name, @Color, @Size, @fileDirect);", conn);
 
-                    SqlCommand cmd2 = new SqlCommand($"INSERT INTO TShirtDetails (TShirtID, TShirtQty, TShirtDefect) VALUES (@TShirtID, {Qty}, {Defect});", conn);
+                    SqlCommand cmd2 = new SqlCommand($"INSERT INTO Quantity (TShirtID, TotalQty, TotalDefect) VALUES (@TShirtID, {Qty}, {Defect});", conn);
 
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@TShirtID", TShirtDetailsID.Text);
@@ -229,9 +229,15 @@ namespace Inventory.MVVM.View
                     cmd.Parameters.AddWithValue("@Color", Color.Text);
                     cmd.Parameters.AddWithValue("@Size", Size.Text);
                     cmd.Parameters.AddWithValue("@fileDirect", fileDirect);
+
+                    cmd2.CommandType = CommandType.Text;
+                    cmd2.Parameters.AddWithValue("@TShirtID", TShirtDetailsID.Text);
+
                     conn.Open();
                     cmd.ExecuteNonQuery();
+                    cmd2.ExecuteNonQuery();
                     conn.Close();
+
                     LoadGrid();
                     AutoComplete();
                     ClearData();

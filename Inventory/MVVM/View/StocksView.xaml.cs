@@ -178,7 +178,9 @@ namespace Inventory.MVVM.View
                     {
                         SqlCommand cmd = new SqlCommand("INSERT INTO Stocks (StockID, TShirtID, TShirtQty, TShirtDefect, Date) VALUES (@StockID, @TShirtID, @TShirtQty, @TShirtDefect, @Date);", conn);
 
-                        SqlCommand cmd2 = new SqlCommand("SELECT * FROM Quantity WHERE TShirtID = @TShirtID", conn);
+                   
+
+                    SqlCommand cmd2 = new SqlCommand("SELECT * FROM Quantity WHERE TShirtID = @TShirtID", conn);
                         
 
 
@@ -192,33 +194,15 @@ namespace Inventory.MVVM.View
                     cmd2.CommandType = CommandType.Text;
                     cmd2.Parameters.AddWithValue("@TShirtID", TShirtID.Text);
 
+
                     conn.Open();
-                        cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                     LoadGrid();
                     using (SqlDataReader reader = cmd2.ExecuteReader())
                     {
                         while(reader.Read())
                         {
-                            
-                            if (reader == null)
-                            {
-                                
-                                conn.Close();
-                                SqlCommand cmd3 = new SqlCommand("INSERT INTO Quantity (TShirtID, TotalQty, TotalDefect) VALUES (@TShirtID, @TShirtQty, @TShirtDefect);", conn);
-                                cmd3.CommandType = CommandType.Text;
-                                cmd3.Parameters.AddWithValue("@TShirtID", TShirtID.Text);
-                                cmd3.Parameters.AddWithValue("@TShirtQty", TShirtQty.Text);
-                                cmd3.Parameters.AddWithValue("@TShirtDefect", TShirtDefect.Text);
-
-                                conn.Open();
-                                cmd3.ExecuteNonQuery();
-                                
-                                LoadGrid();
-                                ClearData();
-                                MessageBox.Show("Stocks Details Input Successful", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
-                                break;
-                            }
-                            else
+                            if (reader["TShirtID"].ToString() != null)
                             {
                                 int TotalQty = Int32.Parse(reader["TotalQty"].ToString()) + Int32.Parse(TShirtQty.Text);
                                 int TotalDefect = Int32.Parse(reader["TotalDefect"].ToString()) + Int32.Parse(TShirtDefect.Text);
@@ -227,13 +211,16 @@ namespace Inventory.MVVM.View
 
                                 conn.Open();
                                 cmd4.ExecuteNonQuery();
-                               
+                                conn.Close();
+
                                 LoadGrid();
                                 ClearData();
 
                                 MessageBox.Show("Stocks Details Input Successful", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
                                 break;
+
                             }
+                            
                             
                         }
                     }
