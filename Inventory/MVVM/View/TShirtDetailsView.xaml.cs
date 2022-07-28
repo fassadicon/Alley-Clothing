@@ -165,27 +165,27 @@ namespace Inventory.MVVM.View
                         String Category = "";
                         if (FilterBoxCateg.Text == "TShirtID")
                         {
-                            queryString = "SELECT * FROM TShirtDetails WHERE TShirtID = @FilterItem";
+                            queryString = "SELECT TShirtID, TShirtBrand AS Brand, TShirtName AS Name, TShirtColor AS Color, TShirtSize AS Size FROM TShirtDetails WHERE TShirtID = @FilterItem";
                         }
                         else if (FilterBoxCateg.Text == "Brand" || FilterBoxCateg.Text == "TShirtQty")
                         {
                             Category = "TShirtBrand";
-                            queryString = "SELECT * FROM TShirtDetails WHERE TShirtBrand = @FilterItem";
+                            queryString = "SELECT TShirtID, TShirtBrand AS Brand, TShirtName AS Name, TShirtColor AS Color, TShirtSize AS Size FROM TShirtDetails WHERE TShirtBrand = @FilterItem";
                         }
                         else if (FilterBoxCateg.Text == "Name")
                         {
                             Category = "TShirtName";
-                            queryString = "SELECT * FROM TShirtDetails WHERE TShirtName = @FilterItem";
+                            queryString = "SELECT TShirtID, TShirtBrand AS Brand, TShirtName AS Name, TShirtColor AS Color, TShirtSize AS Size FROM TShirtDetails WHERE TShirtName = @FilterItem";
                         }
                         else if (FilterBoxCateg.Text == "Color")
                         {
                             Category = "TShirtColor";
-                            queryString = "SELECT * FROM TShirtDetails WHERE TShirtColor = @FilterItem";
+                            queryString = "SELECT TShirtID, TShirtBrand AS Brand, TShirtName AS Name, TShirtColor AS Color, TShirtSize AS Size FROM TShirtDetails WHERE TShirtColor = @FilterItem";
                         }
                         else if (FilterBoxCateg.Text == "Size")
                         {
                             Category = "TShirtSize";
-                            queryString = "SELECT * FROM TShirtDetails WHERE TShirtSize = @FilterItem";
+                            queryString = "SELECT TShirtID, TShirtBrand AS Brand, TShirtName AS Name, TShirtColor AS Color, TShirtSize AS Size FROM TShirtDetails WHERE TShirtSize = @FilterItem";
                         }
 
 

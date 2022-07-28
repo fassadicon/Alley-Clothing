@@ -169,31 +169,33 @@ namespace Inventory.MVVM.View
                     using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                     {
                         String queryString = "";
-
+                        String Category = "";
                         if (FilterBoxCateg.Text == "TShirtID")
                         {
-                            queryString = "SELECT * FROM DeliveryDetails WHERE TShirtID = @FilterItem";
+                            queryString = "SELECT DeliveryID, DeliveryType as Type, TShirtID, Quantity, DateReceived, DateDelivered AS DateReleased FROM DeliveryDetails WHERE TShirtID = @FilterItem";
                         }
-                        else if (FilterBoxCateg.Text == "DeliveryType")
+                        else if (FilterBoxCateg.Text == "Type")
                         {
-                            queryString = "SELECT * FROM DeliveryDetails WHERE DeliveryType = @FilterItem";
+                            Category = "DeliveryType";
+                            queryString = "SELECT DeliveryID, DeliveryType as Type, TShirtID, Quantity, DateReceived, DateDelivered AS DateReleased FROM DeliveryDetails WHERE DeliveryType = @FilterItem";
                         }
                         else if (FilterBoxCateg.Text == "Quantity")
                         {
-                            queryString = "SELECT * FROM DeliveryDetails WHERE Quantity = @FilterItem";
+                            queryString = "SELECT DeliveryID, DeliveryType as Type, TShirtID, Quantity, DateReceived, DateDelivered AS DateReleased FROM DeliveryDetails WHERE Quantity = @FilterItem";
                         }
                         else if (FilterBoxCateg.Text == "DateReceived")
                         {
-                            queryString = "SELECT * FROM DeliveryDetails WHERE DateReceived = @FilterItem";
+                            queryString = "SELECT DeliveryID, DeliveryType as Type, TShirtID, Quantity, DateReceived, DateDelivered AS DateReleased FROM DeliveryDetails WHERE DateReceived = @FilterItem";
                         }
-                        else if (FilterBoxCateg.Text == "DateDelivered")
+                        else if (FilterBoxCateg.Text == "DateReleased")
                         {
-                            queryString = "SELECT * FROM DeliveryDetails WHERE DateDelivered = @FilterItem";
+                            Category = "DeliveryDelivered";
+                            queryString = "SELECT DeliveryID, DeliveryType as Type, TShirtID, Quantity, DateReceived, DateDelivered AS DateReleased FROM DeliveryDetails WHERE DateDelivered = @FilterItem";
                         }
 
 
                         SqlCommand cmd = new SqlCommand(queryString, conn);
-                        cmd.Parameters.AddWithValue("@FilterCateg", FilterBoxCateg.Text);
+                        cmd.Parameters.AddWithValue("@FilterCateg", Category);
                         cmd.Parameters.AddWithValue("@FilterItem", FilterBoxItem.Text);
 
                         DataTable dt = new DataTable();

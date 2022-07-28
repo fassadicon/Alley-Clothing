@@ -98,7 +98,7 @@ namespace Inventory.MVVM.View
                      
 
                     {
-                        SqlCommand cmd = new SqlCommand("SELECT * FROM Stocks ;", conn);
+                        SqlCommand cmd = new SqlCommand("SELECT StockID AS StockLogID, TShirtID, TShirtQty AS Passed, TShirtDefect AS Defectives, Date FROM Stocks ;", conn);
                         DataTable dt = new DataTable();
                         conn.Open();
                         SqlDataReader sdr = cmd.ExecuteReader();
@@ -124,29 +124,37 @@ namespace Inventory.MVVM.View
                      
 
                     {
+                        String Category = "";
                         String queryString = "";
 
                         if (FilterBoxCateg.Text == "TShirtID")
                         {
-                            queryString = "SELECT * FROM Stocks WHERE TShirtID = @FilterItem";
+                            queryString = "SELECT StockID AS StockLogID, TShirtID, TShirtQty AS Passed, TShirtDefect AS Defectives, Date FROM Stocks WHERE TShirtID = @FilterItem";
                         }
-                        else if (FilterBoxCateg.Text == "TShirtQuantity" || FilterBoxCateg.Text == "TShirtQty")
+                        else if (FilterBoxCateg.Text == "Passed")
                         {
-                            queryString = "SELECT * FROM Stocks WHERE TShirtQty = @FilterItem";
+                            Category = "TShirtQty";
+                            queryString = "SELECT StockID AS StockLogID, TShirtID, TShirtQty AS Passed, TShirtDefect AS Defectives, Date FROM Stocks WHERE TShirtQty = @FilterItem";
                         }
-                        else if (FilterBoxCateg.Text == "TShirtDefect")
+                        else if (FilterBoxCateg.Text == "Defectives")
                         {
-                            queryString = "SELECT * FROM Stocks WHERE TShirtDefect = @FilterItem";
+                            Category = "TShirtDefect";
+                            queryString = "SELECT StockID AS StockLogID, TShirtID, TShirtQty AS Passed, TShirtDefect AS Defectives, Date FROM Stocks WHERE TShirtDefect = @FilterItem";
                         }
-                        else if (FilterBoxCateg.Text == "StockID")
+                        else if (FilterBoxCateg.Text == "StockLogID")
                         {
-                            queryString = "SELECT * FROM Stocks WHERE StockID = @FilterItem";
+                            Category = "StockID";
+                            queryString = "SELECT StockID AS StockLogID, TShirtID, TShirtQty AS Passed, TShirtDefect AS Defectives, Date FROM Stocks WHERE StockID = @FilterItem";
+                        }
+                        else if (FilterBoxCateg.Text == "Date")
+                        {
+                            queryString = "SELECT StockID AS StockLogID, TShirtID, TShirtQty AS Passed, TShirtDefect AS Defectives, Date FROM Stocks WHERE Date = @FilterItem";
                         }
 
 
 
                         SqlCommand cmd = new SqlCommand(queryString, conn);
-                        cmd.Parameters.AddWithValue("@FilterCateg", FilterBoxCateg.Text);
+                        cmd.Parameters.AddWithValue("@FilterCateg", Category);
                         cmd.Parameters.AddWithValue("@FilterItem", FilterBoxItem.Text);
 
                         DataTable dt = new DataTable();
