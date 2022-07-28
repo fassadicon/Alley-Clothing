@@ -59,7 +59,7 @@
                                     <Label Content="Quantity of T Shirt Ins:" FontSize="16" FontWeight="Bold"/>
                                 </StackPanel>
                                 <StackPanel Grid.Column="1" Margin="20,10,20,0">
-                                    <Label Content="-" FontSize="16" FontWeight="Bold"/>
+                                    <Label Content="Arsenio Ambayec" FontSize="16" FontWeight="Bold"/>
                                     <DatePicker x:Name="StartDate" SelectedDateChanged="StartDate_SelectedDateChanged" FontSize="16" FontWeight="Bold" Margin="0, 0, 50, 0">
                                         <DatePicker.Resources>
                                             <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#b2763f"></SolidColorBrush>
@@ -78,7 +78,7 @@
                                     <Label Content="Quantity of T Shirt Outs:" FontSize="16" FontWeight="Bold"/>
                                 </StackPanel>
                                 <StackPanel Grid.Column="3" Margin="20,10,20,0">
-                                    <Label Content="-" FontSize="16" FontWeight="Bold"/>
+                                    <Label Content="Cubao Branch" FontSize="16" FontWeight="Bold"/>
                                     <DatePicker x:Name="EndDate" SelectedDateChanged="EndDate_SelectedDateChanged" FontSize="16" FontWeight="Bold" Margin="0, 0, 50, 0">
                                         <DatePicker.Resources>
                                             <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#b2763f"></SolidColorBrush>
