@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:viewModel="clr-namespace:Inventory.MVVM.ViewModel"
+        xmlns:fa="http://schemas.fontawesome.com/icons/svg"
         xmlns:local="clr-namespace:Inventory"
         mc:Ignorable="d"
         Height="720" Width="1280"
@@ -56,7 +57,9 @@
                         ToolTip="TShirt Details Window"
                         Background="Transparent"
                         Command="{Binding TShirtDetailsViewCommand}">
-                    <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\icons\t-shirt.png"/>
+                    <!--<Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\icons\t-shirt.png"/>-->
+
+                    <fa:ImageAwesome Icon="Solid_Shirt" />
                 </Button>
                 <Button Height="71"
                         Width="103"
@@ -65,7 +68,8 @@
                         BorderThickness="0"
                         Background="Transparent"
                         Command="{Binding StocksViewCommand}">
-                    <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\icons\box.png"/>
+                    <!--<fa:ImageAwesome Icon="Inbox" VerticalAlignment="Center" HorizontalAlignment="Center" />-->
+                    <fa:ImageAwesome Icon="Solid_Box" />
                 </Button>
                 <Button Height="71"
                         Width="103"
@@ -74,7 +78,8 @@
                         BorderThickness="0"
                         Background="Transparent"
                         Command="{Binding DeliveriesViewCommand}">
-                    <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\icons\truck.png"/>
+                    <!--<fa:ImageAwesome Icon="Truck" VerticalAlignment="Center" HorizontalAlignment="Center" />-->
+                    <fa:ImageAwesome Icon="Solid_Truck" />
                 </Button>
                 <Button Height="71"
                         Width="103"
@@ -83,7 +88,8 @@
                         BorderThickness="0"
                         Background="Transparent"
                         Command="{Binding LogViewCommand}">
-                    <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\icons\stats.png"/>
+                    <!--<fa:ImageAwesome Icon="AddressBook" VerticalAlignment="Center" HorizontalAlignment="Center" />-->
+                    <fa:ImageAwesome Icon="Solid_ListCheck" />
                 </Button>
 
 
@@ -97,7 +103,8 @@
                         BorderThickness="0"
                         Click="LogOut_Click"
                         Background="Transparent">
-                    <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\icons\exit.png"/>
+                    <!--<Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\icons\exit.png"/>-->
+                    <fa:ImageAwesome Icon="Solid_ListCheck" />
 
                 </Button>
 
