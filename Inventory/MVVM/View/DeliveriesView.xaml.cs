@@ -288,7 +288,7 @@ namespace Inventory.MVVM.View
                     {
                         DeliveryType = "";
                     }
-                    SqlCommand cmd = new SqlCommand("UPDATE DeliveryDetails  set DeliveryType = '" + DeliveryType + "', TShirtID = '" + TShirtID.Text + "', Quantity = '" + Quantity.Text + "', DateReceived = '" + DateReceived.Text + "' DataDelivered = '" + DateDelivered.Text + "' WHERE IdTShirt = '" + DeliveryID.Text + "'", conn);
+                    SqlCommand cmd = new SqlCommand("UPDATE DeliveryDetails  set DeliveryType = '" + DeliveryType + "', TShirtID = '" + TShirtID.Text + "', Quantity = '" + Quantity.Text + "', DateReceived = '" + DateReceived.Text + "', DateDelivered = '" + DateDelivered.Text + "' WHERE DeliveryID = '" + DeliveryID.Text + "'", conn);
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     conn.Close();

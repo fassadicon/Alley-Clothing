@@ -48,48 +48,47 @@
 
                 <!--NAVIGATION BUTTONS-->
 
-                <Button Height="71"
-                        Width="103"
+                <Button Height="50"
+                        Width="100"
                         x:Name="TShirtButton"
                         Foreground="White"
                         FontSize="14"
                         BorderThickness="0"
                         ToolTip="TShirt Details Window"
                         Background="Transparent"
-                        Command="{Binding TShirtDetailsViewCommand}">
-                    <!--<Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\icons\t-shirt.png"/>-->
-
-                    <fa:ImageAwesome Icon="Solid_Shirt" />
+                        Command="{Binding TShirtDetailsViewCommand}"
+                        Margin="0,50,0,0">
+                    <fa:ImageAwesome Icon="Solid_Shirt" PrimaryColor="White"/>
                 </Button>
-                <Button Height="71"
-                        Width="103"
+                <Button Height="50"
+                        Width="100"
+                        Margin="0,20,0,0"
                         Foreground="White"
                         FontSize="14"
                         BorderThickness="0"
                         Background="Transparent"
                         Command="{Binding StocksViewCommand}">
-                    <!--<fa:ImageAwesome Icon="Inbox" VerticalAlignment="Center" HorizontalAlignment="Center" />-->
-                    <fa:ImageAwesome Icon="Solid_Box" />
+                    <fa:ImageAwesome Icon="Solid_Cubes" PrimaryColor="White"/>
                 </Button>
-                <Button Height="71"
-                        Width="103"
+                <Button Height="50"
+                        Width="100"
+                        Margin="0,20,0,0"
                         Foreground="White"
                         FontSize="14"
                         BorderThickness="0"
                         Background="Transparent"
                         Command="{Binding DeliveriesViewCommand}">
-                    <!--<fa:ImageAwesome Icon="Truck" VerticalAlignment="Center" HorizontalAlignment="Center" />-->
-                    <fa:ImageAwesome Icon="Solid_Truck" />
+                    <fa:ImageAwesome Icon="Solid_Truck" PrimaryColor="White" />
                 </Button>
-                <Button Height="71"
-                        Width="103"
+                <Button Height="50"
+                        Width="100"
+                        Margin="0,20,0,0"
                         Foreground="White"
                         FontSize="14"
                         BorderThickness="0"
                         Background="Transparent"
                         Command="{Binding LogViewCommand}">
-                    <!--<fa:ImageAwesome Icon="AddressBook" VerticalAlignment="Center" HorizontalAlignment="Center" />-->
-                    <fa:ImageAwesome Icon="Solid_ListCheck" />
+                    <fa:ImageAwesome Icon="Solid_Warehouse" PrimaryColor="White"/>
                 </Button>
 
 
@@ -97,14 +96,15 @@
             <StackPanel Grid.Row ="2" Background="#b2763f">
 
                 <Button x:Name="LogOut" 
-                        Height="50"
+                        Height="40"
+                        Width="100"
+                        Margin="0,40,0,0"
                         Foreground="White"
                         FontSize="14"
                         BorderThickness="0"
                         Click="LogOut_Click"
                         Background="Transparent">
-                    <!--<Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\MVVM\icons\exit.png"/>-->
-                    <fa:ImageAwesome Icon="Solid_ListCheck" />
+                    <fa:ImageAwesome Icon="Solid_ArrowRightFromBracket" PrimaryColor="White" Rotation="180"/>
 
                 </Button>
 

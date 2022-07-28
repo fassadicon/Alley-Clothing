@@ -40,7 +40,7 @@
                         <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\Alley.png" Width="130" Margin="10, 15, 0, 0"></Image>
                     </StackPanel>
                     <StackPanel Grid.Row="4" Grid.Column="4">
-                        <Button x:Name="printBtn" Content="Print" Click="printBtn_Click" Background="#b2763f" BorderBrush="#b2763f" Width="100" Margin="10, 0, 10, 0"></Button>
+                        <Button x:Name="printBtn" Content="Print" Click="printBtn_Click" Background="#b2763f" BorderBrush="#b2763f" Width="100" Margin="10, 10, 10, 0"></Button>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Grid.ColumnSpan="4" >
                         

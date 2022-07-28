@@ -110,7 +110,7 @@
                         <Label Content="TShirt ID:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
                         <Label Content="TShirt Quantity:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
                         <Label Content="Date Received:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
-                        <Label Content="Date Delivered:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
+                        <Label Content="Date Released:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
                     </StackPanel>
                     <!--Input TextBox-->
                     <StackPanel Grid.Column="1" Margin="0, 2, 130, 20">
