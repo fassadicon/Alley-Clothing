@@ -295,7 +295,7 @@ namespace Inventory.MVVM.View
                     LoadGrid();
                     ClearData();
                  
-                    MessageBox.Show("T Shirt Details Update Successful", "Updated", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Delivery Details Update Successful", "Updated", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (SqlException ex)
@@ -321,7 +321,7 @@ namespace Inventory.MVVM.View
                     LoadGrid();
                     ClearData();
               
-                    MessageBox.Show("T Shirt Details Deletion Successful", "Deleted", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Delivery Details Deletion Successful", "Deleted", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (SqlException ex)

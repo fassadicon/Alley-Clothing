@@ -224,7 +224,7 @@ namespace Inventory.MVVM.View
                                 LoadGrid();
                                 ClearData();
 
-                                MessageBox.Show("Stocks Details Input Successful", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+                                MessageBox.Show("Stock Log Details Input Successful", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
                                 break;
 
                             }
@@ -235,8 +235,6 @@ namespace Inventory.MVVM.View
                     conn.Close();
                     LoadGrid();
                     
-
-                        MessageBox.Show("Stocks Details Input Successful", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
                 catch (SqlException ex)
@@ -270,7 +268,7 @@ namespace Inventory.MVVM.View
                     //AutoComplete();
                     ClearData();
 
-                    MessageBox.Show("Stock Transaction Details Update Successful", "Updated", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Stock Log Details Update Successful", "Updated", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (SqlException ex)
@@ -301,7 +299,7 @@ namespace Inventory.MVVM.View
                     LoadGrid();
                     ClearData();
 
-                    MessageBox.Show("T Shirt Details Deletion Successful", "Deleted", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Stock Log Details Deletion Successful", "Deleted", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (SqlException ex)
