@@ -213,82 +213,97 @@ namespace Inventory.MVVM.View
         private void InsertTShirtDetails_Click(object sender, RoutedEventArgs e)
         {
             int Qty = 0, Defect = 0;
-          
-            try
+            if (TShirtDetailsID.Text == "")
             {
-
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
- 
-                 
-
+                MessageBox.Show("ID Required");               
+            } 
+            else
+            {
+                try
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO TShirtDetails (TShirtID, TShirtBrand, TShirtName, TShirtColor, TShirtSize, TShirtDirect) VALUES (@TShirtID, @Brand, @Name, @Color, @Size, @fileDirect);", conn);
 
-                    SqlCommand cmd2 = new SqlCommand($"INSERT INTO Quantity (TShirtID, TotalQty, TotalDefect) VALUES (@TShirtID, {Qty}, {Defect});", conn);
+                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
 
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@TShirtID", TShirtDetailsID.Text);
-                    cmd.Parameters.AddWithValue("@Brand", Brand.Text);
-                    cmd.Parameters.AddWithValue("@Name", Name.Text);
-                    cmd.Parameters.AddWithValue("@Color", Color.Text);
-                    cmd.Parameters.AddWithValue("@Size", Size.Text);
-                    cmd.Parameters.AddWithValue("@fileDirect", fileDirect);
 
-                    cmd2.CommandType = CommandType.Text;
-                    cmd2.Parameters.AddWithValue("@TShirtID", TShirtDetailsID.Text);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    cmd2.ExecuteNonQuery();
-                    conn.Close();
+                    {
+                        SqlCommand cmd = new SqlCommand("INSERT INTO TShirtDetails (TShirtID, TShirtBrand, TShirtName, TShirtColor, TShirtSize, TShirtDirect) VALUES (@TShirtID, @Brand, @Name, @Color, @Size, @fileDirect);", conn);
 
-                    LoadGrid();
-                    AutoComplete();
-                    ClearData();
-                    
-                    MessageBox.Show("T Shirt Details Input Successful", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+                        SqlCommand cmd2 = new SqlCommand($"INSERT INTO Quantity (TShirtID, TotalQty, TotalDefect) VALUES (@TShirtID, {Qty}, {Defect});", conn);
+
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@TShirtID", TShirtDetailsID.Text);
+                        cmd.Parameters.AddWithValue("@Brand", Brand.Text);
+                        cmd.Parameters.AddWithValue("@Name", Name.Text);
+                        cmd.Parameters.AddWithValue("@Color", Color.Text);
+                        cmd.Parameters.AddWithValue("@Size", Size.Text);
+                        cmd.Parameters.AddWithValue("@fileDirect", fileDirect);
+
+                        cmd2.CommandType = CommandType.Text;
+                        cmd2.Parameters.AddWithValue("@TShirtID", TShirtDetailsID.Text);
+
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        cmd2.ExecuteNonQuery();
+                        conn.Close();
+
+                        LoadGrid();
+                        AutoComplete();
+                        ClearData();
+
+                        MessageBox.Show("T Shirt Details Input Successful", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Insertion Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Insertion Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (FormatException ex)
-            {
-                MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+          
         }
 
         // UPDATE T SHIRT DETAILS
         private void UpdateTShirtDetails_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (TShirtDetailsID.Text == "")
             {
-
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
- 
-                 
-
+                MessageBox.Show("ID Required");
+            }
+            else
+            {
+                try
                 {
-                    SqlCommand cmd = new SqlCommand("UPDATE TShirtDetails set TShirtBrand = '" + Brand.Text + "', TShirtName = '" + Name.Text + "', TShirtColor = '" + Color.Text + "', TShirtSize = '" + Size.Text + "' WHERE TShirtID = '" + TShirtDetailsID.Text + "'", conn);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
-                    LoadGrid();
-                    AutoComplete();
-                    ClearData();
-                   
-                    MessageBox.Show("T Shirt Details Update Successful", "Updated", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+
+
+
+                    {
+                        SqlCommand cmd = new SqlCommand("UPDATE TShirtDetails set TShirtBrand = '" + Brand.Text + "', TShirtName = '" + Name.Text + "', TShirtColor = '" + Color.Text + "', TShirtSize = '" + Size.Text + "' WHERE TShirtID = '" + TShirtDetailsID.Text + "'", conn);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                        LoadGrid();
+                        AutoComplete();
+                        ClearData();
+
+                        MessageBox.Show("T Shirt Details Update Successful", "Updated", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Update Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Update Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (FormatException ex)
-            {
-                MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            
         }
         // DELETE T SHIRT DETAILS
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
@@ -304,6 +319,11 @@ namespace Inventory.MVVM.View
                     SqlCommand cmd = new SqlCommand("DELETE FROM TShirtDetails WHERE TShirtID = " + TShirtDetailsID.Text + " ", conn);
                     conn.Open();
                     cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                    SqlCommand cmd1 = new SqlCommand("DELETE FROM Quantity WHERE TShirtID = " + TShirtDetailsID.Text + " ", conn);
+                    conn.Open();
+                    cmd1.ExecuteNonQuery();
                     conn.Close();
                     LoadGrid();
                     AutoComplete();

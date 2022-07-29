@@ -96,7 +96,7 @@
                     <Label Content="Stock Log ID:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
                     <Label Content="TShirt ID:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
                     <Label Content="Passed:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
-                    <Label Content="Defectives:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
+                    <Label Content="Defective:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
                     <Label Content="Date:" FontSize="16" FontWeight="Bold" Margin="5, 5, 5, 5"/>
                 </StackPanel>
                 <!--Input TextBox-->

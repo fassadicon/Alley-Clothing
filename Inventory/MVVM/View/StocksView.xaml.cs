@@ -28,6 +28,7 @@ namespace Inventory.MVVM.View
 
         private void ClearData()
         {
+            StockID.Text = string.Empty;
             TShirtID.Text = string.Empty;
             TShirtQty.Text = string.Empty;
             TShirtDefect.Text = string.Empty;
@@ -175,66 +176,71 @@ namespace Inventory.MVVM.View
         // INSERT T SHIRT DETAILS
         private void InsertTShirtDetails_Click(object sender, RoutedEventArgs e)
             {
-            
+            if (TShirtID.Text == "" || StockID.Text == "")
+            {
+                MessageBox.Show("ID Required");
+            }
+            else
+            {
                 try
                 {
 
                     using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
- 
-                     
+
+
 
                     {
                         SqlCommand cmd = new SqlCommand("INSERT INTO Stocks (StockID, TShirtID, TShirtQty, TShirtDefect, Date) VALUES (@StockID, @TShirtID, @TShirtQty, @TShirtDefect, @Date);", conn);
 
-                   
-
-                    SqlCommand cmd2 = new SqlCommand("SELECT * FROM Quantity WHERE TShirtID = @TShirtID", conn);
-                        
 
 
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@StockID", StockID.Text);
-                    cmd.Parameters.AddWithValue("@TShirtID", TShirtID.Text);
-                    cmd.Parameters.AddWithValue("@TShirtQty", TShirtQty.Text);
-                    cmd.Parameters.AddWithValue("@TShirtDefect", TShirtDefect.Text);
-                    cmd.Parameters.AddWithValue("@Date", StockDate.Text);
-
-                    cmd2.CommandType = CommandType.Text;
-                    cmd2.Parameters.AddWithValue("@TShirtID", TShirtID.Text);
+                        SqlCommand cmd2 = new SqlCommand("SELECT * FROM Quantity WHERE TShirtID = @TShirtID", conn);
 
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    LoadGrid();
-                    using (SqlDataReader reader = cmd2.ExecuteReader())
-                    {
-                        while(reader.Read())
+
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@StockID", StockID.Text);
+                        cmd.Parameters.AddWithValue("@TShirtID", TShirtID.Text);
+                        cmd.Parameters.AddWithValue("@TShirtQty", TShirtQty.Text);
+                        cmd.Parameters.AddWithValue("@TShirtDefect", TShirtDefect.Text);
+                        cmd.Parameters.AddWithValue("@Date", StockDate.Text);
+
+                        cmd2.CommandType = CommandType.Text;
+                        cmd2.Parameters.AddWithValue("@TShirtID", TShirtID.Text);
+
+
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        LoadGrid();
+                        using (SqlDataReader reader = cmd2.ExecuteReader())
                         {
-                            if (reader["TShirtID"].ToString() != null)
+                            while (reader.Read())
                             {
-                                int TotalQty = Int32.Parse(reader["TotalQty"].ToString()) + Int32.Parse(TShirtQty.Text);
-                                int TotalDefect = Int32.Parse(reader["TotalDefect"].ToString()) + Int32.Parse(TShirtDefect.Text);
-                                conn.Close();
-                                SqlCommand cmd4 = new SqlCommand("UPDATE Quantity set TotalQty = '" + TotalQty + "', TotalDefect = '" + TotalDefect + "' WHERE TShirtID = '" + TShirtID.Text + "'", conn);
+                                if (reader["TShirtID"].ToString() != null)
+                                {
+                                    int TotalQty = Int32.Parse(reader["TotalQty"].ToString()) + Int32.Parse(TShirtQty.Text);
+                                    int TotalDefect = Int32.Parse(reader["TotalDefect"].ToString()) + Int32.Parse(TShirtDefect.Text);
+                                    conn.Close();
+                                    SqlCommand cmd4 = new SqlCommand("UPDATE Quantity set TotalQty = '" + TotalQty + "', TotalDefect = '" + TotalDefect + "' WHERE TShirtID = '" + TShirtID.Text + "'", conn);
 
-                                conn.Open();
-                                cmd4.ExecuteNonQuery();
-                                conn.Close();
+                                    conn.Open();
+                                    cmd4.ExecuteNonQuery();
+                                    conn.Close();
 
-                                LoadGrid();
-                                ClearData();
+                                    LoadGrid();
+                                    ClearData();
 
-                                MessageBox.Show("Stock Log Details Input Successful", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
-                                break;
+                                    MessageBox.Show("Stock Log Details Input Successful", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    break;
+
+                                }
+
 
                             }
-                            
-                            
                         }
-                    }
-                    conn.Close();
-                    LoadGrid();
-                    
+                        conn.Close();
+                        LoadGrid();
+
                     }
                 }
                 catch (SqlException ex)
@@ -246,39 +252,53 @@ namespace Inventory.MVVM.View
                     MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
-           
+            }
+
+
         }
 
         // UPDATE T SHIRT DETAILS
         private void UpdateStockDetails_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (TShirtID.Text == "" || StockID.Text == "")
             {
-
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
- 
-                 
-
+                MessageBox.Show("ID Required");
+            }
+            else
+            {
+                try
                 {
-                    SqlCommand cmd = new SqlCommand("UPDATE Stocks set TShirtID = '" + TShirtID.Text + "', TShirtQty = '" + TShirtQty.Text + "', TShirtDefect = '" + TShirtDefect.Text + "', Date = '" + StockDate.Text + "' WHERE StockID = '" + StockID.Text + "'", conn);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
-                    LoadGrid();
-                    //AutoComplete();
-                    ClearData();
 
-                    MessageBox.Show("Stock Log Details Update Successful", "Updated", MessageBoxButton.OK, MessageBoxImage.Information);
+                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+
+
+
+                    {
+                        SqlCommand cmd = new SqlCommand("UPDATE Stocks set TShirtID = '" + TShirtID.Text + "', TShirtQty = '" + TShirtQty.Text + "', TShirtDefect = '" + TShirtDefect.Text + "', Date = '" + StockDate.Text + "' WHERE StockID = '" + StockID.Text + "'", conn);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+
+                       
+                        LoadGrid();
+                        //AutoComplete();
+                        ClearData();
+
+                        MessageBox.Show("Stock Log Details Update Successful", "Updated", MessageBoxButton.OK, MessageBoxImage.Information);
+
+
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Update Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Update Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (FormatException ex)
-            {
-                MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            
         }
 
         // DELETE STOCKS
@@ -340,7 +360,7 @@ namespace Inventory.MVVM.View
                         int TotalQuantity = (int)cmd1.ExecuteScalar();
                         conn.Close();
 
-                        SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails INNER JOIN Stocks ON TShirtDetails.TShirtID = " + TShirtIDTextBoxContent, conn);
+                        SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails WHERE TShirtDetails.TShirtID = " + TShirtIDTextBoxContent, conn);
                         conn.Open();
 
                         using (SqlDataReader reader = cmd.ExecuteReader())

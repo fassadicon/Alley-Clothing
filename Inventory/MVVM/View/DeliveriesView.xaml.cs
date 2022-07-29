@@ -118,8 +118,7 @@ namespace Inventory.MVVM.View
                     }
 
                     cmd2.ExecuteNonQuery();
-                    conn.Close();
-                    MessageBox.Show("Quantity Details Updated Successfully", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+                    conn.Close();                    
 
                     conn.Close();
    
@@ -218,94 +217,175 @@ namespace Inventory.MVVM.View
         // INSERT T SHIRT DETAILS
         private void InsertDeliveryDetails_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (TShirtID.Text == "" || DeliveryID.Text == "")
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                MessageBox.Show("ID Required");
+            }
+            else
+            {
+                try
                 {
-                    String DeliveryType;
-                    if (Out.IsChecked==true)
+                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                     {
-                        DeliveryType = "Out";
-                    }
-                    else if (In.IsChecked == true)
-                    {
-                        DeliveryType = "In";
-                    }
-                    else
-                    {
-                        DeliveryType = "";
-                    }
-                    SqlCommand cmd = new SqlCommand("INSERT INTO DeliveryDetails  (DeliveryID, DeliveryType, TShirtID, Quantity, DateReceived, DateDelivered) VALUES (@DeliveryID, @DeliveryType, @TShirtID, @Quantity, @DateReceived, @DateDelivered);", conn);
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@DeliveryID", DeliveryID.Text);
-                    cmd.Parameters.AddWithValue("@DeliveryType", DeliveryType);
-                    cmd.Parameters.AddWithValue("@TShirtID", TShirtID.Text);
-                    cmd.Parameters.AddWithValue("@Quantity", Quantity.Text);
-                    cmd.Parameters.AddWithValue("@DateReceived", DateReceived.Text);
-                    cmd.Parameters.AddWithValue("@DateDelivered", DateDelivered.Text);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                        String DeliveryType;
+                        if (Out.IsChecked == true)
+                        {
+                            DeliveryType = "Out";
+                            SqlCommand cmd1 = new SqlCommand("SELECT TotalQty FROM Quantity WHERE TShirtID = " + TShirtID.Text, conn);
+                            conn.Open();
+                            int PrevQuantity = (int)cmd1.ExecuteScalar();
+                            conn.Close();
+                            if (PrevQuantity < Int32.Parse(Quantity.Text))
+                            {
+                                MessageBox.Show("Stock Limit Reached");
+                            }
+                            else
+                            {
+                                SqlCommand cmd = new SqlCommand("INSERT INTO DeliveryDetails  (DeliveryID, DeliveryType, TShirtID, Quantity, DateReceived, DateDelivered) VALUES (@DeliveryID, @DeliveryType, @TShirtID, @Quantity, @DateReceived, @DateDelivered);", conn);
+                                cmd.CommandType = CommandType.Text;
+                                cmd.Parameters.AddWithValue("@DeliveryID", DeliveryID.Text);
+                                cmd.Parameters.AddWithValue("@DeliveryType", DeliveryType);
+                                cmd.Parameters.AddWithValue("@TShirtID", TShirtID.Text);
+                                cmd.Parameters.AddWithValue("@Quantity", Quantity.Text);
+                                cmd.Parameters.AddWithValue("@DateReceived", DateReceived.Text);
+                                cmd.Parameters.AddWithValue("@DateDelivered", DateDelivered.Text);
+                                conn.Open();
+                                cmd.ExecuteNonQuery();
 
-                    if(DeliveryType == "Out" || DeliveryType == "OUT" || DeliveryType == "out")
-                    {
-                        UpdateOnStocks();
-                    }
+                                if (DeliveryType == "Out" || DeliveryType == "OUT" || DeliveryType == "out")
+                                {
+                                    UpdateOnStocks();
+                                }
 
-                    conn.Close();
-                    LoadGrid();
-                    ClearData();
-                   
-                    MessageBox.Show("Delivery Details Input Successful", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+                                conn.Close();
+                                LoadGrid();
+                                ClearData();
+
+                                MessageBox.Show("Delivery Details Input Successful", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            
+                        }
+                        else if (In.IsChecked == true)
+                        {
+                            DeliveryType = "In";
+                            SqlCommand cmd = new SqlCommand("INSERT INTO DeliveryDetails  (DeliveryID, DeliveryType, TShirtID, Quantity, DateReceived, DateDelivered) VALUES (@DeliveryID, @DeliveryType, @TShirtID, @Quantity, @DateReceived, @DateDelivered);", conn);
+                            cmd.CommandType = CommandType.Text;
+                            cmd.Parameters.AddWithValue("@DeliveryID", DeliveryID.Text);
+                            cmd.Parameters.AddWithValue("@DeliveryType", DeliveryType);
+                            cmd.Parameters.AddWithValue("@TShirtID", TShirtID.Text);
+                            cmd.Parameters.AddWithValue("@Quantity", Quantity.Text);
+                            cmd.Parameters.AddWithValue("@DateReceived", DateReceived.Text);
+                            cmd.Parameters.AddWithValue("@DateDelivered", DateDelivered.Text);
+                            conn.Open();
+                            cmd.ExecuteNonQuery();
+
+                            if (DeliveryType == "Out" || DeliveryType == "OUT" || DeliveryType == "out")
+                            {
+                                UpdateOnStocks();
+                            }
+
+                            conn.Close();
+                            LoadGrid();
+                            ClearData();
+
+                            MessageBox.Show("Delivery Details Input Successful", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        else
+                        {
+                            DeliveryType = "";
+                        }
+                        
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Insertion Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Insertion Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (FormatException ex)
-            {
-                MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            
         }
 
         // UPDATE T SHIRT DETAILS
         private void UpdateDeliveryDetails_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (TShirtID.Text == "" || DeliveryID.Text == "")
             {
-                using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
+                MessageBox.Show("ID Required");
+            }
+            else
+            {
+                try
                 {
-                    String DeliveryType;
-                    if (Out.IsChecked == true)
+                    using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                     {
-                        DeliveryType = "Out";
+                        String DeliveryType;
+                        if (Out.IsChecked == true)
+                        {
+                            DeliveryType = "Out";
+                            SqlCommand cmd1 = new SqlCommand("SELECT TotalQty FROM Quantity WHERE TShirtID = " + TShirtID.Text, conn);
+                            conn.Open();
+                            int PrevQuantity = (int)cmd1.ExecuteScalar();
+                            conn.Close();
+                            if (PrevQuantity < Int32.Parse(Quantity.Text))
+                            {
+                                MessageBox.Show("Stock Limit Reached");
+                            }
+                            else
+                            {
+                                SqlCommand cmd2 = new SqlCommand("SELECT Quantity FROM DeliveryDetails WHERE TShirtID = " + TShirtID.Text, conn);
+                                conn.Open();
+                                int RemQuantity = (int)cmd2.ExecuteScalar();
+                                conn.Close();
+                                SqlCommand cmd = new SqlCommand("UPDATE DeliveryDetails  set DeliveryType = '" + DeliveryType + "', TShirtID = '" + TShirtID.Text + "', Quantity = '" + (RemQuantity - Int32.Parse(Quantity.Text)) + "', DateReceived = '" + DateReceived.Text + "', DateDelivered = '" + DateDelivered.Text + "' WHERE DeliveryID = '" + DeliveryID.Text + "'", conn);
+                                conn.Open();
+                                cmd.ExecuteNonQuery();
+                                conn.Close();
+                                SqlCommand cmd3 = new SqlCommand("UPDATE Quantity set TotalQty = " + (RemQuantity - Int32.Parse(Quantity.Text)) + "WHERE TShirtID = " + TShirtID.Text, conn);
+                                conn.Open();
+                                cmd3.ExecuteNonQuery();
+                                conn.Close();
+                                LoadGrid();
+                                ClearData();
+
+                                MessageBox.Show("Delivery Details Update Successful", "Updated", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+
+                        }
+                        else if (In.IsChecked == true)
+                        {
+                            DeliveryType = "In";
+                            SqlCommand cmd2 = new SqlCommand("SELECT Quantity FROM DeliveryDetails WHERE TShirtID = " + TShirtID.Text, conn);
+                            conn.Open();
+                            int RemQuantity = (int)cmd2.ExecuteScalar();
+                            conn.Close();
+                            SqlCommand cmd = new SqlCommand("UPDATE DeliveryDetails  set DeliveryType = '" + DeliveryType + "', TShirtID = '" + TShirtID.Text + "', Quantity = '" + (RemQuantity - Int32.Parse(Quantity.Text)) + "', DateReceived = '" + DateReceived.Text + "', DateDelivered = '" + DateDelivered.Text + "' WHERE DeliveryID = '" + DeliveryID.Text + "'", conn);
+                            conn.Open();
+                            cmd.ExecuteNonQuery();
+                            conn.Close();
+                            LoadGrid();
+                            ClearData();
+                        }
+                        else
+                        {
+                            DeliveryType = "";
+                        }
+                        
                     }
-                    else if (In.IsChecked == true)
-                    {
-                        DeliveryType = "In";
-                    }
-                    else
-                    {
-                        DeliveryType = "";
-                    }
-                    SqlCommand cmd = new SqlCommand("UPDATE DeliveryDetails  set DeliveryType = '" + DeliveryType + "', TShirtID = '" + TShirtID.Text + "', Quantity = '" + Quantity.Text + "', DateReceived = '" + DateReceived.Text + "', DateDelivered = '" + DateDelivered.Text + "' WHERE DeliveryID = '" + DeliveryID.Text + "'", conn);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
-                    LoadGrid();
-                    ClearData();
-                 
-                    MessageBox.Show("Delivery Details Update Successful", "Updated", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Update Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Update Failed: \n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (FormatException ex)
-            {
-                MessageBox.Show("Format Exception: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            
         }
         // DELETE T SHIRT DETAILS
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
@@ -374,12 +454,12 @@ namespace Inventory.MVVM.View
                     {
                         String TShirtIDTextBoxContent = TShirtID.Text;
                         
-                        SqlCommand cmd1 = new SqlCommand("SELECT SUM(TShirtQty) FROM Stocks WHERE TShirtID = " + TShirtIDTextBoxContent, conn);
+                        SqlCommand cmd1 = new SqlCommand("SELECT TotalQty FROM Quantity WHERE TShirtID = " + TShirtIDTextBoxContent, conn);
                         conn.Open();
-                        // int TotalQuantity = (int)cmd1.ExecuteScalar();
+                        int TotalQuantity = (int)cmd1.ExecuteScalar();
                         conn.Close();
 
-                        SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails INNER JOIN Stocks ON TShirtDetails.TShirtID = " + TShirtIDTextBoxContent, conn);
+                        SqlCommand cmd = new SqlCommand("SELECT * FROM TShirtDetails WHERE TShirtID = " + TShirtIDTextBoxContent, conn);
                         conn.Open();
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
@@ -390,7 +470,7 @@ namespace Inventory.MVVM.View
                                 TShirtNamePreview.Content = "Name: " + reader["TShirtName"].ToString();
                                 TShirtColorPreview.Content = "Color: " + reader["TShirtColor"].ToString();
                                 TShirtSizePreview.Content = "Size: " + reader["TShirtSize"].ToString();
-                                // TShirtQtyPreview.Content = "Quantity: " + TotalQuantity;
+                                 TShirtQtyPreview.Content = "Quantity: " + TotalQuantity;
                                 direct = reader["TShirtDirect"].ToString();
                                 TShirtImage.Source = new BitmapImage(new Uri($@"{direct}"));
                             }
