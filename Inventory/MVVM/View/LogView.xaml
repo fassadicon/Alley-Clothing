@@ -6,7 +6,8 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Inventory.MVVM.View"
              mc:Ignorable="d" 
-             d:DesignHeight="679.2" d:DesignWidth="1160" Background="#1D1C1C">
+             d:DesignHeight="679.2" d:DesignWidth="1160" Background="#EEEEEE">
+
     <ScrollViewer >
         <Grid >
             <Grid.ColumnDefinitions>
@@ -34,14 +35,12 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Column="0" Grid.Row="0">
-                        <Label Content="Logs" Foreground="#EEEEEE" FontSize="28" FontWeight="ExtraBold" Margin="15, 15, 10, 10"/>
+                        <Label Content="Logs" Foreground="#1D1C1C" FontSize="28" FontWeight="ExtraBold" Margin="15, 15, 10, 10"/>
                     </StackPanel>
                     <StackPanel Grid.Column="4" Grid.Row="0" >
-                        <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\Alley.png" Width="130" Margin="10, 15, 0, 0"></Image>
+                        <Image Source="C:\Users\FAsad\source\repos\NewRepo\Inventory\AlleyDark.png" Width="130" Margin="10, 15, 0, 0"></Image>
                     </StackPanel>
-                    <StackPanel Grid.Row="4" Grid.Column="4">
-                        <Button x:Name="printBtn" Content="Print" Click="printBtn_Click" Background="#b2763f" BorderBrush="#b2763f" Width="100" Margin="10, 10, 10, 0"></Button>
-                    </StackPanel>
+                    
                     <StackPanel Grid.Row="1" Grid.ColumnSpan="4" >
                         
                             <Grid Height="158">
@@ -52,48 +51,48 @@
                                     <ColumnDefinition Width="3*"/>
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Grid.Column="0" Margin="20,10,20,0">
-                                    <Label Content="Admin:" FontSize="16" FontWeight="Bold"/>
-                                    <Label Content="Start Date: " FontSize="16" FontWeight="Bold"/>
-                                    <Label Content="Good Conditions:" FontSize="16" FontWeight="Bold"/>
-                                    <Label Content="Delivery Ins:" FontSize="16" FontWeight="Bold"/>
-                                    <Label Content="Quantity of T Shirt Ins:" FontSize="16" FontWeight="Bold"/>
+                                <Label Content="Admin:" FontSize="16" FontWeight="Bold" Foreground="#1D1C1C"/>
+                                <Label Content="Start Date: " FontSize="16" FontWeight="Bold" Foreground="#1D1C1C"/>
+                                <Label Content="Good Conditions:" FontSize="16" FontWeight="Bold" Foreground="#1D1C1C"/>
+                                <Label Content="Delivery Ins:" FontSize="16" FontWeight="Bold" Foreground="#1D1C1C"/>
+                                <Label Content="Quantity of T Shirt Ins:" FontSize="16" FontWeight="Bold" Foreground="#1D1C1C"/>
                                 </StackPanel>
                                 <StackPanel Grid.Column="1" Margin="20,10,20,0">
-                                    <Label Content="Arsenio Ambayec" FontSize="16" FontWeight="Bold"/>
-                                    <DatePicker x:Name="StartDate" SelectedDateChanged="StartDate_SelectedDateChanged" FontSize="16" FontWeight="Bold" Margin="0, 0, 50, 0">
+                                <Label Content="Arsenio Ambayec" FontSize="16" FontWeight="Bold" Foreground="#1D1C1C"/>
+                                <DatePicker x:Name="StartDate" SelectedDateChanged="StartDate_SelectedDateChanged" FontSize="16" FontWeight="Bold" Margin="0, 0, 50, 0" Foreground="#1D1C1C">
                                         <DatePicker.Resources>
                                             <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#b2763f"></SolidColorBrush>
-                                            <SolidColorBrush x:Key="MaterialDesignBody" Color="#b2763f"></SolidColorBrush>
-                                        </DatePicker.Resources>
+                                        <SolidColorBrush x:Key="MaterialDesignBody" Color="#b2763f"></SolidColorBrush>
+                                    </DatePicker.Resources>
                                     </DatePicker>
-                                    <Label x:Name="Passed" Content="-" FontSize="16" FontWeight="Bold"/>
-                                    <Label x:Name="DeliveryIn" Content="-" FontSize="16" FontWeight="Bold"/>
-                                    <Label x:Name="TShirtIn" Content="-" FontSize="16" FontWeight="Bold"/>
+                                <Label x:Name="Passed" Content="-" FontSize="16" FontWeight="Bold" Foreground="#1D1C1C"/>
+                                <Label x:Name="DeliveryIn" Content="-" FontSize="16" FontWeight="Bold" Foreground="#1D1C1C"/>
+                                <Label x:Name="TShirtIn" Content="-" FontSize="16" FontWeight="Bold" Foreground="#1D1C1C"/>
                                 </StackPanel>
                                 <StackPanel Grid.Column="2" Margin="0,10,10,0">
-                                    <Label Content="Warehouse: " FontSize="16" FontWeight="Bold"/>
-                                    <Label Content="End Date: " FontSize="16" FontWeight="Bold"/>
-                                    <Label Content="Defectives:" FontSize="16" FontWeight="Bold"/>
-                                    <Label Content="Delivery Outs:" FontSize="16" FontWeight="Bold"/>
-                                    <Label Content="Quantity of T Shirt Outs:" FontSize="16" FontWeight="Bold"/>
+                                <Label Content="Warehouse: " FontSize="16" FontWeight="Bold" Foreground="#1D1C1C"/>
+                                <Label Content="End Date: " FontSize="16" FontWeight="Bold" Foreground="#1D1C1C"/>
+                                <Label Content="Defectives:" FontSize="16" FontWeight="Bold" Foreground="#1D1C1C"/>
+                                <Label Content="Delivery Outs:" FontSize="16" FontWeight="Bold" Foreground="#1D1C1C"/>
+                                <Label Content="Quantity of T Shirt Outs:" FontSize="16" FontWeight="Bold" Foreground="#1D1C1C"/>
                                 </StackPanel>
                                 <StackPanel Grid.Column="3" Margin="20,10,20,0">
-                                    <Label Content="Cubao Branch" FontSize="16" FontWeight="Bold"/>
-                                    <DatePicker x:Name="EndDate" SelectedDateChanged="EndDate_SelectedDateChanged" FontSize="16" FontWeight="Bold" Margin="0, 0, 50, 0">
+                                <Label Content="Cubao Branch" FontSize="16" FontWeight="Bold" Foreground="#1D1C1C"/>
+                                <DatePicker x:Name="EndDate" SelectedDateChanged="EndDate_SelectedDateChanged" FontSize="16" FontWeight="Bold" Margin="0, 0, 50, 0" Foreground="#1D1C1C" >
                                         <DatePicker.Resources>
-                                            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#b2763f"></SolidColorBrush>
-                                            <SolidColorBrush x:Key="MaterialDesignBody" Color="#b2763f"></SolidColorBrush>
-                                        </DatePicker.Resources>
+                                            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#b2763f" ></SolidColorBrush>
+                                        <SolidColorBrush x:Key="MaterialDesignBody" Color="#b2763f"></SolidColorBrush>
+                                    </DatePicker.Resources>
                                     </DatePicker>
-                                    <Label x:Name="Defectives" Content="-" FontSize="16" FontWeight="Bold"/>
-                                    <Label x:Name="DeliveryOut" Content="-" FontSize="16" FontWeight="Bold"/>
-                                    <Label x:Name="TShirtOut" Content="-" FontSize="16" FontWeight="Bold"/>
+                                <Label x:Name="Defectives" Content="-" FontSize="16" FontWeight="Bold" Foreground="#1D1C1C"/>
+                                <Label x:Name="DeliveryOut" Content="-" FontSize="16" FontWeight="Bold" Foreground="#1D1C1C"/>
+                                <Label x:Name="TShirtOut" Content="-" FontSize="16" FontWeight="Bold" Foreground="#1D1C1C"/>
                                 </StackPanel>
 
                             </Grid>
-
+                    
                     </StackPanel>
-
+                    
                     <!--LOG PROPER-->
                     <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4">
                         <Grid>
@@ -109,13 +108,39 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Margin="10, 10, 10, 10">
-                                <Label Content="Stock Log" Foreground="#EEEEEE" FontSize="16" FontWeight="Bold"/>
-                                <DataGrid x:Name="StockSummary"></DataGrid>
+                                <Label Content="Stock Log" Foreground="#1D1C1C" FontSize="16" FontWeight="Bold" Margin="0, 40, 0, 10"/>
+                                <DataGrid x:Name="StockSummary" Background="Transparent" BorderBrush="#1D1C1C" Foreground="#1D1C1C" FontWeight="Bold" Width="380">
+                                    <DataGrid.Resources>
+                                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Foreground" Value="Black"/>
+                                            <Setter Property="Margin" Value="0, 0, 20, 0"/>
+                                        </Style>
+                                        <Style TargetType="{x:Type DataGridCell}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Foreground" Value="Black"/>
+                                            <Setter Property="Margin" Value="0, 10, 20, 0"/>
+                                        </Style>
+                                    </DataGrid.Resources>
+                                </DataGrid>
 
                             </StackPanel>
                             <StackPanel Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="3" Margin="10, 10, 10, 10">
-                                <Label Content="Delivery Log" Foreground="#EEEEEE" FontSize="16" FontWeight="Bold"/>
-                                <DataGrid x:Name="Deliveries"></DataGrid>
+                                <Label Content="Delivery Log" Foreground="#1D1C1C" FontSize="16" FontWeight="Bold" Margin="0, 40, 0, 10"/>
+                                <DataGrid x:Name="Deliveries" Background="Transparent" BorderBrush="#1D1C1C" Foreground="#1D1C1C" FontWeight="Bold" Width="520">
+                                    <DataGrid.Resources>
+                                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Foreground" Value="Black"/>
+                                            <Setter Property="Margin" Value="0, 0, 20, 0"/>
+                                        </Style>
+                                        <Style TargetType="{x:Type DataGridCell}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Foreground" Value="Black"/>
+                                            <Setter Property="Margin" Value="0, 10, 20, 0"/>
+                                        </Style>
+                                    </DataGrid.Resources>
+                                </DataGrid>
 
                             </StackPanel>
 
@@ -125,6 +150,9 @@
                     </StackPanel>
                 </Grid>
                 
+            </StackPanel>
+            <StackPanel Grid.Row="4" Grid.Column="4">
+                <Button x:Name="printBtn" Content="Print" Click="printBtn_Click" Background="#b2763f" BorderBrush="#b2763f" Width="100" Margin="10, 10, 10, 0"></Button>
             </StackPanel>
             <StackPanel x:Name="InventoryPrint" Grid.ColumnSpan="4" Grid.Row="4" Margin="0,50,0,0">
                 <Grid>
@@ -142,8 +170,21 @@
                         <Button Content="Print" x:Name="InventoryPrintBtn" Click="InventoryPrintBtn_Click" Width="100" Margin="280, 0, 0, 0" Background="#b2763f" BorderBrush="#b2763f"></Button>
                     </StackPanel>
                     <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
-                        <Label Content="Inventory" Foreground="#EEEEEE" FontSize="16" FontWeight="Bold"/>
-                        <DataGrid x:Name="Inventory"></DataGrid>
+                        <Label Content="Inventory" Foreground="#1D1C1C" FontSize="16" FontWeight="Bold" Margin="0, 0, 0, 10"/>
+                        <DataGrid x:Name="Inventory" Background="Transparent" BorderBrush="#1D1C1C" Foreground="#1D1C1C" FontWeight="Bold" Width="560">
+                            <DataGrid.Resources>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="Margin" Value="0, 0, 20, 0"/>
+                                </Style>
+                                <Style TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="Margin" Value="0, 10, 20, 0"/>
+                                </Style>
+                            </DataGrid.Resources>
+                        </DataGrid>
                     </StackPanel>
                 </Grid>
                 
