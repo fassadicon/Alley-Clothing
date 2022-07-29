@@ -293,6 +293,7 @@ namespace Inventory.MVVM.View
                         else
                         {
                             DeliveryType = "";
+                            //MessageBox.Show("Please Input Delivery ID");
                         }
                         
                     }
