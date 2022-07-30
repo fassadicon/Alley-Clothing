@@ -333,10 +333,37 @@ namespace Inventory.MVVM.View
             {
 
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
- 
-                 
 
                 {
+                    // Previous Passed of non updated Stock ID
+                    SqlCommand cmd1 = new SqlCommand("SELECT TShirtQty FROM Stocks WHERE StockID = " + StockID.Text, conn);
+                    conn.Open();
+                    int PrevPassed = (int)cmd1.ExecuteScalar();
+                    conn.Close();
+                    // Previous Defective of non updated Stock ID
+                    SqlCommand cmd2 = new SqlCommand("SELECT TShirtDefect FROM Stocks WHERE StockID = " + StockID.Text, conn);
+                    conn.Open();
+                    int PrevDefect = (int)cmd2.ExecuteScalar();
+                    conn.Close();
+                    // Previous Total Passed of TShirt Quantity
+                    SqlCommand cmd3 = new SqlCommand("SELECT TotalQty FROM Quantity WHERE TShirtID = " + TShirtID.Text, conn);
+                    conn.Open();
+                    int PrevTotalPassed = (int)cmd3.ExecuteScalar();
+                    conn.Close();
+                    // Previous Total Defect of TShirt Quantity
+                    SqlCommand cmd4 = new SqlCommand("SELECT TotalDefect FROM Quantity WHERE TShirtID = " + TShirtID.Text, conn);
+                    conn.Open();
+                    int PrevTotalDefect = (int)cmd4.ExecuteScalar();
+                    conn.Close();
+
+                    int RemovePrevPassed = PrevTotalPassed - PrevPassed;
+                    int RemovePrevDefect = PrevTotalDefect - PrevDefect;
+
+                    SqlCommand cmd5 = new SqlCommand("UPDATE Quantity set TotalQty = " + RemovePrevPassed + ", TotalDefect = " + RemovePrevDefect + "WHERE TShirtID = " + TShirtID.Text, conn);
+                    conn.Open();
+                    cmd5.ExecuteNonQuery();
+                    conn.Close();
+
                     SqlCommand cmd = new SqlCommand("DELETE FROM Stocks WHERE StockID = " + StockID.Text + " ", conn);
                     conn.Open();
                     cmd.ExecuteNonQuery();

@@ -395,10 +395,43 @@ namespace Inventory.MVVM.View
             {
                 using (SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FAsad\\source\\repos\\NewRepo\\Inventory\\InventoryDB.mdf;Integrated Security=True"))
                 {
-                    SqlCommand cmd = new SqlCommand("DELETE FROM DeliveryDetails  WHERE DeliveryID = " + DeliveryID.Text + " ", conn);
+                    SqlCommand cmd1 = new SqlCommand("SELECT DeliveryType FROM DeliveryDetails  WHERE DeliveryID = " + DeliveryID.Text + " ", conn);
                     conn.Open();
-                    cmd.ExecuteNonQuery();
+                    String DelType = (string)cmd1.ExecuteScalar();
                     conn.Close();
+                    if (DelType == "Out")
+                    {
+                        // Previous Quantity of Delivery Out
+                        SqlCommand cmd2 = new SqlCommand("SELECT Quantity FROM DeliveryDetails WHERE DeliveryID = " + DeliveryID.Text, conn);
+                        conn.Open();
+                        int PrevPassed = (int)cmd2.ExecuteScalar();
+                        conn.Close();  
+                        
+                        // Previous Total Passed of TShirt Quantity
+                        SqlCommand cmd3 = new SqlCommand("SELECT TotalQty FROM Quantity WHERE TShirtID = " + TShirtID.Text, conn);
+                        conn.Open();
+                        int PrevTotalPassed = (int)cmd3.ExecuteScalar();
+                        conn.Close();                      
+
+                        int RemovePrevPassed = PrevTotalPassed + PrevPassed;
+
+                        SqlCommand cmd5 = new SqlCommand("UPDATE Quantity set TotalQty = " + RemovePrevPassed  + "WHERE TShirtID = " + TShirtID.Text, conn);
+                        conn.Open();
+                        cmd5.ExecuteNonQuery();
+                        conn.Close();
+
+                        SqlCommand cmd = new SqlCommand("DELETE FROM DeliveryDetails  WHERE DeliveryID = " + DeliveryID.Text + " ", conn);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                    else
+                    {
+                        SqlCommand cmd = new SqlCommand("DELETE FROM DeliveryDetails  WHERE DeliveryID = " + DeliveryID.Text + " ", conn);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }   
                     LoadGrid();
                     ClearData();
               
